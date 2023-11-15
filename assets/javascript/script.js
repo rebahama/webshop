@@ -91,7 +91,6 @@ in the html file
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
-        console.log(pokemonData[i].name)
 
         // Create HTML content for the list item
         listItem.innerHTML = `
@@ -108,17 +107,22 @@ in the html file
 
         // Append the list item to the list
         pokemonList.appendChild(listItem);
-        testing(listItem);
+        addBasket(listItem, pokemonData[i]);
 
 
     }
 }
 
-function testing(listItem) {
+function addBasket(listItem, pokemon) {
     // Add event listener to the button inside the listItem
     const addBtn = listItem.querySelector(".add-btn");
-    addBtn.addEventListener("click", function() {
-        console.log("Clicked Pokemon:");
+    addBtn.addEventListener("click", function () {
+        console.log("Clicked Pokemon:", pokemon);
+        let Basketarray = []
+        Basketarray.push(pokemon)
+        console.log(Basketarray, Basketarray.length)
+
+
     });
 }
 
