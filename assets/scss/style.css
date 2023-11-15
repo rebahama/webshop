@@ -1,4 +1,24 @@
 /*Colors*/
 /*Margin,padding,centering,height*/
 /* image-style*/
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");/*# sourceMappingURL=style.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
+* {
+  /*remove browser defualt settings*/
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #d3d3d3;
+}
+
+/* Style header*/
+.header-intro {
+  background-color: #ee6c4d;
+  text-align: center;
+  color: #fff;
+  height: 110px;
+}/*# sourceMappingURL=style.css.map */

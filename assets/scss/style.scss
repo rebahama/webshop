@@ -1,2 +1,23 @@
 @import 'variables';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
+* {
+    /*remove browser defualt settings*/
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: $main-background-color;
+}
+
+/* Style header*/
+.header-intro {
+    background-color: $accent-color;
+    text-align: $center-text;
+    color: $font-alternative-color;
+    height: $height-header;
+}
