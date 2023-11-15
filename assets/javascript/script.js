@@ -1,5 +1,6 @@
-// Create object with property of: name,price,rating. category and image.
+//Array to save the object and properties when user clicks add to basket.
 let Basketarray = []
+// Create object with property of: name,price,rating. category and image.
 const pokemonData = [
     {
         name: "Pikachu",
@@ -102,6 +103,8 @@ in the html file
         <p>Category: ${category}</p>
         <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
         <button type="button" class="add-btn"> + </button>
+        <p> hello </p>
+        <button type="button" class="delete-btn"> - </button>
         <p> ${pokemonData.length}</p>
         <div>
       `;
@@ -109,7 +112,8 @@ in the html file
         // Append the list item to the list
         pokemonList.appendChild(listItem);
         addBasket(listItem, pokemonData[i]);
-        
+        deleteBasket(listItem,pokemonData[i]);
+
 
     }
 }
@@ -122,8 +126,19 @@ function addBasket(listItem, pokemon) {
         Basketarray.push(pokemon)
         console.log(Basketarray, Basketarray.length)
 
+    });
+}
+
+function deleteBasket(listItem, pokemon){
+
+    const addBtn = listItem.querySelector(".delete-btn");
+    addBtn.addEventListener("click", function () {
+        console.log("Clicked Pokemon:", pokemon);
+        Basketarray.pop(pokemon)
+        console.log(Basketarray, Basketarray.length)
 
     });
+    
 }
 
 
