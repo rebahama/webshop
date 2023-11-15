@@ -21,4 +21,11 @@ body {
   text-align: center;
   color: #fff;
   height: 110px;
+}
+
+/*style img header*/
+.img-style {
+  height: 87px;
+  width: 87px;
+  border-radius: 50px;
 }/*# sourceMappingURL=style.css.map */
