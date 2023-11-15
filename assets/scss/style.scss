@@ -38,3 +38,9 @@ body {
 .under-header {
     background-color: #3b4444;
 }
+
+.pokemon-avatar {
+    height: $pokemon-avatar-height;
+    width: $pokemon-avatar-width;
+    border-radius:$pokemon-avatar-radius;
+}

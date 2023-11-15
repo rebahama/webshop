@@ -80,8 +80,8 @@ create a class to put the data inside the class and output the data
 in the html file
 */
 
- // Loop over each Pokémon in the array using a regular for loop
-for (let i = 0; i < pokemonData.length; i++) {
+    // Loop over each Pokémon in the array using a regular for loop
+    for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
         const name = pokemonData[i].name;
         const price = pokemonData[i].price;
@@ -92,9 +92,9 @@ for (let i = 0; i < pokemonData.length; i++) {
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
         console.log(pokemonData[i].name)
-    
-         // Create HTML content for the list item
-      listItem.innerHTML = `
+
+        // Create HTML content for the list item
+        listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
         <p>Price: $${price}</p>
@@ -105,10 +105,11 @@ for (let i = 0; i < pokemonData.length; i++) {
         <p> ${pokemonData.length}</p>
         <div>
       `;
-    
-      // Append the list item to the list
-      pokemonList.appendChild(listItem);
-    
+
+        // Append the list item to the list
+        pokemonList.appendChild(listItem);
+
     }
-  }
-  displayPokemon();
+}
+
+displayPokemon();

@@ -38,4 +38,10 @@ body {
 
 .under-header {
   background-color: #3b4444;
+}
+
+.pokemon-avatar {
+  height: 111px;
+  width: 165px;
+  border-radius: 100px;
 }/*# sourceMappingURL=style.css.map */
