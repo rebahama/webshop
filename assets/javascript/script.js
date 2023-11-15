@@ -101,15 +101,26 @@ in the html file
         <p>Rating: ${rating}</p>
         <p>Category: ${category}</p>
         <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
-        <button type="button" id="add-btn"> + </button>
+        <button type="button" class="add-btn"> + </button>
         <p> ${pokemonData.length}</p>
         <div>
       `;
 
         // Append the list item to the list
         pokemonList.appendChild(listItem);
+        testing(listItem);
+
 
     }
 }
+
+function testing(listItem) {
+    // Add event listener to the button inside the listItem
+    const addBtn = listItem.querySelector(".add-btn");
+    addBtn.addEventListener("click", function() {
+        console.log("Clicked Pokemon:");
+    });
+}
+
 
 displayPokemon();
