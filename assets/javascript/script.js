@@ -112,13 +112,13 @@ in the html file
         // Append the list item to the list
         pokemonList.appendChild(listItem);
         addBasket(listItem, pokemonData[i]);
-        deleteBasket(listItem,pokemonData[i]);
+        deleteBasket(listItem, pokemonData[i]);
 
 
     }
 }
 
-function addBasket(listItem, pokemon) {
+addBasket = (listItem, pokemon) => {
     // Add event listener to the button inside the listItem
     const addBtn = listItem.querySelector(".add-btn");
     addBtn.addEventListener("click", function () {
@@ -127,10 +127,10 @@ function addBasket(listItem, pokemon) {
         console.log(Basketarray, Basketarray.length)
 
     });
+
 }
 
-function deleteBasket(listItem, pokemon){
-
+deleteBasket = (listItem, pokemon) => {
     const addBtn = listItem.querySelector(".delete-btn");
     addBtn.addEventListener("click", function () {
         console.log("Clicked Pokemon:", pokemon);
@@ -138,8 +138,7 @@ function deleteBasket(listItem, pokemon){
         console.log(Basketarray, Basketarray.length)
 
     });
-    
-}
 
+}
 
 displayPokemon();
