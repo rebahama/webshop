@@ -27,4 +27,14 @@ body {
     height: 87px;
     width: 87px;
     border-radius: 50px;
-  }
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.under-header {
+    background-color: #3b4444;
+}
