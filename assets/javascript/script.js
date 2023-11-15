@@ -1,4 +1,5 @@
 // Create object with property of: name,price,rating. category and image.
+let Basketarray = []
 const pokemonData = [
     {
         name: "Pikachu",
@@ -108,7 +109,7 @@ in the html file
         // Append the list item to the list
         pokemonList.appendChild(listItem);
         addBasket(listItem, pokemonData[i]);
-
+        
 
     }
 }
@@ -118,7 +119,6 @@ function addBasket(listItem, pokemon) {
     const addBtn = listItem.querySelector(".add-btn");
     addBtn.addEventListener("click", function () {
         console.log("Clicked Pokemon:", pokemon);
-        let Basketarray = []
         Basketarray.push(pokemon)
         console.log(Basketarray, Basketarray.length)
 
