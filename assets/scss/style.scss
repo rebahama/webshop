@@ -42,15 +42,29 @@ body {
 .pokemon-avatar {
     height: $pokemon-avatar-height;
     width: $pokemon-avatar-width;
-    border-radius:$pokemon-avatar-radius;
+    border-radius: $pokemon-avatar-radius;
 }
+
 /* Style the pokemon list*/
 #pokemonList {
     list-style: none;
     margin-top: $pokemon-list;
-    background-color: red;
-    width: 500px;
-    border: 1px solid #000;
-    padding: 50px;
-    border-radius: 30px;
+    width: $pokemon-list-width;
+    border: $list-border;
+    padding: $list-padding;
+    border-radius: $list-border-radius
+}
+
+.pokemon-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.property-style {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: auto;
+    align-items: center;
 }
