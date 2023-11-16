@@ -110,7 +110,7 @@ in the html file
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
-        <p>Price: $${price}</p>
+        <p class="price-counter"> ${price} </p>
         <p>Rating: ${rating}</p>
         <p>Category: ${category}</p>
         <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
@@ -123,9 +123,10 @@ in the html file
 
         // Append the list item to the list
         pokemonList.appendChild(listItem);
-        // Call functions and pass the list data.
+        // Call functions and pass variables
         addBasket(listItem, pokemonData[i]);
         deleteBasket(listItem, pokemonData[i]);
+        updatePriceCount(id, price, listItem);
 
 
     }
@@ -137,9 +138,11 @@ addBasket = (listItem, pokemon) => {
     to display how many id is inside the basket.
     */
     // Add event listener to the button inside the listItem
+
     const addBtn = listItem.querySelector(".add-btn");
     const idCounter = listItem.querySelector(".id-counter");
     addBtn.addEventListener("click", function () {
+
         console.log("Clicked Pokemon:", pokemon);
         // Add the selected Pokemon to the array with the specified quantity
         Basketarray.push(pokemon);
@@ -147,10 +150,14 @@ addBasket = (listItem, pokemon) => {
         Basketarray.forEach(pokemon => {
             const id = pokemon.id;
             idCounts[id] = (idCounts[id] || 0) + 1;
+            console.log(idCounts[id] * pokemon.price)
         });
 
         for (const id in idCounts) {
+
             idCounter.innerHTML = `${idCounts[id]}`;
+
+
         }
 
         console.log(Basketarray, Basketarray.length)
@@ -169,15 +176,6 @@ deleteBasket = (listItem, pokemon) => {
      use the splice method do display the new array. This code was taken from Stakoverflow.
      */
     /*
-    const idCounter = listItem.querySelector(".id-counter");
-    const addBtn = listItem.querySelector(".delete-btn");
-    addBtn.addEventListener("click", function () {
-        console.log("Clicked Pokemon:", pokemon);
-        // Remove the clicked Pokemon from the Basketarray
-        Basketarray.pop(pokemon)
-        console.log(Basketarray, Basketarray[0].length)
-
-    });
 */
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".id-counter");
@@ -185,15 +183,31 @@ deleteBasket = (listItem, pokemon) => {
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
         if (indexToRemove !== -1) {
             Basketarray.splice(indexToRemove, 1);
-            // Update the count next to the "Subtract" button
+            // Update the count 
             const idCount = Basketarray.filter(item => item.id === pokemon.id).length;
-           
             idCounter.innerHTML = `${idCount || 0}`;
             console.log(Basketarray);
         }
     });
-
-
 }
+
+updatePriceCount = (id, pokemon, listItem) => {
+    const addBtn = listItem.querySelector(".add-btn");
+    const priceCounter = listItem.querySelector(".price-counter");
+    const idCounter = listItem.querySelector(".id-counter");
+    addBtn.addEventListener("click", function () {
+        const idCounts = {};
+        Basketarray.forEach(pokemon => {
+            const id = pokemon.id;
+            idCounts[id] = (idCounts[id] || 0) + 1;
+            console.log(idCounts[id] * pokemon.price)
+            priceCounter.innerHTML = idCounts[id] * pokemon.price
+        });
+
+    })
+    // You can update your Basketarray or perform other actions based on the new price
+}
+
+
 
 displayPokemon();
