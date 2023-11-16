@@ -110,7 +110,7 @@ in the html file
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
-        <p class="price-counter"> ${price} </p>
+        <p class="price-counter"> Price: ${price} </p>
         <p>Rating: ${rating}</p>
         <p>Category: ${category}</p>
         <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
@@ -127,6 +127,7 @@ in the html file
         addBasket(listItem, pokemonData[i]);
         deleteBasket(listItem, pokemonData[i]);
         updatePriceCount(id, price, listItem);
+        decreasePriceCount(id, price, listItem);
 
 
     }
@@ -192,16 +193,41 @@ deleteBasket = (listItem, pokemon) => {
 }
 
 updatePriceCount = (id, pokemon, listItem) => {
+    /**
+     * Change the price when user clicks the + button, the id in the array is used to calculate
+     * how many objects is inside the array and then multiply it with the price to get the right value.
+     */
     const addBtn = listItem.querySelector(".add-btn");
     const priceCounter = listItem.querySelector(".price-counter");
-    const idCounter = listItem.querySelector(".id-counter");
     addBtn.addEventListener("click", function () {
         const idCounts = {};
         Basketarray.forEach(pokemon => {
             const id = pokemon.id;
             idCounts[id] = (idCounts[id] || 0) + 1;
-            console.log(idCounts[id] * pokemon.price)
-            priceCounter.innerHTML = idCounts[id] * pokemon.price
+            console.log(idCounts[id] * pokemon.price);
+            let sumAll=idCounts[id] * pokemon.price;
+            priceCounter.innerHTML = `Price: ${sumAll}`;
+        });
+
+    })
+    // You can update your Basketarray or perform other actions based on the new price
+}
+
+decreasePriceCount = (id, pokemon, listItem) => {
+    /**
+     * Change the price when user clicks the - button, the id in the array is used to calculate
+     * how many objects is inside the array and then multiply it with the price to get the right value.
+     */
+    const addBtn = listItem.querySelector(".delete-btn");
+    const priceCounter = listItem.querySelector(".price-counter");
+    addBtn.addEventListener("click", function () {
+        const idCounts = {};
+        Basketarray.forEach(pokemon => {
+            const id = pokemon.id;
+            idCounts[id] = (idCounts[id] || 0) + 1;
+            console.log(idCounts[id] * pokemon.price);
+            let sumAll=idCounts[id] * pokemon.price;
+            priceCounter.innerHTML = `Price: ${sumAll}`;
         });
 
     })
