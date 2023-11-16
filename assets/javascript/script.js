@@ -95,6 +95,7 @@ in the html file
     // Loop over each Pokémon in the array using a regular for loop
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
+        const id = pokemonData[i].id;
         const name = pokemonData[i].name;
         const price = pokemonData[i].price;
         const rating = pokemonData[i].rating;
@@ -103,7 +104,7 @@ in the html file
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
-       
+
 
         // Create HTML content for the list item
         listItem.innerHTML = `
@@ -116,13 +117,13 @@ in the html file
         <button type="button" class="add-btn"> + </button>
         <p> hello </p>
         <button type="button" class="delete-btn"> - </button>
-        <p> ${name}</p>
+        <p class="id-counter">Quantity ${id} Count: 0</p>
         <div>
       `;
 
         // Append the list item to the list
         pokemonList.appendChild(listItem);
-        addBasket(listItem, pokemonData[i].name);
+        addBasket(listItem, pokemonData[i]);
         deleteBasket(listItem, pokemonData[i].name);
 
 
@@ -130,18 +131,29 @@ in the html file
 }
 
 addBasket = (listItem, pokemon) => {
-     /**
-     add the object property that is stored in an arrary with the push method.
-     */
+    /**
+    add the object property that is stored in an arrary with the push method.
+    */
     // Add event listener to the button inside the listItem
     const addBtn = listItem.querySelector(".add-btn");
+    const idCounter = listItem.querySelector(".id-counter");
     addBtn.addEventListener("click", function () {
         console.log("Clicked Pokemon:", pokemon);
-        const quantityToAdd = parseInt(prompt("Enter the quantity", "1"), 10) || 1;
-         // Add the selected Pokemon to the array with the specified quantity
-         for (let i = 0; i < quantityToAdd; i++) {
-            Basketarray.push(pokemon);
+        
+        // Add the selected Pokemon to the array with the specified quantity
+       
+         Basketarray.push(pokemon);
+        const idCounts = {};
+
+        Basketarray.forEach(pokemon => {
+            const id = pokemon.id;
+            idCounts[id] = (idCounts[id] || 0) + 1;
+        });
+
+        for (const id in idCounts) {
+            idCounter.innerHTML = `${idCounts[id]}`;
         }
+
         console.log(Basketarray, Basketarray.length)
         /**
         for (let i = 0; i < pokemonData.length; i++) {
