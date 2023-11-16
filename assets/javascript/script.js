@@ -93,6 +93,7 @@ in the html file
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
+       
 
         // Create HTML content for the list item
         listItem.innerHTML = `
@@ -105,37 +106,52 @@ in the html file
         <button type="button" class="add-btn"> + </button>
         <p> hello </p>
         <button type="button" class="delete-btn"> - </button>
-        <p> ${pokemonData.length}</p>
+        <p> ${name}</p>
         <div>
       `;
 
         // Append the list item to the list
         pokemonList.appendChild(listItem);
-        addBasket(listItem, pokemonData[i]);
-        deleteBasket(listItem, pokemonData[i]);
+        addBasket(listItem, pokemonData[i].name);
+        deleteBasket(listItem, pokemonData[i].name);
 
 
     }
 }
 
 addBasket = (listItem, pokemon) => {
+     /**
+     add the object property that is stored in an arrary with the push method.
+     */
     // Add event listener to the button inside the listItem
     const addBtn = listItem.querySelector(".add-btn");
     addBtn.addEventListener("click", function () {
         console.log("Clicked Pokemon:", pokemon);
-        Basketarray.push(pokemon)
+        const quantityToAdd = parseInt(prompt("Enter the quantity", "1"), 10) || 1;
+         // Add the selected Pokemon to the array with the specified quantity
+         for (let i = 0; i < quantityToAdd; i++) {
+            Basketarray.push(pokemon);
+        }
         console.log(Basketarray, Basketarray.length)
-
+        /**
+        for (let i = 0; i < pokemonData.length; i++) {
+            console.log(Basketarray[i].name.includes(pokemon))
+        }
+         */
     });
 
 }
 
 deleteBasket = (listItem, pokemon) => {
+    /**
+     Delete the object property that is stored in an arrary with the pop method.
+     */
     const addBtn = listItem.querySelector(".delete-btn");
     addBtn.addEventListener("click", function () {
         console.log("Clicked Pokemon:", pokemon);
+        // Remove the clicked Pokemon from the Basketarray
         Basketarray.pop(pokemon)
-        console.log(Basketarray, Basketarray.length)
+        console.log(Basketarray, Basketarray[0].length)
 
     });
 
