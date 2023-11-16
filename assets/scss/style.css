@@ -69,4 +69,32 @@ body {
   padding: 20px;
   margin: auto;
   align-items: center;
+}
+
+.add-btn {
+  background-color: #04AA6D;
+  /* Green */
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+  padding: 6px 23px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.delete-btn {
+  background-color: red;
+  /* Green */
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+  padding: 6px 23px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
 }/*# sourceMappingURL=style.css.map */

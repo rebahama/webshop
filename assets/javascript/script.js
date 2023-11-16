@@ -110,14 +110,14 @@ in the html file
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
-        <p class="price-counter"> Price: ${price} </p>
+        <p> Price: ${price} </p>
         <p>Rating: ${rating}</p>
         <p>Category: ${category}</p>
         <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
         <button type="button" class="add-btn"> + </button>
         <p class="id-counter">${id < 0 ? { id } : " 0 "}</p>
         <button type="button" class="delete-btn"> - </button>
-        
+        <p class="price-counter"> Totalt: 0 </p>
         <div>
       `;
 
@@ -174,13 +174,14 @@ addBasket = (listItem, pokemon) => {
 deleteBasket = (listItem, pokemon) => {
     /**
      Delete the object property that is stored in an array, track the clicked object with the id parameter and
-     use the splice method do display the new array. This code was taken from Stakoverflow.
+     use the splice method do display the new array. This part of this code was taken from Stakoverflow.
      */
     /*
 */
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".id-counter");
     deleteBtn.addEventListener("click", function () {
+        // code from stakeoverflow
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
         if (indexToRemove !== -1) {
             Basketarray.splice(indexToRemove, 1);
@@ -205,8 +206,8 @@ updatePriceCount = (id, pokemon, listItem) => {
             const id = pokemon.id;
             idCounts[id] = (idCounts[id] || 0) + 1;
             console.log(idCounts[id] * pokemon.price);
-            let sumAll=idCounts[id] * pokemon.price;
-            priceCounter.innerHTML = `Price: ${sumAll}`;
+            let sumAll = idCounts[id] * pokemon.price;
+            priceCounter.innerHTML = `Totalt: ${sumAll}$`;
         });
 
     })
@@ -225,15 +226,12 @@ decreasePriceCount = (id, pokemon, listItem) => {
         Basketarray.forEach(pokemon => {
             const id = pokemon.id;
             idCounts[id] = (idCounts[id] || 0) + 1;
-            console.log(idCounts[id] * pokemon.price);
-            let sumAll=idCounts[id] * pokemon.price;
-            priceCounter.innerHTML = `Price: ${sumAll}`;
+            console.log(idCounts[id]);
+            let sumAll = idCounts[id] * pokemon.price;
+            priceCounter.innerHTML = `Totalt: ${sumAll}$`;
         });
 
     })
     // You can update your Basketarray or perform other actions based on the new price
 }
-
-
-
 displayPokemon();
