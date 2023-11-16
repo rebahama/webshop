@@ -107,12 +107,6 @@ in the html file
 
 
         // Create HTML content for the list item
-        if (id === 0) {
-            let id = "Nothing in basket"
-        }
-        else if (id != 0) {
-
-        }
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
@@ -121,17 +115,17 @@ in the html file
         <p>Category: ${category}</p>
         <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
         <button type="button" class="add-btn"> + </button>
-        <p> hello </p>
+        <p class="id-counter">${id < 0 ? { id } : " 0 "}</p>
         <button type="button" class="delete-btn"> - </button>
         
-        <p class="id-counter">${id < 0 ? { id } : " 0 "}</p>
         <div>
       `;
 
         // Append the list item to the list
         pokemonList.appendChild(listItem);
+        // Call functions and pass the list data.
         addBasket(listItem, pokemonData[i]);
-        deleteBasket(listItem, pokemonData[i].name);
+        deleteBasket(listItem, pokemonData[i]);
 
 
     }
@@ -139,19 +133,17 @@ in the html file
 
 addBasket = (listItem, pokemon) => {
     /**
-    add the object property that is stored in an arrary with the push method.
+    add the object property that is stored in an arrary with the push method and keep track of the id in the object property
+    to display how many id is inside the basket.
     */
     // Add event listener to the button inside the listItem
     const addBtn = listItem.querySelector(".add-btn");
     const idCounter = listItem.querySelector(".id-counter");
     addBtn.addEventListener("click", function () {
         console.log("Clicked Pokemon:", pokemon);
-
         // Add the selected Pokemon to the array with the specified quantity
-
         Basketarray.push(pokemon);
         const idCounts = {};
-
         Basketarray.forEach(pokemon => {
             const id = pokemon.id;
             idCounts[id] = (idCounts[id] || 0) + 1;
@@ -173,8 +165,11 @@ addBasket = (listItem, pokemon) => {
 
 deleteBasket = (listItem, pokemon) => {
     /**
-     Delete the object property that is stored in an arrary with the pop method.
+     Delete the object property that is stored in an array, track the clicked object with the id parameter and
+     use the splice method do display the new array. This code was taken from Stakoverflow.
      */
+    /*
+    const idCounter = listItem.querySelector(".id-counter");
     const addBtn = listItem.querySelector(".delete-btn");
     addBtn.addEventListener("click", function () {
         console.log("Clicked Pokemon:", pokemon);
@@ -183,6 +178,21 @@ deleteBasket = (listItem, pokemon) => {
         console.log(Basketarray, Basketarray[0].length)
 
     });
+*/
+    const deleteBtn = listItem.querySelector(".delete-btn");
+    const idCounter = listItem.querySelector(".id-counter");
+    deleteBtn.addEventListener("click", function () {
+        const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
+        if (indexToRemove !== -1) {
+            Basketarray.splice(indexToRemove, 1);
+            // Update the count next to the "Subtract" button
+            const idCount = Basketarray.filter(item => item.id === pokemon.id).length;
+           
+            idCounter.innerHTML = `${idCount || 0}`;
+            console.log(Basketarray);
+        }
+    });
+
 
 }
 
