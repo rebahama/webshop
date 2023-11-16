@@ -107,6 +107,12 @@ in the html file
 
 
         // Create HTML content for the list item
+        if (id === 0) {
+            let id = "Nothing in basket"
+        }
+        else if (id != 0) {
+
+        }
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
@@ -117,7 +123,8 @@ in the html file
         <button type="button" class="add-btn"> + </button>
         <p> hello </p>
         <button type="button" class="delete-btn"> - </button>
-        <p class="id-counter">Quantity ${id} Count: 0</p>
+        
+        <p class="id-counter">${id < 0 ? { id } : " 0 "}</p>
         <div>
       `;
 
@@ -139,10 +146,10 @@ addBasket = (listItem, pokemon) => {
     const idCounter = listItem.querySelector(".id-counter");
     addBtn.addEventListener("click", function () {
         console.log("Clicked Pokemon:", pokemon);
-        
+
         // Add the selected Pokemon to the array with the specified quantity
-       
-         Basketarray.push(pokemon);
+
+        Basketarray.push(pokemon);
         const idCounts = {};
 
         Basketarray.forEach(pokemon => {
