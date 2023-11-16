@@ -42,6 +42,7 @@ body {
 }
 
 .pokemon-avatar {
+  margin: 20px;
   height: 111px;
   width: 165px;
   border-radius: 100px;
@@ -71,9 +72,9 @@ body {
   align-items: center;
 }
 
+/* Style buttons inside the list*/
 .add-btn {
   background-color: #04AA6D;
-  /* Green */
   border: none;
   cursor: pointer;
   border-radius: 20px;
@@ -86,8 +87,7 @@ body {
 }
 
 .delete-btn {
-  background-color: red;
-  /* Green */
+  background-color: #ee6c4d;
   border: none;
   cursor: pointer;
   border-radius: 20px;

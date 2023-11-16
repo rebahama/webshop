@@ -40,6 +40,7 @@ body {
 }
 
 .pokemon-avatar {
+    margin: $pokemon-avatar-margin;
     height: $pokemon-avatar-height;
     width: $pokemon-avatar-width;
     border-radius: $pokemon-avatar-radius;
@@ -62,7 +63,7 @@ body {
 }
 
 .property-style {
-    
+
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -70,9 +71,9 @@ body {
     align-items: center;
 }
 
+/* Style buttons inside the list*/
 .add-btn {
     background-color: #04AA6D;
-    /* Green */
     border: none;
     cursor: pointer;
     border-radius: 20px;
@@ -83,9 +84,9 @@ body {
     display: inline-block;
     font-size: 12px;
 }
+
 .delete-btn {
-    background-color: red;
-    /* Green */
+    background-color: $accent-color;
     border: none;
     cursor: pointer;
     border-radius: 20px;
