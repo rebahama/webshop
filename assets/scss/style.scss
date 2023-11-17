@@ -73,27 +73,29 @@ body {
 
 /* Style buttons inside the list*/
 .add-btn {
-    background-color: #04AA6D;
+    background-color: $add-btn;
     border: none;
     cursor: pointer;
-    border-radius: 20px;
-    color: white;
+    border-radius: $add-radius;
+    color: $add-btn-color;
     padding: 6px 23px;
     text-align: center;
+    margin: $add-radius;
     text-decoration: none;
     display: inline-block;
-    font-size: 12px;
+    font-size: $add-size;
 }
 
 .delete-btn {
     background-color: $accent-color;
     border: none;
     cursor: pointer;
-    border-radius: 20px;
-    color: white;
+    border-radius: $add-radius;
+    color: $add-btn-color;
     padding: 6px 23px;
+    margin: $add-radius;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 12px;
+    font-size: $add-size;
 }
