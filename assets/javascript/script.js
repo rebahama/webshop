@@ -165,16 +165,13 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const priceValueText = priceCounter.textContent;
     
-    if (sumAll>0){
-        priceCounter.innerHTML = `Total Price: zero`;
-    }
     const idCounts = {};
     Basketarray.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
-        priceCounter.innerHTML = `Total Price:${sumAll >= 0 ? sumAll : "0" }`;
+        priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0" }`;
 
 
     });
