@@ -126,7 +126,7 @@ displayPokemon = () => {
         deleteBasket(listItem, pokemonData[i]);
         updatePriceCount(id, price, listItem);
         decreasePriceCount(id, price, listItem);
-        sortByAlphabetic(pokemonData[i], price);
+        sortByAlphabetic(pokemonData[i], price, listItem);
 
     }
 }
@@ -247,21 +247,18 @@ const addToBasketAndFindRightId = (id, listItem, pokemon) => {
 }
 
 
-const sortByAlphabetic = (pokemon, price) => {
+const sortByAlphabetic = (pokemonData,listItem) => {
     const sortButton = document.querySelector("#sort-btn");
-    
     sortButton.addEventListener('click', () => {
-
-    pokemon.sort();
-        console.log(pokemon.price)
-
-
-
+        // Clone the array to avoid modifying the original array
+        const clonedPokemon = [...pokemonData];
+        // Sort the cloned array based on the 'price' property
+        clonedPokemon.sort((a, b) => a.price - b.price);
+        console.log(clonedPokemon);
     });
-
-
-}
-sortByAlphabetic();
+   
+};
+sortByAlphabetic(pokemonData);
 displayPokemon();
 
 
