@@ -126,6 +126,7 @@ displayPokemon = () => {
         deleteBasket(listItem, pokemonData[i]);
         updatePriceCount(id, price, listItem);
         decreasePriceCount(id, price, listItem);
+        sortByAlphabetic(pokemonData[i], price);
 
     }
 }
@@ -164,14 +165,14 @@ const decreasePriceCount = (id, pokemon, listItem) => {
 const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const priceValueText = priceCounter.textContent;
-    
+
     const idCounts = {};
     Basketarray.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
-        priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0" }`;
+        priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
 
 
     });
@@ -244,6 +245,23 @@ const addToBasketAndFindRightId = (id, listItem, pokemon) => {
 
     console.log(Basketarray, Basketarray.length)
 }
+
+
+const sortByAlphabetic = (pokemon, price) => {
+    const sortButton = document.querySelector("#sort-btn");
+    
+    sortButton.addEventListener('click', () => {
+
+    pokemon.sort();
+        console.log(pokemon.price)
+
+
+
+    });
+
+
+}
+sortByAlphabetic();
 displayPokemon();
 
 
