@@ -89,6 +89,7 @@ Loop over the object and properties with a for loop and then
 create a class to put the data inside the class and output the data
 in the html file
 */
+
 displayPokemon = () => {
     // Loop over each Pokémon in the array using a regular for loop
     for (let i = 0; i < pokemonData.length; i++) {
@@ -126,7 +127,7 @@ displayPokemon = () => {
         deleteBasket(listItem, pokemonData[i]);
         updatePriceCount(id, price, listItem);
         decreasePriceCount(id, price, listItem);
-        sortByAlphabetic(pokemonData[i], price, listItem);
+        sortByPrice(pokemonData[i], price, listItem);
 
     }
 }
@@ -246,19 +247,24 @@ const addToBasketAndFindRightId = (id, listItem, pokemon) => {
     console.log(Basketarray, Basketarray.length)
 }
 
+function compareByAge(a, b) {
+    return a.price - b.price;
+}
 
-const sortByAlphabetic = (pokemonData,listItem) => {
+const sortByPrice = (pokemonData, listItem) => {
     const sortButton = document.querySelector("#sort-btn");
     sortButton.addEventListener('click', () => {
         // Clone the array to avoid modifying the original array
-        const clonedPokemon = [...pokemonData];
         // Sort the cloned array based on the 'price' property
-        clonedPokemon.sort((a, b) => a.price - b.price);
-        console.log(clonedPokemon);
+        const container = document.querySelector("#pokemonList");
+        pokemonData.sort(compareByAge)
+        console.log(pokemonData)
+        // Clear the container before adding the sorted Pokémon
+        container.innerHTML = pokemonData.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
+        displayPokemon(pokemonData)
     });
-   
+    
+
 };
-sortByAlphabetic(pokemonData);
+sortByPrice(pokemonData);
 displayPokemon();
-
-
