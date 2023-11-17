@@ -1,5 +1,5 @@
 //Array to save the object and properties when user clicks add to basket.
-let Basketarray = []
+const Basketarray = []
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [
     {
@@ -139,24 +139,7 @@ addBasket = (listItem, pokemon, id) => {
     addBtn.addEventListener('click', () => addToBasketAndCalculatePrice(listItem, pokemon, id));
 }
 
-const addToBasketAndFindRightId = (id, listItem, pokemon) => {
-    const idCounter = listItem.querySelector(".id-counter");
-    console.log("Clicked Pokemon:", pokemon);
-    // Add the selected Pokemon to the array with the specified quantity of the id that is inside the array and multiply with price.
-    Basketarray.push(pokemon);
-    const idCounts = {};
-    Basketarray.forEach(pokemon => {
-        const id = pokemon.id;
-        idCounts[id] = (idCounts[id] || 0) + 1;
-        console.log(idCounts[id] * pokemon.price)
-    });
 
-    for (const id in idCounts) {
-        idCounter.innerHTML = `${idCounts[id]}`;
-    }
-
-    console.log(Basketarray, Basketarray.length)
-}
 /**
   Delete the object property that is stored in an array, track the clicked object with the id parameter and
   use the splice method do display the new array. This part of this code was taken from Stakoverflow.
@@ -208,7 +191,8 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         idCounts[id] = (idCounts[id] || 0) + 1;
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
-        priceCounter.innerHTML = `Total Price: ${sumAll}$`;
+        priceCounter.innerHTML = `Total Price: $${sumAll > 0 ? sumAll : "0"}`
+        
     });
 }
 
@@ -235,6 +219,29 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         console.log(Basketarray[i].name.includes(pokemon))
     }
      */
+}
+/**
+ * Finds the total id of how many pokemon is in the basket and multiplies with the price
+ * and shows the total of how many ids is inside the array.
+ * 
+ */
+const addToBasketAndFindRightId = (id, listItem, pokemon) => {
+    const idCounter = listItem.querySelector(".id-counter");
+    console.log("Clicked Pokemon:", pokemon);
+    // Add the selected Pokemon to the array with the specified quantity of the id that is inside the array and multiply with price.
+    Basketarray.push(pokemon);
+    const idCounts = {};
+    Basketarray.forEach(pokemon => {
+        const id = pokemon.id;
+        idCounts[id] = (idCounts[id] || 0) + 1;
+        console.log(idCounts[id] * pokemon.price)
+    });
+
+    for (const id in idCounts) {
+        idCounter.innerHTML = `${idCounts[id]}`;
+    }
+
+    console.log(Basketarray, Basketarray.length)
 }
 displayPokemon();
 
