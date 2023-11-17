@@ -192,46 +192,40 @@ deleteBasket = (listItem, pokemon) => {
         }
     });
 }
-
-updatePriceCount = (id, pokemon, listItem) => {
-    /**
+ /**
      * Change the price when user clicks the + button, the id in the array is used to calculate
      * how many objects is inside the array and then multiply it with the price to get the right value.
      */
+updatePriceCount = (id, pokemon, listItem) => {
     const addBtn = listItem.querySelector(".add-btn");
-    const priceCounter = listItem.querySelector(".price-counter");
-    addBtn.addEventListener("click", function () {
-        const idCounts = {};
-        Basketarray.forEach(pokemon => {
-            const id = pokemon.id;
-            idCounts[id] = (idCounts[id] || 0) + 1;
-            console.log(idCounts[id] * pokemon.price);
-            let sumAll = idCounts[id] * pokemon.price;
-            priceCounter.innerHTML = `Totalt: ${sumAll}$`;
-        });
-
-    })
-    // You can update your Basketarray or perform other actions based on the new price
+    addBtn.addEventListener('click', () => findRightIndexAndShowPrice(id, pokemon, listItem));
 }
 
-decreasePriceCount = (id, pokemon, listItem) => {
-    /**
-     * Change the price when user clicks the - button, the id in the array is used to calculate
-     * how many objects is inside the array and then multiply it with the price to get the right value.
-     */
-    const addBtn = listItem.querySelector(".delete-btn");
-    const priceCounter = listItem.querySelector(".price-counter");
-    addBtn.addEventListener("click", function () {
-        const idCounts = {};
-        Basketarray.forEach(pokemon => {
-            const id = pokemon.id;
-            idCounts[id] = (idCounts[id] || 0) + 1;
-            console.log(idCounts[id]);
-            let sumAll = idCounts[id] * pokemon.price;
-            priceCounter.innerHTML = `Totalt: ${sumAll}$`;
-        });
 
-    })
+
+/**
+   * Change the price when user clicks the - button, the id in the array is used to calculate
+   * how many objects is inside the array and then multiply it with the price to get the right value.
+   */
+decreasePriceCount = (id, pokemon, listItem) => {
+    const addBtn = listItem.querySelector(".delete-btn");
     // You can update your Basketarray or perform other actions based on the new price
+    addBtn.addEventListener('click', () => findRightIndexAndShowPrice(id, pokemon, listItem));
+}
+
+/** 
+   *Function for displaying the total price of the choosen product, when the user increments the value
+   *this function takes the id of the product and multiplies it with the pokemon id to display the total value price.
+   */
+findRightIndexAndShowPrice = (id, pokemon, listItem) => {
+    const priceCounter = listItem.querySelector(".price-counter");
+    const idCounts = {};
+    Basketarray.forEach(pokemon => {
+        const id = pokemon.id;
+        idCounts[id] = (idCounts[id] || 0) + 1;
+        console.log(idCounts[id]);
+        let sumAll = idCounts[id] * pokemon.price;
+        priceCounter.innerHTML = `Totalt: ${sumAll}$`;
+    });
 }
 displayPokemon();
