@@ -84,14 +84,12 @@ const pokemonData = [
     },
 ];
 
-
-displayPokemon = () => {
-    /**
+/**
 Loop over the object and properties with a for loop and then
 create a class to put the data inside the class and output the data
 in the html file
 */
-
+displayPokemon = () => {
     // Loop over each Pokémon in the array using a regular for loop
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
@@ -115,69 +113,57 @@ in the html file
         <p>Category: ${category}</p>
         <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
         <button type="button" class="add-btn"> + </button>
-        <p class="id-counter">${id < 0 ? { id } : " 0 "}</p>
+        <p class="id-counter"></p>
         <button type="button" class="delete-btn"> - </button>
-        <p class="price-counter"> Totalt: 0 </p>
+        <p class="price-counter"> Totalt price: 0 </p>
+        <p class="counter"> </p>
         <div>
       `;
-
         // Append the list item to the list
         pokemonList.appendChild(listItem);
         // Call functions and pass variables
-        addBasket(listItem, pokemonData[i]);
+        addBasket(listItem, pokemonData[i], id);
         deleteBasket(listItem, pokemonData[i]);
         updatePriceCount(id, price, listItem);
         decreasePriceCount(id, price, listItem);
 
-
     }
 }
-
-addBasket = (listItem, pokemon) => {
-    /**
-    add the object property that is stored in an arrary with the push method and keep track of the id in the object property
-    to display how many id is inside the basket.
-    */
+/**
+   add the object property that is stored in an arrary with the push method and keep track of the id in the object property
+   to display how many id is inside the basket.
+   */
+addBasket = (listItem, pokemon, id) => {
     // Add event listener to the button inside the listItem
-
     const addBtn = listItem.querySelector(".add-btn");
-    const idCounter = listItem.querySelector(".id-counter");
-    addBtn.addEventListener("click", function () {
-
-        console.log("Clicked Pokemon:", pokemon);
-        // Add the selected Pokemon to the array with the specified quantity
-        Basketarray.push(pokemon);
-        const idCounts = {};
-        Basketarray.forEach(pokemon => {
-            const id = pokemon.id;
-            idCounts[id] = (idCounts[id] || 0) + 1;
-            console.log(idCounts[id] * pokemon.price)
-        });
-
-        for (const id in idCounts) {
-
-            idCounter.innerHTML = `${idCounts[id]}`;
-
-
-        }
-
-        console.log(Basketarray, Basketarray.length)
-        /**
-        for (let i = 0; i < pokemonData.length; i++) {
-            console.log(Basketarray[i].name.includes(pokemon))
-        }
-         */
-    });
-
+    addBtn.addEventListener('click', () => addToBasketAndCalculatePrice(listItem, pokemon, id));
 }
 
-deleteBasket = (listItem, pokemon) => {
-    /**
-     Delete the object property that is stored in an array, track the clicked object with the id parameter and
-     use the splice method do display the new array. This part of this code was taken from Stakoverflow.
-     */
-    /*
+const addToBasketAndFindRightId = (id, listItem, pokemon) => {
+    const idCounter = listItem.querySelector(".id-counter");
+    console.log("Clicked Pokemon:", pokemon);
+    // Add the selected Pokemon to the array with the specified quantity of the id that is inside the array and multiply with price.
+    Basketarray.push(pokemon);
+    const idCounts = {};
+    Basketarray.forEach(pokemon => {
+        const id = pokemon.id;
+        idCounts[id] = (idCounts[id] || 0) + 1;
+        console.log(idCounts[id] * pokemon.price)
+    });
+
+    for (const id in idCounts) {
+        idCounter.innerHTML = `${idCounts[id]}`;
+    }
+
+    console.log(Basketarray, Basketarray.length)
+}
+/**
+  Delete the object property that is stored in an array, track the clicked object with the id parameter and
+  use the splice method do display the new array. This part of this code was taken from Stakoverflow.
+  */
+/*
 */
+const deleteBasket = (listItem, pokemon) => {
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".id-counter");
     deleteBtn.addEventListener("click", function () {
@@ -192,22 +178,19 @@ deleteBasket = (listItem, pokemon) => {
         }
     });
 }
- /**
-     * Change the price when user clicks the + button, the id in the array is used to calculate
-     * how many objects is inside the array and then multiply it with the price to get the right value.
-     */
-updatePriceCount = (id, pokemon, listItem) => {
+/**
+    * Change the price when user clicks the + button, the id in the array is used to calculate
+    * how many objects is inside the array and then multiply it with the price to get the right value.
+    */
+const updatePriceCount = (id, pokemon, listItem) => {
     const addBtn = listItem.querySelector(".add-btn");
     addBtn.addEventListener('click', () => findRightIndexAndShowPrice(id, pokemon, listItem));
 }
-
-
-
 /**
    * Change the price when user clicks the - button, the id in the array is used to calculate
    * how many objects is inside the array and then multiply it with the price to get the right value.
    */
-decreasePriceCount = (id, pokemon, listItem) => {
+const decreasePriceCount = (id, pokemon, listItem) => {
     const addBtn = listItem.querySelector(".delete-btn");
     // You can update your Basketarray or perform other actions based on the new price
     addBtn.addEventListener('click', () => findRightIndexAndShowPrice(id, pokemon, listItem));
@@ -217,7 +200,7 @@ decreasePriceCount = (id, pokemon, listItem) => {
    *Function for displaying the total price of the choosen product, when the user increments the value
    *this function takes the id of the product and multiplies it with the pokemon id to display the total value price.
    */
-findRightIndexAndShowPrice = (id, pokemon, listItem) => {
+const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const idCounts = {};
     Basketarray.forEach(pokemon => {
@@ -225,7 +208,34 @@ findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         idCounts[id] = (idCounts[id] || 0) + 1;
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
-        priceCounter.innerHTML = `Totalt: ${sumAll}$`;
+        priceCounter.innerHTML = `Total Price: ${sumAll}$`;
     });
 }
+
+
+const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
+    const idCounter = listItem.querySelector(".counter");
+    console.log("Clicked Pokemon:", pokemon);
+    // Add the selected Pokemon to the array with the specified quantity
+    Basketarray.push(pokemon);
+    const idCounts = {};
+    Basketarray.forEach(pokemon => {
+        const id = pokemon.id;
+        idCounts[id] = (idCounts[id] || 0) + 1;
+        console.log(idCounts[id] * pokemon.price)
+    });
+
+    for (const id in idCounts) {
+        idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
+    }
+
+    console.log(Basketarray, Basketarray.length)
+    /**
+    for (let i = 0; i < pokemonData.length; i++) {
+        console.log(Basketarray[i].name.includes(pokemon))
+    }
+     */
+}
 displayPokemon();
+
+
