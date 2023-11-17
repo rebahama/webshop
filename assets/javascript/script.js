@@ -165,7 +165,7 @@ const addToBasketAndFindRightId = (id, listItem, pokemon) => {
 */
 const deleteBasket = (listItem, pokemon) => {
     const deleteBtn = listItem.querySelector(".delete-btn");
-    const idCounter = listItem.querySelector(".id-counter");
+    const idCounter = listItem.querySelector(".counter");
     deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
@@ -173,7 +173,7 @@ const deleteBasket = (listItem, pokemon) => {
             Basketarray.splice(indexToRemove, 1);
             // Update the count 
             const idCount = Basketarray.filter(item => item.id === pokemon.id).length;
-            idCounter.innerHTML = `${idCount || 0}`;
+            idCounter.innerHTML = `Quantity: ${idCount || 0}`;
             console.log(Basketarray);
         }
     });
