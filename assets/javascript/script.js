@@ -133,34 +133,12 @@ displayPokemon = () => {
    add the object property that is stored in an arrary with the push method and keep track of the id in the object property
    to display how many id is inside the basket.
    */
-addBasket = (listItem, pokemon, id) => {
+const addBasket = (listItem, pokemon, id) => {
     // Add event listener to the button inside the listItem
     const addBtn = listItem.querySelector(".add-btn");
     addBtn.addEventListener('click', () => addToBasketAndCalculatePrice(listItem, pokemon, id));
 }
 
-
-/**
-  Delete the object property that is stored in an array, track the clicked object with the id parameter and
-  use the splice method do display the new array. This part of this code was taken from Stakoverflow.
-  */
-/*
-*/
-const deleteBasket = (listItem, pokemon) => {
-    const deleteBtn = listItem.querySelector(".delete-btn");
-    const idCounter = listItem.querySelector(".counter");
-    deleteBtn.addEventListener("click", function () {
-        // code from stakeoverflow
-        const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
-        if (indexToRemove !== -1) {
-            Basketarray.splice(indexToRemove, 1);
-            // Update the count 
-            const idCount = Basketarray.filter(item => item.id === pokemon.id).length;
-            idCounter.innerHTML = `Quantity: ${idCount || 0}`;
-            console.log(Basketarray);
-        }
-    });
-}
 /**
     * Change the price when user clicks the + button, the id in the array is used to calculate
     * how many objects is inside the array and then multiply it with the price to get the right value.
@@ -185,18 +163,44 @@ const decreasePriceCount = (id, pokemon, listItem) => {
    */
 const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
+    const priceValueText = priceCounter.textContent;
+    
+    if (sumAll>0){
+        priceCounter.innerHTML = `Total Price: zero`;
+    }
     const idCounts = {};
     Basketarray.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
-        priceCounter.innerHTML = `Total Price: $${sumAll > 0 ? sumAll : "0"}`
-        
+        priceCounter.innerHTML = `Total Price:${sumAll >= 0 ? sumAll : "0" }`;
+
+
     });
 }
 
-
+/**
+  Delete the object property that is stored in an array, track the clicked object with the id parameter and
+  use the splice method do display the new array. This part of this code was taken from Stakoverflow.
+  */
+/*
+*/
+const deleteBasket = (listItem, pokemon) => {
+    const deleteBtn = listItem.querySelector(".delete-btn");
+    const idCounter = listItem.querySelector(".counter");
+    deleteBtn.addEventListener("click", function () {
+        // code from stakeoverflow
+        const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
+        if (indexToRemove !== -1) {
+            Basketarray.splice(indexToRemove, 1);
+            // Update the count 
+            const idCount = Basketarray.filter(item => item.id === pokemon.id).length;
+            idCounter.innerHTML = `Quantity: ${idCount || 0}`;
+            console.log(Basketarray);
+        }
+    });
+}
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
     console.log("Clicked Pokemon:", pokemon);
