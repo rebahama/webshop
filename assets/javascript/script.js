@@ -174,10 +174,17 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
         priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
-        basketContainer.innerHTML =Basketarray.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
-        
+        basketContainer.innerHTML = showBasketArea();
+
     });
 };
+
+const showBasketArea = () => {
+    const basketContainer = document.querySelector(".basket-container")
+    return basketContainer.innerHTML = Basketarray.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
+
+
+}
 
 
 /**
@@ -197,10 +204,11 @@ const deleteBasket = (listItem, pokemon) => {
             Basketarray.splice(indexToRemove, 1);
             // Update the count 
             const idCount = Basketarray.filter(item => item.id === pokemon.id).length;
-            idCounter.innerHTML = `Quantity: ${idCount || 0}`;
+            idCounter.innerHTML = `Quantity: ${idCount}`;
             console.log(Basketarray);
             const totalPrice = sumAllPriceBasket(Basketarray);
             console.log(totalPrice);
+            console.log(`Id av ${idCount}`)
             showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`
             console.log(Basketarray, Basketarray.length);
         }
@@ -229,10 +237,9 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         idCounts[id] = (idCounts[id] || 0) + 1;
         console.log(idCounts[id] * pokemon.price);
     });
+    idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
 
-    for (const id in idCounts) {
-        idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
-    }
+   
 
     const totalPrice = sumAllPriceBasket(Basketarray);
     console.log(totalPrice);
@@ -466,7 +473,7 @@ const showBasket = () => {
     const basketContainer = document.querySelector(".basket-container")
     basketContainer.style.display = "block";
     pokemonContainer.style.display = "none";
-    if(basketContainer.style.display ==="block"){
+    if (basketContainer.style.display === "block") {
         pokemonContainer.style.display = "none";
     }
 
