@@ -174,8 +174,6 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
         priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
-
-
     });
 };
 
@@ -251,15 +249,8 @@ function compareByAge(a, b) {
     return a.price - b.price;
 }
 
-function pokemonObjectsHtml() {
-
-
-}
-
 const sortByPrice = (pokemonData, listItem) => {
     const sortButton = document.querySelector("#sort-btn");
-
-
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
         const id = pokemonData[i].id;
@@ -295,11 +286,18 @@ const sortByPrice = (pokemonData, listItem) => {
             pokemonData.sort(compareByAge);
             console.log(pokemonData);
             // Clear the container before adding the sorted Pokémon
+            container.innerHTML="";
             container.innerHTML = pokemonData.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
-            displayPokemon(pokemonData);
+       displayPokemon(pokemonData)
         });
     }
-
+    
 };
-sortByPrice(pokemonData);
+
+const testing=()=>{
+sortByPrice(pokemonData)
+}
+const sortButton = document.querySelector("#sort-btn");
+sortButton.addEventListener('click', () => testing());
+
 displayPokemon(pokemonData);
