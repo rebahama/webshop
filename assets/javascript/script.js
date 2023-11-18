@@ -173,12 +173,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
     });
 };
-const showTotalPriceBasket = (pokemonData, listItem) => {
-    let showTotalPrice = listItem.querySelector("#total-varukorg");
-    console.log(price)
-    showTotalPrice.innerHTML = "hello"
 
-}
 
 /**
   Delete the object property that is stored in an array, track the clicked object with the id parameter and
@@ -199,11 +194,12 @@ const deleteBasket = (listItem, pokemon) => {
             const idCount = Basketarray.filter(item => item.id === pokemon.id).length;
             idCounter.innerHTML = `Quantity: ${idCount || 0}`;
             console.log(Basketarray);
+            const totalPrice = sumAllPriceBasket(Basketarray);
+        console.log(totalPrice);
+        showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`
+        console.log(Basketarray, Basketarray.length);
         }
-        const totalPrice = sumAllPriceBasket(Basketarray);
-    console.log(totalPrice);
-    showTotalPrice.innerHTML = `Pris:${totalPrice}`
-    console.log(Basketarray, Basketarray.length);
+        
     });
 };
 
@@ -235,7 +231,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
 
     const totalPrice = sumAllPriceBasket(Basketarray);
     console.log(totalPrice);
-    showTotalPrice.innerHTML = `Pris:${totalPrice}`
+    showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`
     console.log(Basketarray, Basketarray.length);
     /**
     for (let i = 0; i < pokemonData.length; i++) {
