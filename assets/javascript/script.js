@@ -195,11 +195,11 @@ const deleteBasket = (listItem, pokemon) => {
             idCounter.innerHTML = `Quantity: ${idCount || 0}`;
             console.log(Basketarray);
             const totalPrice = sumAllPriceBasket(Basketarray);
-        console.log(totalPrice);
-        showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`
-        console.log(Basketarray, Basketarray.length);
+            console.log(totalPrice);
+            showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`
+            console.log(Basketarray, Basketarray.length);
         }
-        
+
     });
 };
 
@@ -454,6 +454,21 @@ const sortByCategory = () => {
     }
 
 }
+
+const showBasket = () => {
+    // for testing to show and hide basket
+    const hello = document.querySelector(".pokemon-container")
+    if (hello.style.display === "none") {
+        hello.style.display = "block";
+    } else {
+        hello.style.display = "none";
+    }
+
+
+}
+const BasketShow = document.getElementById("varu-btn");
+BasketShow.addEventListener('click', showBasket)
+
 
 // Main loading from here:
 document.addEventListener('DOMContentLoaded', () => {
