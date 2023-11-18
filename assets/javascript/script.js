@@ -92,6 +92,8 @@ in the html file
 
 displayPokemon = () => {
     // Loop over each Pokémon in the array using a regular for loop
+    const basketContainer = document.querySelector(".basket-container")
+    basketContainer.style.display = "none";
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
         const id = pokemonData[i].id;
@@ -457,16 +459,17 @@ const sortByCategory = () => {
 
 const showBasket = () => {
     // for testing to show and hide basket
-    const hello = document.querySelector(".pokemon-container")
-    if (hello.style.display === "none") {
-        hello.style.display = "block";
-    } else {
-        hello.style.display = "none";
-    }
-
-
+    const pokemonContainer = document.querySelector(".pokemon-container")
+    const basketContainer = document.querySelector(".basket-container")
+    basketContainer.style.display = "block";
+    pokemonContainer.style.display = "none";
+    console.log("hello")
 }
-const BasketShow = document.getElementById("varu-btn");
+
+
+
+
+const BasketShow = document.getElementById("basket-btn");
 BasketShow.addEventListener('click', showBasket)
 
 
