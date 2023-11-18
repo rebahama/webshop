@@ -249,6 +249,7 @@ function compareByAge(a, b) {
     return a.price - b.price;
 }
 
+
 const sortByPrice = (pokemonData, listItem) => {
     const sortButton = document.querySelector("#sort-btn");
     for (let i = 0; i < pokemonData.length; i++) {
@@ -286,18 +287,19 @@ const sortByPrice = (pokemonData, listItem) => {
             pokemonData.sort(compareByAge);
             console.log(pokemonData);
             // Clear the container before adding the sorted Pokémon
-            container.innerHTML="";
+            container.innerHTML = "";
             container.innerHTML = pokemonData.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
-       displayPokemon(pokemonData)
+            displayPokemon(pokemonData);
         });
     }
-    
+
 };
 
-const testing=()=>{
-sortByPrice(pokemonData)
-}
-const sortButton = document.querySelector("#sort-btn");
-sortButton.addEventListener('click', () => testing());
 
-displayPokemon(pokemonData);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sortButton = document.querySelector("#sort-btn");
+    sortButton.addEventListener('click', () => sortByPrice(pokemonData));
+    displayPokemon(pokemonData);
+});
