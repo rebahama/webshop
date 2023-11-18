@@ -165,6 +165,7 @@ const decreasePriceCount = (id, pokemon, listItem) => {
    */
 const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
+    const basketContainer = document.querySelector(".basket-container")
     const priceValueText = priceCounter.textContent;
     const idCounts = {};
     Basketarray.forEach(pokemon => {
@@ -173,6 +174,8 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
         priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
+        basketContainer.innerHTML =Basketarray.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
+        
     });
 };
 
@@ -463,6 +466,10 @@ const showBasket = () => {
     const basketContainer = document.querySelector(".basket-container")
     basketContainer.style.display = "block";
     pokemonContainer.style.display = "none";
+    if(basketContainer.style.display ==="block"){
+        pokemonContainer.style.display = "none";
+    }
+
     console.log("hello")
 }
 
