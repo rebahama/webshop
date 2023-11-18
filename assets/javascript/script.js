@@ -103,9 +103,7 @@ displayPokemon = () => {
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
-
-
-        // Create HTML content for the list item
+        // Create HTML content for the list item will make this a  separate function later
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
@@ -166,7 +164,6 @@ const decreasePriceCount = (id, pokemon, listItem) => {
 const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const priceValueText = priceCounter.textContent;
-
     const idCounts = {};
     Basketarray.forEach(pokemon => {
         const id = pokemon.id;
@@ -176,6 +173,12 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
     });
 };
+const showTotalPriceBasket = (pokemonData, listItem) => {
+    let showTotalPrice = listItem.querySelector("#total-varukorg");
+    console.log(price)
+    showTotalPrice.innerHTML = "hello"
+
+}
 
 /**
   Delete the object property that is stored in an array, track the clicked object with the id parameter and
@@ -186,6 +189,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 const deleteBasket = (listItem, pokemon) => {
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".counter");
+    const showTotalPrice = document.querySelector("#total-varukorg");
     deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
@@ -196,10 +200,25 @@ const deleteBasket = (listItem, pokemon) => {
             idCounter.innerHTML = `Quantity: ${idCount || 0}`;
             console.log(Basketarray);
         }
+        const totalPrice = sumAllPriceBasket(Basketarray);
+    console.log(totalPrice);
+    showTotalPrice.innerHTML = `Pris:${totalPrice}`
+    console.log(Basketarray, Basketarray.length);
     });
 };
+
+const sumAllPriceBasket = (basket) => {
+    let total = 0;
+
+    for (let i = 0; i < basket.length; i++) {
+        total += basket[i].price;
+    }
+
+    return total;
+}
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
+    const showTotalPrice = document.querySelector("#total-varukorg");
     console.log("Clicked Pokemon:", pokemon);
     // Add the selected Pokemon to the array with the specified quantity
     Basketarray.push(pokemon);
@@ -214,6 +233,9 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
     }
 
+    const totalPrice = sumAllPriceBasket(Basketarray);
+    console.log(totalPrice);
+    showTotalPrice.innerHTML = `Pris:${totalPrice}`
     console.log(Basketarray, Basketarray.length);
     /**
     for (let i = 0; i < pokemonData.length; i++) {
@@ -244,6 +266,7 @@ const addToBasketAndFindRightId = (id, listItem, pokemon) => {
 
     console.log(Basketarray, Basketarray.length);
 };
+
 // Functions for sorting starts here
 const compareByAge = (a, b) => {
     return a.price - b.price;
@@ -272,7 +295,7 @@ const sortByPrice = (pokemonData, listItem) => {
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
-        // Create HTML content for the list item
+        // Create HTML content for the list item will make this a  separate function later
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
@@ -318,7 +341,7 @@ const sortByName = () => {
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
-        // Create HTML content for the list item
+        // Create HTML content for the list item will make this a  separate function later
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
@@ -362,7 +385,7 @@ const sortByRating = () => {
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
-        // Create HTML content for the list item
+        // Create HTML content for the list item will make this a  separate function later
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
@@ -393,8 +416,7 @@ const sortByRating = () => {
     }
 
 }
-const sortByCategory=()=>{
-
+const sortByCategory = () => {
     const categoryButton = document.querySelector("#category-btn");
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
@@ -437,7 +459,7 @@ const sortByCategory=()=>{
 
 }
 
-// Main 
+// Main loading from here:
 document.addEventListener('DOMContentLoaded', () => {
     const sortButton = document.querySelector("#sort-btn");
     const sortNameButton = document.querySelector("#name-btn");
