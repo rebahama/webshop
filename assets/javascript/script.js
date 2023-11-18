@@ -1,5 +1,5 @@
 //Array to save the object and properties when user clicks add to basket.
-const Basketarray = []
+const Basketarray = [];
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [
     {
@@ -130,7 +130,7 @@ displayPokemon = () => {
         sortByPrice(pokemonData[i], price, listItem);
 
     }
-}
+};
 /**
    add the object property that is stored in an arrary with the push method and keep track of the id in the object property
    to display how many id is inside the basket.
@@ -139,7 +139,7 @@ const addBasket = (listItem, pokemon, id) => {
     // Add event listener to the button inside the listItem
     const addBtn = listItem.querySelector(".add-btn");
     addBtn.addEventListener('click', () => addToBasketAndCalculatePrice(listItem, pokemon, id));
-}
+};
 
 /**
     * Change the price when user clicks the + button, the id in the array is used to calculate
@@ -148,7 +148,7 @@ const addBasket = (listItem, pokemon, id) => {
 const updatePriceCount = (id, pokemon, listItem) => {
     const addBtn = listItem.querySelector(".add-btn");
     addBtn.addEventListener('click', () => findRightIndexAndShowPrice(id, pokemon, listItem));
-}
+};
 /**
    * Change the price when user clicks the - button, the id in the array is used to calculate
    * how many objects is inside the array and then multiply it with the price to get the right value.
@@ -157,7 +157,7 @@ const decreasePriceCount = (id, pokemon, listItem) => {
     const addBtn = listItem.querySelector(".delete-btn");
     // You can update your Basketarray or perform other actions based on the new price
     addBtn.addEventListener('click', () => findRightIndexAndShowPrice(id, pokemon, listItem));
-}
+};
 
 /** 
    *Function for displaying the total price of the choosen product, when the user increments the value
@@ -177,7 +177,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 
 
     });
-}
+};
 
 /**
   Delete the object property that is stored in an array, track the clicked object with the id parameter and
@@ -199,7 +199,7 @@ const deleteBasket = (listItem, pokemon) => {
             console.log(Basketarray);
         }
     });
-}
+};
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
     console.log("Clicked Pokemon:", pokemon);
@@ -209,20 +209,20 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     Basketarray.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
-        console.log(idCounts[id] * pokemon.price)
+        console.log(idCounts[id] * pokemon.price);
     });
 
     for (const id in idCounts) {
         idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
     }
 
-    console.log(Basketarray, Basketarray.length)
+    console.log(Basketarray, Basketarray.length);
     /**
     for (let i = 0; i < pokemonData.length; i++) {
         console.log(Basketarray[i].name.includes(pokemon))
     }
      */
-}
+};
 /**
  * Finds the total id of how many pokemon is in the basket and multiplies with the price
  * and shows the total of how many ids is inside the array.
@@ -237,24 +237,24 @@ const addToBasketAndFindRightId = (id, listItem, pokemon) => {
     Basketarray.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
-        console.log(idCounts[id] * pokemon.price)
+        console.log(idCounts[id] * pokemon.price);
     });
 
     for (const id in idCounts) {
         idCounter.innerHTML = `${idCounts[id]}`;
     }
 
-    console.log(Basketarray, Basketarray.length)
-}
+    console.log(Basketarray, Basketarray.length);
+};
 
 function compareByAge(a, b) {
     return a.price - b.price;
 }
 
- function pokemonObjectsHtml(){
+function pokemonObjectsHtml() {
 
 
- }
+}
 
 const sortByPrice = (pokemonData, listItem) => {
     const sortButton = document.querySelector("#sort-btn");
@@ -292,14 +292,14 @@ const sortByPrice = (pokemonData, listItem) => {
             // Clone the array to avoid modifying the original array
             // Sort the cloned array based on the 'price' property
             const container = document.querySelector("#pokemonList");
-            pokemonData.sort(compareByAge)
-            console.log(pokemonData)
+            pokemonData.sort(compareByAge);
+            console.log(pokemonData);
             // Clear the container before adding the sorted Pokémon
             container.innerHTML = pokemonData.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
-            displayPokemon(pokemonData)
+            displayPokemon(pokemonData);
         });
     }
 
 };
 sortByPrice(pokemonData);
-displayPokemon();
+displayPokemon(pokemonData);
