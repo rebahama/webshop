@@ -244,16 +244,18 @@ const addToBasketAndFindRightId = (id, listItem, pokemon) => {
 
     console.log(Basketarray, Basketarray.length);
 };
-
-function compareByAge(a, b) {
+// Functions for sorting starts here
+const compareByAge = (a, b) => {
     return a.price - b.price;
 }
 
-function compareByName(a, b) {
+const compareByRating = (a, b) => {
+    return a.rating - b.rating;
+}
+
+const compareByName = (a, b) => {
     return a.name.localeCompare(b.name);
-  }
-
-
+}
 const sortByPrice = (pokemonData, listItem) => {
     const sortButton = document.querySelector("#sort-btn");
     for (let i = 0; i < pokemonData.length; i++) {
@@ -344,11 +346,58 @@ const sortByName = () => {
     }
 
 }
+
+const sortByRating =()=>{
+    const ratingButton = document.querySelector("#rating-btn");
+    for (let i = 0; i < pokemonData.length; i++) {
+        // Access each property of the current Pokémon
+        const name = pokemonData[i].name;
+        const price = pokemonData[i].price;
+        const rating = pokemonData[i].rating;
+        const category = pokemonData[i].category;
+        const image = pokemonData[i].image;
+        // Create a list item
+        const listItem = document.createElement("li");
+        listItem.classList.add("pokemon-item");
+        // Create HTML content for the list item
+        listItem.innerHTML = `
+      <div class="property-style">
+        <h2>${name}</h2>
+        <p> Price: ${price} </p>
+        <p>Rating: ${rating}</p>
+        <p>Category: ${category}</p>
+        <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
+        <button type="button" class="add-btn"> + </button>
+        <p class="id-counter"></p>
+        <button type="button" class="delete-btn"> - </button>
+        <p class="price-counter"> Totalt price: 0 </p>
+        <p class="counter"> </p>
+        <div>
+      `;
+        // Append the list item to the list
+        pokemonList.appendChild(listItem);
+        ratingButton.addEventListener('click', () => {
+            // Clone the array to avoid modifying the original array
+            // Sort the cloned array based on the 'price' property
+            const container = document.querySelector("#pokemonList");
+            pokemonData.sort(compareByRating);
+            console.log(pokemonData);
+            // Clear the container before adding the sorted Pokémon
+            container.innerHTML = "";
+            container.innerHTML = pokemonData.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
+            displayPokemon(pokemonData);
+        });
+    }
+
+}
+
+// Main 
 document.addEventListener('DOMContentLoaded', () => {
     const sortButton = document.querySelector("#sort-btn");
-    sortButton.addEventListener('click', () => sortByPrice(pokemonData));
-
     const sortNameButton = document.querySelector("#name-btn");
+    const sortRatingButton = document.querySelector("#rating-btn");
+    sortButton.addEventListener('click', () => sortByPrice(pokemonData));
     sortNameButton.addEventListener('click', () => sortByName(pokemonData));
+    sortRatingButton.addEventListener('click', () => sortByRating(pokemonData));
     displayPokemon(pokemonData);
 });
