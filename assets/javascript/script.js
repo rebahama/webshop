@@ -214,6 +214,7 @@ const deleteBasket = (listItem, pokemon) => {
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".counter");
     const showTotalPrice = document.querySelector("#total-varukorg");
+    const totalBillBasket = document.querySelector(".total-bill-basket")
     deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
@@ -225,8 +226,9 @@ const deleteBasket = (listItem, pokemon) => {
             console.log(Basketarray);
             const totalPrice = sumAllPriceBasket(Basketarray);
             console.log(totalPrice);
-            console.log(`Id av ${idCount}`)
-            showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`
+            console.log(`Id av ${idCount}`);
+            showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`;
+            totalBillBasket.innerHTML =` Total summa: ${totalPrice}`;
             console.log(Basketarray, Basketarray.length);
         }
 
@@ -244,6 +246,7 @@ const sumAllPriceBasket = (basket) => {
 }
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
+    const totalBillBasket = document.querySelector(".total-bill-basket")
     const showTotalPrice = document.querySelector("#total-varukorg");
     console.log("Clicked Pokemon:", pokemon);
     // Add the selected Pokemon to the array with the specified quantity
@@ -257,9 +260,10 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
 
 
-
+   
     const totalPrice = sumAllPriceBasket(Basketarray);
     console.log(totalPrice);
+    totalBillBasket.innerHTML =`Total summa: ${totalPrice}`
     showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`
     console.log(Basketarray, Basketarray.length);
     /**
