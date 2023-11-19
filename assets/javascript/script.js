@@ -204,7 +204,6 @@ const showBasketArea = () => {
     <td> ${pokemon.price}$ </td>
     <td> pcs/x ${Basketarray.filter(p => p.id === pokemon.id).length}</td>
     </tr>
-    
     <hr>
     </tbody>
     </table>
@@ -267,8 +266,7 @@ const sumAllPriceBasket = (basket) => {
 }
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
-    const totalBillBasket = document.querySelector(".total-bill-basket")
-
+    const totalBillBasket = document.querySelector(".total-bill-basket");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
     console.log("Clicked Pokemon:", pokemon);
     // Add the selected Pokemon to the array
@@ -280,9 +278,6 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         console.log(idCounts[id] * pokemon.price);
     });
     idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
-
-
-
     const totalPrice = sumAllPriceBasket(Basketarray);
     console.log(totalPrice);
     if (totalPrice > 0) {
@@ -340,155 +335,60 @@ const compareByCategory = (a, b) => {
     return a.category.localeCompare(b.category);
 }
 const sortByPrice = (pokemonData, listItem) => {
-    const sortButton = document.querySelector("#sort-btn");
     for (let i = 0; i < pokemonData.length; i++) {
-        // Access each property of the current Pokémon
-        const name = pokemonData[i].name;
-        const price = pokemonData[i].price;
-        const rating = pokemonData[i].rating;
-        const category = pokemonData[i].category;
-        const image = pokemonData[i].image;
-        // Create a list item
-        const listItem = document.createElement("li");
-        listItem.classList.add("pokemon-item");
-        // Create HTML content for the list item will make this a  separate function later
-        listItem.innerHTML = `
-      <div class="property-style">
-        <h2>${name}</h2>
-        <p> Price: ${price} </p>
-        <p>Rating: ${rating}</p>
-        <p>Category: ${category}</p>
-        <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
-        <button type="button" class="add-btn"> + </button>
-        <p class="id-counter"></p>
-        <button type="button" class="delete-btn"> - </button>
-        <p class="price-counter"> Totalt price: 0 </p>
-        <p class="counter"> </p>
-        <div>
-      `;
         // Append the list item to the list
-        pokemonList.appendChild(listItem);
-        sortButton.addEventListener('click', () => {
-            // Clone the array to avoid modifying the original array
-            // Sort the cloned array based on the 'price' property
-            const container = document.querySelector("#pokemonList");
-            pokemonData.sort(compareByAge);
-            console.log(pokemonData);
-            // Clear the container before adding the sorted Pokémon
-            container.innerHTML = "";
-            container.innerHTML = pokemonData.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
-            displayPokemon(pokemonData);
-        });
+        // Clone the array to avoid modifying the original array
+        // Sort the cloned array based on the 'price' property
+        const container = document.querySelector("#pokemonList");
+        pokemonData.sort(compareByAge);
+        console.log(pokemonData);
+        // Clear the container before adding the sorted Pokémon
+        container.innerHTML = "";
+        displayPokemon(pokemonData);
     }
-
 };
 
-
-
 const sortByName = () => {
-    const nameButton = document.querySelector("#name-btn");
-   
     for (let i = 0; i < pokemonData.length; i++) {
-            // Clone the array to avoid modifying the original array
-            // Sort the cloned array based on the 'price' property
-            const container = document.querySelector("#pokemonList");
-            pokemonData.sort(compareByName);
-            console.log(pokemonData);
-            // Clear the container before adding the sorted Pokémon
-            container.innerHTML = "";
-            displayPokemon(pokemonData);
+        // Sort the cloned array based on the 'price' property
+        const container = document.querySelector("#pokemonList");
+        pokemonData.sort(compareByName);
+        console.log(pokemonData);
+        // Clear the container before adding the sorted Pokémon
+        container.innerHTML = "";
+        displayPokemon(pokemonData);
     }
-
 }
 
 const sortByRating = () => {
-    const ratingButton = document.querySelector("#rating-btn");
     // displayPokemon();
     for (let i = 0; i < pokemonData.length; i++) {
-        // Access each property of the current Pokémon
-        const name = pokemonData[i].name;
-        const price = pokemonData[i].price;
-        const rating = pokemonData[i].rating;
-        const category = pokemonData[i].category;
-        const image = pokemonData[i].image;
-        // Create a list item
-        const listItem = document.createElement("li");
-        listItem.classList.add("pokemon-item");
-        // Create HTML content for the list item will make this a  separate function later
-        listItem.innerHTML = `
-      <div class="property-style">
-        <h2>${name}</h2>
-        <p> Price: ${price} </p>
-        <p>Rating: ${rating}</p>
-        <p>Category: ${category}</p>
-        <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
-        <button type="button" class="add-btn"> + </button>
-        <p class="id-counter"></p>
-        <button type="button" class="delete-btn"> - </button>
-        <p class="price-counter"> Totalt price: 0 </p>
-        <p class="counter"> </p>
-        <div>
-      `;
-        // Append the list item to the list
-        pokemonList.appendChild(listItem);
-        ratingButton.addEventListener('click', () => {
-            // Clone the array to avoid modifying the original array
-            // Sort the cloned array based on the 'price' property
-            const container = document.querySelector("#pokemonList");
-            pokemonData.sort(compareByRating);
-            console.log(pokemonData);
-            // Clear the container before adding the sorted Pokémon
-            container.innerHTML = "";
-            container.innerHTML = pokemonData.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
-            displayPokemon(pokemonData);
-        });
+        // Sort the cloned array based on the 'price' property
+        const container = document.querySelector("#pokemonList");
+        pokemonData.sort(compareByRating);
+        console.log(pokemonData);
+        // Clear the container before adding the sorted Pokémon
+        container.innerHTML = "";
+        displayPokemon(pokemonData);
     }
 
 }
 const sortByCategory = () => {
-    const categoryButton = document.querySelector("#category-btn");
     for (let i = 0; i < pokemonData.length; i++) {
-        // Access each property of the current Pokémon
-        const name = pokemonData[i].name;
-        const price = pokemonData[i].price;
-        const rating = pokemonData[i].rating;
-        const category = pokemonData[i].category;
-        const image = pokemonData[i].image;
-        // Create a list item
-        const listItem = document.createElement("li");
-        listItem.classList.add("pokemon-item");
-        // Create HTML content for the list item
-        listItem.innerHTML = `
-      <div class="property-style">
-        <h2>${name}</h2>
-        <p> Price: ${price} </p>
-        <p>Rating: ${rating}</p>
-        <p>Category: ${category}</p>
-        <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
-        <button type="button" class="add-btn"> + </button>
-        <p class="id-counter"></p>
-        <button type="button" class="delete-btn"> - </button>
-        <p class="price-counter"> Totalt price: 0 </p>
-        <p class="counter"> </p>
-        <div>
-      `;
         // Append the list item to the list
-        pokemonList.appendChild(listItem);
-        categoryButton.addEventListener('click', () => {
-            // Sort the cloned array based on the 'price' property
-            const container = document.querySelector("#pokemonList");
-            pokemonData.sort(compareByCategory);
-            console.log(pokemonData);
-            // Clear the container before adding the sorted Pokémon
-            container.innerHTML = "";
-            container.innerHTML = pokemonData.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
-            displayPokemon(pokemonData);
-        });
+        // Sort the cloned array based on the 'price' property
+        const container = document.querySelector("#pokemonList");
+        pokemonData.sort(compareByCategory);
+        console.log(pokemonData);
+        // Clear the container before adding the sorted Pokémon
+        container.innerHTML = "";
+        displayPokemon(pokemonData);
     }
 
 }
 
 const clearBasket = () => {
+
     Basketarray.splice(0, Basketarray.length);
     showBasketArea();
     console.log(Basketarray)
