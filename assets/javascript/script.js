@@ -203,9 +203,8 @@ const showBasketArea = () => {
     <td><img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar"> </td>
     <td> ${pokemon.price} $</td>
 
-    <td>Count: ${Basketarray.filter(p => p.id === pokemon.id).length}</td>
     </tr>
-    
+    <td> x ${Basketarray.filter(p => p.id === pokemon.id).length}</td>
     <hr>
     </tbody>
     </table>
@@ -250,7 +249,7 @@ const deleteBasket = (listItem, pokemon) => {
                 totalBillBasket.innerHTML = `Total:0$`;
                 totalPcsBasket.innerHTML = `Items: 0`;
             }
-            
+
             console.log(Basketarray, Basketarray.length);
         }
 
@@ -292,7 +291,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
     }
-    
+
     console.log(Basketarray, Basketarray.length);
     /**
     for (let i = 0; i < pokemonData.length; i++) {
@@ -530,8 +529,16 @@ const BasketShow = document.getElementById("basket-btn");
 BasketShow.addEventListener('click', showBasket)
 
 
+const clearBasket = () => {
+    Basketarray.splice(0, Basketarray.length);
+    console.log(Basketarray)
+}
+
+
+
 // Main loading from here:
 document.addEventListener('DOMContentLoaded', () => {
+    const clearArray = document.getElementById("clear-basket-btn");
     const sortButton = document.querySelector("#sort-btn");
     const sortNameButton = document.querySelector("#name-btn");
     const sortRatingButton = document.querySelector("#rating-btn");
@@ -540,5 +547,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sortNameButton.addEventListener('click', () => sortByName(pokemonData));
     sortRatingButton.addEventListener('click', () => sortByRating(pokemonData));
     sortCategoryButton.addEventListener('click', () => sortByCategory(pokemonData));
+    clearArray.addEventListener('click', clearBasket);
     displayPokemon(pokemonData);
 });
