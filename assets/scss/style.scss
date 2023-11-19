@@ -101,8 +101,50 @@ body {
 }
 
 /* Style the basket area*/
-.th-heading{
+.th-heading {
     margin-top: 100px;
     display: flex;
     justify-content: center;
+}
+
+#basket-btn {
+    background-color: $add-btn;
+    border: none;
+    cursor: pointer;
+    border-radius: $add-radius;
+    color: $add-btn-color;
+    padding: 6px 23px;
+    text-align: center;
+    margin: $add-radius;
+    text-decoration: none;
+    display: inline-block;
+    font-size: $add-size;
+}
+
+#confirm-payment-btn {
+    background-color: $add-btn;
+    border: none;
+    cursor: pointer;
+    border-radius: $add-radius;
+    color: $add-btn-color;
+    padding: 6px 23px;
+    text-align: center;
+    margin: $add-radius;
+    text-decoration: none;
+    display: inline-block;
+    font-size: $add-size;
+}
+#clear-basket-btn{
+    background-color: $add-btn;
+    border: none;
+    cursor: pointer;
+    border-radius: $add-radius;
+    color: $add-btn-color;
+    padding: 6px 23px;
+    text-align: center;
+    margin: $add-radius;
+    text-decoration: none;
+    display: inline-block;
+    font-size: $add-size;
+
 }
