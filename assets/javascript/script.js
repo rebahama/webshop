@@ -215,6 +215,7 @@ const deleteBasket = (listItem, pokemon) => {
     const idCounter = listItem.querySelector(".counter");
     const showTotalPrice = document.querySelector("#total-varukorg");
     const totalBillBasket = document.querySelector(".total-bill-basket")
+    const totalPcsBasket = document.querySelector(".total-pcs-basket")
     deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
@@ -228,7 +229,16 @@ const deleteBasket = (listItem, pokemon) => {
             console.log(totalPrice);
             console.log(`Id av ${idCount}`);
             showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`;
-            totalBillBasket.innerHTML =` Total summa: ${totalPrice}`;
+            if (totalPrice > 0) {
+                // Update the HTML content only if totalPrice is above zero
+                totalBillBasket.innerHTML = `Total summa: ${totalPrice}`;
+                totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
+            } else {
+                // Optionally, you can handle the case where totalPrice is not above zero
+                totalBillBasket.innerHTML = 'No items in the basket';
+                totalPcsBasket.innerHTML = `Items: 0`;
+            }
+            
             console.log(Basketarray, Basketarray.length);
         }
 
@@ -248,6 +258,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
     const totalBillBasket = document.querySelector(".total-bill-basket")
     const showTotalPrice = document.querySelector("#total-varukorg");
+    const totalPcsBasket = document.querySelector(".total-pcs-basket");
     console.log("Clicked Pokemon:", pokemon);
     // Add the selected Pokemon to the array with the specified quantity
     Basketarray.push(pokemon);
@@ -260,10 +271,18 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
 
 
-   
+
     const totalPrice = sumAllPriceBasket(Basketarray);
     console.log(totalPrice);
-    totalBillBasket.innerHTML =`Total summa: ${totalPrice}`
+    if (totalPrice > 0) {
+        // Update the HTML content only if totalPrice is above zero
+        totalBillBasket.innerHTML = `Total summa: ${totalPrice}`;
+        totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
+    } else {
+        // Optionally, you can handle the case where totalPrice is not above zero
+        totalBillBasket.innerHTML = 'No items in the basket';
+    }
+    
     showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`
     console.log(Basketarray, Basketarray.length);
     /**
