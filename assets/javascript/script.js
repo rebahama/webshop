@@ -1,8 +1,7 @@
 //Array to save the object and properties when user clicks add to basket.
 const Basketarray = [];
 // Create object with property of: name,price,rating. category and image.
-const pokemonData = [
-    {
+const pokemonData = [{
         id: 1,
         name: "Pikachu",
         price: 30,
@@ -142,17 +141,17 @@ const addBasket = (listItem, pokemon, id) => {
 };
 
 /**
-    * Change the price when user clicks the + button, the id in the array is used to calculate
-    * how many objects is inside the array and then multiply it with the price to get the right value.
-    */
+ * Change the price when user clicks the + button, the id in the array is used to calculate
+ * how many objects is inside the array and then multiply it with the price to get the right value.
+ */
 const updatePriceCount = (id, pokemon, listItem) => {
     const addBtn = listItem.querySelector(".add-btn");
     addBtn.addEventListener('click', () => findRightIndexAndShowPrice(id, pokemon, listItem));
 };
 /**
-   * Change the price when user clicks the - button, the id in the array is used to calculate
-   * how many objects is inside the array and then multiply it with the price to get the right value.
-   */
+ * Change the price when user clicks the - button, the id in the array is used to calculate
+ * how many objects is inside the array and then multiply it with the price to get the right value.
+ */
 const decreasePriceCount = (id, pokemon, listItem) => {
     const addBtn = listItem.querySelector(".delete-btn");
     // You can update your Basketarray or perform other actions based on the new price
@@ -160,9 +159,9 @@ const decreasePriceCount = (id, pokemon, listItem) => {
 };
 
 /** 
-   *Function for displaying the total price of the choosen product, when the user increments the value
-   *this function takes the id of the product and multiplies it with the pokemon id to display the total value price.
-   */
+ *Function for displaying the total price of the choosen product, when the user increments the value
+ *this function takes the id of the product and multiplies it with the pokemon id to display the total value price.
+ */
 const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container")
@@ -218,14 +217,14 @@ const showBasketArea = () => {
   use the splice method do display the new array. This part of this code was taken from Stakoverflow.
   */
 /*
-*/
+ */
 const deleteBasket = (listItem, pokemon) => {
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".counter");
     const showTotalPrice = document.querySelector("#total-varukorg");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
-    deleteBtn.addEventListener("click", function () {
+    deleteBtn.addEventListener("click", function() {
         // code from stakeoverflow
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
         if (indexToRemove !== -1) {
@@ -395,7 +394,7 @@ const showBasket = () => {
     basketContainerBtn.remove("btn-basket-container-hide");
     basketContainer.style.display = "block";
     pokemonContainer.style.display = "none";
-    
+
 
 }
 const BasketShow = document.getElementById("basket-btn");
