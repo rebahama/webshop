@@ -180,11 +180,20 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 };
 
 const showBasketArea = () => {
+    /**
+     * This function returns the html for the basket area when the user clicks on basket, using
+     * .map array functions to get acess to the objects inside the area and display that information. This function also filters when there is
+     * a object with the same index twice inside the array to not show 2 of the same properites and it shows the length instead to show many of the same
+     * id is inside the array.
+     */
     const basketContainer = document.querySelector(".basket-container")
+    const uniquePokemons = Array.from(new Set(Basketarray.map(pokemon => pokemon.id))).map(id => {
+        return Basketarray.find(pokemon => pokemon.id === id);
+    });
 
-    return basketContainer.innerHTML = Basketarray.map(pokemon =>
+    return basketContainer.innerHTML = uniquePokemons.map(pokemon =>
         `
-    <div class="th-heading">
+    <div class="th-heading" id="pokemon-${pokemon.id}">
     <table>
     <tr>
     </tr>
@@ -193,7 +202,10 @@ const showBasketArea = () => {
     <td> ${pokemon.name} </td>
     <td><img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar"> </td>
     <td> ${pokemon.price} $</td>
+
+    <td>Count: ${Basketarray.filter(p => p.id === pokemon.id).length}</td>
     </tr>
+    
     <hr>
     </tbody>
     </table>
