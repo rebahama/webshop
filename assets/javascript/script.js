@@ -2,85 +2,85 @@
 const Basketarray = [];
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [{
-        id: 1,
-        name: "Pikachu",
-        price: 30,
-        rating: 4.5,
-        category: "Electric",
-        image: "assets/img/pikachu.jpg",
-    },
-    {
-        id: 2,
-        name: "Charmander",
-        price: 50,
-        rating: 4.8,
-        category: "Fire/Flying",
-        image: "assets/img/charmander.jpg",
-    },
-    {
-        id: 3,
-        name: "Bulbasaur",
-        price: 20,
-        rating: 4.2,
-        category: "Grass/Poison",
-        image: "assets/img/bulbasaur.jpg",
-    },
-    {
-        id: 4,
-        name: "Squirtle",
-        price: 23,
-        rating: 4.3,
-        category: "Water",
-        image: "assets/img/squirtle.jpg",
-    },
-    {
-        id: 5,
-        name: "Graveler",
-        price: 20,
-        rating: 4.1,
-        category: "Rock",
-        image: "assets/img/graveler.jpg",
-    },
-    {
-        id: 6,
-        name: "Mewtwo",
-        price: 60,
-        rating: 4.9,
-        category: "Psychic",
-        image: "assets/img/mewtwo.jpg",
-    },
-    {
-        id: 7,
-        name: "Eevee",
-        price: 30,
-        rating: 4.6,
-        category: "Normal",
-        image: "assets/img/eevee.jpg",
-    },
-    {
-        id: 8,
-        name: "Jolteon",
-        price: 40,
-        rating: 4.7,
-        category: "Electric",
-        image: "assets/img/jolteon.jpg",
-    },
-    {
-        id: 9,
-        name: "Mew",
-        price: 70,
-        rating: 5.0,
-        category: "Psychic",
-        image: "assets/img/mew.jpg",
-    },
-    {
-        id: 10,
-        name: "Lugia",
-        price: 100,
-        rating: 4.4,
-        category: "Legendary",
-        image: "assets/img/lugia.jpg",
-    },
+    id: 1,
+    name: "Pikachu",
+    price: 30,
+    rating: 4.5,
+    category: "Electric",
+    image: "assets/img/pikachu.jpg",
+},
+{
+    id: 2,
+    name: "Charmander",
+    price: 50,
+    rating: 4.8,
+    category: "Fire/Flying",
+    image: "assets/img/charmander.jpg",
+},
+{
+    id: 3,
+    name: "Bulbasaur",
+    price: 20,
+    rating: 4.2,
+    category: "Grass/Poison",
+    image: "assets/img/bulbasaur.jpg",
+},
+{
+    id: 4,
+    name: "Squirtle",
+    price: 23,
+    rating: 4.3,
+    category: "Water",
+    image: "assets/img/squirtle.jpg",
+},
+{
+    id: 5,
+    name: "Graveler",
+    price: 20,
+    rating: 4.1,
+    category: "Rock",
+    image: "assets/img/graveler.jpg",
+},
+{
+    id: 6,
+    name: "Mewtwo",
+    price: 60,
+    rating: 4.9,
+    category: "Psychic",
+    image: "assets/img/mewtwo.jpg",
+},
+{
+    id: 7,
+    name: "Eevee",
+    price: 30,
+    rating: 4.6,
+    category: "Normal",
+    image: "assets/img/eevee.jpg",
+},
+{
+    id: 8,
+    name: "Jolteon",
+    price: 40,
+    rating: 4.7,
+    category: "Electric",
+    image: "assets/img/jolteon.jpg",
+},
+{
+    id: 9,
+    name: "Mew",
+    price: 70,
+    rating: 5.0,
+    category: "Psychic",
+    image: "assets/img/mew.jpg",
+},
+{
+    id: 10,
+    name: "Lugia",
+    price: 100,
+    rating: 4.4,
+    category: "Legendary",
+    image: "assets/img/lugia.jpg",
+},
 ];
 
 /**
@@ -192,12 +192,10 @@ const showBasketArea = () => {
     return basketContainer.innerHTML = uniquePokemons.map(pokemon =>
         `
     <div class="th-heading" id="pokemon-${pokemon.id}">
-    
     <table>
     <tr>
     </tr>
     <tbody>
-  
     <tr>
     <td> ${pokemon.name} </td>
     <td><img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar"> </td>
@@ -224,7 +222,8 @@ const deleteBasket = (listItem, pokemon) => {
     const showTotalPrice = document.querySelector("#total-varukorg");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
-    deleteBtn.addEventListener("click", function() {
+
+    deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
         if (indexToRemove !== -1) {
@@ -265,7 +264,12 @@ const sumAllPriceBasket = (basket) => {
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
     const totalBillBasket = document.querySelector(".total-bill-basket");
+    const mondayOffer = document.querySelector(".monday-offer");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
+    const d = new Date();
+    const day = d.toLocaleString('sv', { weekday: 'long' });
+    const time = d.toLocaleTimeString();
+    const dayAndTime = `Today is ${day} and the time is ${time}`;
     console.log("Clicked Pokemon:", pokemon);
     // Add the selected Pokemon to the array
     Basketarray.push(pokemon);
@@ -283,8 +287,17 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         totalBillBasket.classList.add("total-bill-basket")
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
+        if (day.toLowerCase() === 'söndag') {
+            const discountPrice =totalPrice/10;
+            const newTotalPrice = totalPrice-discountPrice
+            mondayOffer.innerHTML = ` Today is monday and it¨s before 10o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
+        }
+    
     }
 
+   
+
+   
     console.log(Basketarray, Basketarray.length);
 };
 /**
@@ -336,8 +349,14 @@ const sortByPrice = (pokemonData, listItem) => {
         pokemonData.sort(compareByAge);
         console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
-        container.innerHTML = "";
+        container.innerHTML = `
+    <a href="#" id="sort-btn">Sort By price</a>
+    <a href="#" id="name-btn">Sort by name</a>
+    <a href="#" id="rating-btn">Sort by rating</a>
+    <a href="#" id="category-btn">Sort by category</a>
+`;
         displayPokemon(pokemonData);
+
     }
 };
 
@@ -348,7 +367,12 @@ const sortByName = () => {
         pokemonData.sort(compareByName);
         console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
-        container.innerHTML = "";
+        container.innerHTML = `
+        <a href="#" id="sort-btn">Sort By price</a>
+        <a href="#" id="name-btn">Sort by name</a>
+        <a href="#" id="rating-btn">Sort by rating</a>
+        <a href="#" id="category-btn">Sort by category</a>
+    `;
         displayPokemon(pokemonData);
     }
 }
@@ -361,7 +385,12 @@ const sortByRating = () => {
         pokemonData.sort(compareByRating);
         console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
-        container.innerHTML = "";
+        container.innerHTML = `
+        <a href="#" id="sort-btn">Sort By price</a>
+        <a href="#" id="name-btn">Sort by name</a>
+        <a href="#" id="rating-btn">Sort by rating</a>
+        <a href="#" id="category-btn">Sort by category</a>
+    `;
         displayPokemon(pokemonData);
     }
 
@@ -375,7 +404,9 @@ const sortByCategory = () => {
         pokemonData.sort(compareByCategory);
         console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
-        container.innerHTML = "";
+        container.innerHTML = `
+        <a href="#" id="home-btn">Back home </a>
+    `;
         displayPokemon(pokemonData);
     }
 }
@@ -394,7 +425,6 @@ const showBasket = () => {
     basketContainerBtn.remove("btn-basket-container-hide");
     basketContainer.style.display = "block";
     pokemonContainer.style.display = "none";
-
 
 }
 const BasketShow = document.getElementById("basket-btn");
