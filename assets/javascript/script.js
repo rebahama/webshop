@@ -181,7 +181,24 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 
 const showBasketArea = () => {
     const basketContainer = document.querySelector(".basket-container")
-    return basketContainer.innerHTML = Basketarray.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
+
+    return basketContainer.innerHTML = Basketarray.map(pokemon =>
+        `
+    <div class="th-heading">
+    <table>
+    <tr>
+    </tr>
+    <tbody>     
+    <tr>
+    <td> ${pokemon.name} </td>
+    <td><img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar"> </td>
+    <td> ${pokemon.price} $</td>
+    </tr>
+    <hr>
+    </tbody>
+    </table>
+    </div>
+    `);
 
 
 }
@@ -239,7 +256,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     });
     idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
 
-   
+
 
     const totalPrice = sumAllPriceBasket(Basketarray);
     console.log(totalPrice);

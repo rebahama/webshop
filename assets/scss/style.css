@@ -99,4 +99,11 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
+}
+
+/* Style the basket area*/
+.th-heading {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
 }/*# sourceMappingURL=style.css.map */
