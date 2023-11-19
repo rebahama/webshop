@@ -148,4 +148,24 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 10px;
+}
+
+.total-bill-basket {
+  background-color: black;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  padding: 6px 23px;
+  text-align: center;
+  margin: 20px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
 }/*# sourceMappingURL=style.css.map */

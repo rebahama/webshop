@@ -231,11 +231,12 @@ const deleteBasket = (listItem, pokemon) => {
             showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`;
             if (totalPrice > 0) {
                 // Update the HTML content only if totalPrice is above zero
-                totalBillBasket.innerHTML = `Total summa: ${totalPrice}`;
+                totalBillBasket.classList.add("total-bill-basket")
+                totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
                 totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
             } else {
                 // Optionally, you can handle the case where totalPrice is not above zero
-                totalBillBasket.innerHTML = 'No items in the basket';
+                totalBillBasket.innerHTML = `Total:0$`;
                 totalPcsBasket.innerHTML = `Items: 0`;
             }
             
@@ -276,14 +277,12 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     console.log(totalPrice);
     if (totalPrice > 0) {
         // Update the HTML content only if totalPrice is above zero
-        totalBillBasket.innerHTML = `Total summa: ${totalPrice}`;
+        totalBillBasket.classList.add("total-bill-basket")
+        totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
-    } else {
-        // Optionally, you can handle the case where totalPrice is not above zero
-        totalBillBasket.innerHTML = 'No items in the basket';
     }
     
-    showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`
+    showTotalPrice.innerHTML = `Price: ${totalPrice} Items: ${Basketarray.length}`
     console.log(Basketarray, Basketarray.length);
     /**
     for (let i = 0; i < pokemonData.length; i++) {
@@ -516,13 +515,7 @@ const showBasket = () => {
     if (basketContainer.style.display === "block") {
         pokemonContainer.style.display = "none";
     }
-
-    console.log("hello")
 }
-
-
-
-
 const BasketShow = document.getElementById("basket-btn");
 BasketShow.addEventListener('click', showBasket)
 

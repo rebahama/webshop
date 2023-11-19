@@ -134,7 +134,8 @@ body {
     display: inline-block;
     font-size: $add-size;
 }
-#clear-basket-btn{
+
+#clear-basket-btn {
     background-color: $add-btn;
     border: none;
     cursor: pointer;
@@ -147,4 +148,23 @@ body {
     display: inline-block;
     font-size: $add-size;
 
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+}
+.total-bill-basket{
+    background-color: black;
+    border: none;
+    border-radius: $add-radius;
+    color: $add-btn-color;
+    padding: 6px 23px;
+    text-align: center;
+    margin: $add-radius;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
 }
