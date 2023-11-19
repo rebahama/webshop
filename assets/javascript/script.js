@@ -201,10 +201,10 @@ const showBasketArea = () => {
     <tr>
     <td> ${pokemon.name} </td>
     <td><img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar"> </td>
-    <td> ${pokemon.price} $</td>
-
+    <td> ${pokemon.price}$ </td>
+    <td> pcs/x ${Basketarray.filter(p => p.id === pokemon.id).length}</td>
     </tr>
-    <td> x ${Basketarray.filter(p => p.id === pokemon.id).length}</td>
+    
     <hr>
     </tbody>
     </table>
@@ -225,8 +225,8 @@ const deleteBasket = (listItem, pokemon) => {
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".counter");
     const showTotalPrice = document.querySelector("#total-varukorg");
-    const totalBillBasket = document.querySelector(".total-bill-basket")
-    const totalPcsBasket = document.querySelector(".total-pcs-basket")
+    const totalBillBasket = document.querySelector(".total-bill-basket");
+    const totalPcsBasket = document.querySelector(".total-pcs-basket");
     deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
@@ -387,34 +387,8 @@ const sortByPrice = (pokemonData, listItem) => {
 
 const sortByName = () => {
     const nameButton = document.querySelector("#name-btn");
+   
     for (let i = 0; i < pokemonData.length; i++) {
-        // Access each property of the current Pokémon
-        const name = pokemonData[i].name;
-        const price = pokemonData[i].price;
-        const rating = pokemonData[i].rating;
-        const category = pokemonData[i].category;
-        const image = pokemonData[i].image;
-        // Create a list item
-        const listItem = document.createElement("li");
-        listItem.classList.add("pokemon-item");
-        // Create HTML content for the list item will make this a  separate function later
-        listItem.innerHTML = `
-      <div class="property-style">
-        <h2>${name}</h2>
-        <p> Price: ${price} </p>
-        <p>Rating: ${rating}</p>
-        <p>Category: ${category}</p>
-        <img src="${image}" alt="${name}" width="100" class="pokemon-avatar">
-        <button type="button" class="add-btn"> + </button>
-        <p class="id-counter"></p>
-        <button type="button" class="delete-btn"> - </button>
-        <p class="price-counter"> Totalt price: 0 </p>
-        <p class="counter"> </p>
-        <div>
-      `;
-        // Append the list item to the list
-        pokemonList.appendChild(listItem);
-        nameButton.addEventListener('click', () => {
             // Clone the array to avoid modifying the original array
             // Sort the cloned array based on the 'price' property
             const container = document.querySelector("#pokemonList");
@@ -422,15 +396,14 @@ const sortByName = () => {
             console.log(pokemonData);
             // Clear the container before adding the sorted Pokémon
             container.innerHTML = "";
-            container.innerHTML = pokemonData.map(pokemon => `<div>${pokemon.name} - ${pokemon.price}</div>`).join('');
             displayPokemon(pokemonData);
-        });
     }
 
 }
 
 const sortByRating = () => {
     const ratingButton = document.querySelector("#rating-btn");
+    // displayPokemon();
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
         const name = pokemonData[i].name;
@@ -515,6 +488,12 @@ const sortByCategory = () => {
 
 }
 
+const clearBasket = () => {
+    Basketarray.splice(0, Basketarray.length);
+    showBasketArea();
+    console.log(Basketarray)
+}
+
 const showBasket = () => {
     // for testing to show and hide basket
     const pokemonContainer = document.querySelector(".pokemon-container")
@@ -527,12 +506,6 @@ const showBasket = () => {
 }
 const BasketShow = document.getElementById("basket-btn");
 BasketShow.addEventListener('click', showBasket)
-
-
-const clearBasket = () => {
-    Basketarray.splice(0, Basketarray.length);
-    console.log(Basketarray)
-}
 
 
 
