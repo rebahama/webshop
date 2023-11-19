@@ -105,7 +105,7 @@ displayPokemon = () => {
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
-        // Create HTML content for the list item will make this a  separate function later
+        // Create HTML content for the list item
         listItem.innerHTML = `
       <div class="property-style">
         <h2>${name}</h2>
@@ -132,7 +132,7 @@ displayPokemon = () => {
     }
 };
 /**
-   add the object property that is stored in an arrary with the push method and keep track of the id in the object property
+   add the object property that is stored in an arrar with the push method and keep track of the id in the object property
    to display how many id is inside the basket.
    */
 const addBasket = (listItem, pokemon, id) => {
@@ -178,14 +178,13 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 
     });
 };
-
+/**
+ * This function returns the html for the basket area when the user clicks on basket, using
+ * .map array functions to get acess to the objects inside the area and display that information. This function also filters when there is
+ * a object with the same index twice inside the array to not show 2 of the same properites and it shows the length instead to show many of the same
+ * id is inside the array.
+ */
 const showBasketArea = () => {
-    /**
-     * This function returns the html for the basket area when the user clicks on basket, using
-     * .map array functions to get acess to the objects inside the area and display that information. This function also filters when there is
-     * a object with the same index twice inside the array to not show 2 of the same properites and it shows the length instead to show many of the same
-     * id is inside the array.
-     */
     const basketContainer = document.querySelector(".basket-container")
     const uniquePokemons = Array.from(new Set(Basketarray.map(pokemon => pokemon.id))).map(id => {
         return Basketarray.find(pokemon => pokemon.id === id);
@@ -194,10 +193,12 @@ const showBasketArea = () => {
     return basketContainer.innerHTML = uniquePokemons.map(pokemon =>
         `
     <div class="th-heading" id="pokemon-${pokemon.id}">
+    
     <table>
     <tr>
     </tr>
-    <tbody>     
+    <tbody>
+  
     <tr>
     <td> ${pokemon.name} </td>
     <td><img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar"> </td>
@@ -209,8 +210,6 @@ const showBasketArea = () => {
     </table>
     </div>
     `);
-
-
 }
 
 
@@ -288,11 +287,6 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     }
 
     console.log(Basketarray, Basketarray.length);
-    /**
-    for (let i = 0; i < pokemonData.length; i++) {
-        console.log(Basketarray[i].name.includes(pokemon))
-    }
-     */
 };
 /**
  * Finds the total id of how many pokemon is in the basket and multiplies with the price
@@ -373,6 +367,7 @@ const sortByRating = () => {
     }
 
 }
+
 const sortByCategory = () => {
     for (let i = 0; i < pokemonData.length; i++) {
         // Append the list item to the list
@@ -384,11 +379,9 @@ const sortByCategory = () => {
         container.innerHTML = "";
         displayPokemon(pokemonData);
     }
-
 }
 
 const clearBasket = () => {
-
     Basketarray.splice(0, Basketarray.length);
     showBasketArea();
     console.log(Basketarray)
@@ -396,13 +389,14 @@ const clearBasket = () => {
 
 const showBasket = () => {
     // for testing to show and hide basket
-    const pokemonContainer = document.querySelector(".pokemon-container")
-    const basketContainer = document.querySelector(".basket-container")
+    const pokemonContainer = document.querySelector(".pokemon-container");
+    const basketContainer = document.querySelector(".basket-container");
+    const basketContainerBtn = document.querySelector(".btn-basket-container").classList;
+    basketContainerBtn.remove("btn-basket-container-hide");
     basketContainer.style.display = "block";
     pokemonContainer.style.display = "none";
-    if (basketContainer.style.display === "block") {
-        pokemonContainer.style.display = "none";
-    }
+    
+
 }
 const BasketShow = document.getElementById("basket-btn");
 BasketShow.addEventListener('click', showBasket)

@@ -157,8 +157,19 @@ body {
   padding: 10px;
 }
 
+.btn-basket-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 10px;
+}
+
+.btn-basket-container-hide {
+  display: none;
+}
+
 .total-bill-basket {
-  background-color: black;
+  background-color: #000;
   border: none;
   border-radius: 20px;
   color: #fff;
@@ -171,7 +182,7 @@ body {
 }
 
 .total-pcs-basket {
-  background-color: black;
+  background-color: #000;
   border: none;
   border-radius: 20px;
   color: #fff;

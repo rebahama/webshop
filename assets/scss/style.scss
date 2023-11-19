@@ -156,8 +156,19 @@ body {
     padding: 10px;
 }
 
+.btn-basket-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+}
+
+.btn-basket-container-hide {
+    display: none;
+}
+
 .total-bill-basket {
-    background-color: black;
+    background-color: $font-color;
     border: none;
     border-radius: $add-radius;
     color: $add-btn-color;
@@ -169,8 +180,8 @@ body {
     font-size: $payment-font-size
 }
 
-.total-pcs-basket{
-    background-color: black;
+.total-pcs-basket {
+    background-color: $font-color;
     border: none;
     border-radius: $add-radius;
     color: $add-btn-color;
@@ -180,5 +191,4 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: $payment-font-size
-
 }
