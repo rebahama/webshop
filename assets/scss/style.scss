@@ -118,7 +118,7 @@ body {
     margin: $add-radius;
     text-decoration: none;
     display: inline-block;
-    font-size: $add-size;
+    font-size: $payment-font-size
 }
 
 #confirm-payment-btn {
@@ -132,7 +132,7 @@ body {
     margin: $add-radius;
     text-decoration: none;
     display: inline-block;
-    font-size: $add-size;
+    font-size: $payment-font-size
 }
 
 #clear-basket-btn {
@@ -146,8 +146,7 @@ body {
     margin: $add-radius;
     text-decoration: none;
     display: inline-block;
-    font-size: $add-size;
-
+    font-size: $payment-font-size
 }
 
 .btn-container {
@@ -156,7 +155,8 @@ body {
     margin: 20px;
     padding: 10px;
 }
-.total-bill-basket{
+
+.total-bill-basket {
     background-color: black;
     border: none;
     border-radius: $add-radius;
@@ -166,5 +166,19 @@ body {
     margin: $add-radius;
     text-decoration: none;
     display: inline-block;
-    font-size: 15px;
+    font-size: $payment-font-size
+}
+
+.total-pcs-basket{
+    background-color: black;
+    border: none;
+    border-radius: $add-radius;
+    color: $add-btn-color;
+    padding: 6px 23px;
+    text-align: center;
+    margin: $add-radius;
+    text-decoration: none;
+    display: inline-block;
+    font-size: $payment-font-size
+
 }

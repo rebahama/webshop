@@ -228,7 +228,6 @@ const deleteBasket = (listItem, pokemon) => {
             const totalPrice = sumAllPriceBasket(Basketarray);
             console.log(totalPrice);
             console.log(`Id av ${idCount}`);
-            showTotalPrice.innerHTML = `Pris:${totalPrice} Varor: ${Basketarray.length}`;
             if (totalPrice > 0) {
                 // Update the HTML content only if totalPrice is above zero
                 totalBillBasket.classList.add("total-bill-basket")
@@ -258,10 +257,10 @@ const sumAllPriceBasket = (basket) => {
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
     const totalBillBasket = document.querySelector(".total-bill-basket")
-    const showTotalPrice = document.querySelector("#total-varukorg");
+
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
     console.log("Clicked Pokemon:", pokemon);
-    // Add the selected Pokemon to the array with the specified quantity
+    // Add the selected Pokemon to the array
     Basketarray.push(pokemon);
     const idCounts = {};
     Basketarray.forEach(pokemon => {
@@ -282,7 +281,6 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
     }
     
-    showTotalPrice.innerHTML = `Price: ${totalPrice} Items: ${Basketarray.length}`
     console.log(Basketarray, Basketarray.length);
     /**
     for (let i = 0; i < pokemonData.length; i++) {
