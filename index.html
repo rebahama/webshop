@@ -53,11 +53,20 @@
       <input type="email" name="email" required>
 
       <label for="paymentMethod">Payment Method:</label>
-    <select name="paymentMethod">
-        <option value="card">Card</option>
+    <select name="paymentMethod" id="paymentMethod">
         <option value="invoice">Invoice</option>
+        <option value="card">Card</option>
     </select>
+    <div id="card-detail" style="display: none;">
+      <label for="cardNumber">Card Number:</label>
+      <input type="text" name="cardNumber">
 
+      <label for="cvc">CVC:</label>
+      <input type="text" name="cvc">
+
+      <label for="expiryDate">Expiry Date (MM/YYYY):</label>
+      <input type="text" name="expiryDate">
+  </div>
       <input type="submit" value="Submit">
     </form>
     <div class="pokemon-container">

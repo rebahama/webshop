@@ -446,6 +446,19 @@ const clearBasket = () => {
     showBasketArea();
     console.log(Basketarray)
 }
+const paymentMethod = document.getElementById("paymentMethod");
+
+const showMoreFieldsPayment = () => {
+    const cardDetails = document.getElementById("card-detail");
+
+    if (paymentMethod.value === "card") {
+        cardDetails.style.display = "block";
+    } else {
+        cardDetails.style.display = "none";
+    }
+};
+
+paymentMethod.addEventListener('change', showMoreFieldsPayment);
 
 const showBasket = () => {
     // for testing to show and hide basket
@@ -474,5 +487,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sortRatingButton.addEventListener('click', () => sortByRating(pokemonData));
     sortCategoryButton.addEventListener('click', () => sortByCategory(pokemonData));
     clearArray.addEventListener('click', clearBasket);
+    paymentMethod.addEventListener('change', showMoreFieldsPayment);
     displayPokemon(pokemonData);
 });
