@@ -2,7 +2,7 @@
 const Basketarray = [];
 const d = new Date();
 const day = d.toLocaleString('sv', { weekday: 'long' });
-const time = d.toLocaleTimeString();
+const time = d.getHours();
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [{
     id: 1,
@@ -105,8 +105,7 @@ displayPokemon = () => {
         const rating = pokemonData[i].rating;
         const category = pokemonData[i].category;
         const image = pokemonData[i].image;
-       
-        const price = (day.toLowerCase() === 'måndag') ? basePrice * 0.15 + basePrice : basePrice;
+        const price = ((day.toLowerCase() === 'fredag' && time >= 15) || (day.toLowerCase() === 'lördag' || day.toLowerCase() === 'söndag' && time < 3)) ? basePrice * 0.15 + basePrice : basePrice;
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
@@ -179,7 +178,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
 
-        if (day.toLowerCase() === 'måndag') {
+        if (day.toLowerCase() === 'fredag') {
             const priceFifteen = sumAll  * 0.15;
             const newPriceFifteen = sumAll + priceFifteen
             priceCounter.innerHTML = `Total Pre:$${newPriceFifteen >= 0 ? newPriceFifteen : "0"}`;;
@@ -302,7 +301,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         totalBillBasket.classList.add("total-bill-basket")
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
-        if (day.toLowerCase() === 'måndag') {
+        if (day.toLowerCase() === 'måndag'  && time < 10) {
             const discountPrice = totalPrice / 10;
             const newTotalPrice = totalPrice - discountPrice
             mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
