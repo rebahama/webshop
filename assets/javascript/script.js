@@ -98,7 +98,6 @@ displayPokemon = () => {
     basketContainer.style.display = "none";
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
-
         const id = pokemonData[i].id;
         const name = pokemonData[i].name;
         const basePrice = pokemonData[i].price;
@@ -179,7 +178,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         let sumAll = idCounts[id] * pokemon.price;
 
         if (day.toLowerCase() === 'fredag') {
-            const priceFifteen = sumAll  * 0.15;
+            const priceFifteen = sumAll * 0.15;
             const newPriceFifteen = sumAll + priceFifteen
             priceCounter.innerHTML = `Total Pre:$${newPriceFifteen >= 0 ? newPriceFifteen : "0"}`;;
             basketContainer.innerHTML = showBasketArea();
@@ -282,6 +281,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const mondayOffer = document.querySelector(".monday-offer");
+    const shippingInfo = document.querySelector(".shipping-info");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
     const dayAndTime = `Today is ${day} and the time is ${time}`;
     console.log("Clicked Pokemon:", pokemon);
@@ -295,22 +295,28 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     });
     idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
     const totalPrice = sumAllPriceBasket(Basketarray);
+    const shippingPrice = 25
     console.log(totalPrice);
     if (totalPrice > 0) {
         // Update the HTML content only if totalPrice is above zero
         totalBillBasket.classList.add("total-bill-basket")
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
-        if (day.toLowerCase() === 'måndag'  && time < 10) {
+        if (day.toLowerCase() === 'måndag' && time < 10) {
             const discountPrice = totalPrice / 10;
             const newTotalPrice = totalPrice - discountPrice
             mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
+            if (Basketarray.length > 10) {
+                mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
+            }
+            else if (Basketarray.length < 10) {
+                mondayOffer.innerHTML = `Total: ${totalPrice + 2}$`;
+            }
         }
 
+
+
     }
-
-
-
 
     console.log(Basketarray, Basketarray.length);
 };
