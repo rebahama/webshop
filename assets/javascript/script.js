@@ -3,6 +3,13 @@ const Basketarray = [];
 const d = new Date();
 const day = d.toLocaleString('sv', { weekday: 'long' });
 const time = d.getHours();
+const BasketShow = document.getElementById("basket-btn");
+const clearArray = document.getElementById("clear-basket-btn");
+const sortButton = document.querySelector("#sort-btn");
+const sortNameButton = document.querySelector("#name-btn");
+const sortRatingButton = document.querySelector("#rating-btn");
+const sortCategoryButton = document.querySelector("#category-btn");
+const cardDetails = document.getElementById("card-detail");
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [{
     id: 1,
@@ -446,11 +453,9 @@ const clearBasket = () => {
     showBasketArea();
     console.log(Basketarray)
 }
-const paymentMethod = document.getElementById("paymentMethod");
+
 
 const showMoreFieldsPayment = () => {
-    const cardDetails = document.getElementById("card-detail");
-
     if (paymentMethod.value === "card") {
         cardDetails.style.display = "block";
     } else {
@@ -458,35 +463,33 @@ const showMoreFieldsPayment = () => {
     }
 };
 
-paymentMethod.addEventListener('change', showMoreFieldsPayment);
 
 const showBasket = () => {
     // for testing to show and hide basket
     const pokemonContainer = document.querySelector(".pokemon-container");
     const basketContainer = document.querySelector(".basket-container");
+    const formContainer = document.querySelector(".form-container");
     const basketContainerBtn = document.querySelector(".btn-basket-container").classList;
     basketContainerBtn.remove("btn-basket-container-hide");
+    basketContainerBtn.remove("form-container-hide")
     basketContainer.style.display = "block";
+    formContainer.style.display="block";
     pokemonContainer.style.display = "none";
 
 }
-const BasketShow = document.getElementById("basket-btn");
-BasketShow.addEventListener('click', showBasket)
+
+
 
 
 
 // Main loading from here:
 document.addEventListener('DOMContentLoaded', () => {
-    const clearArray = document.getElementById("clear-basket-btn");
-    const sortButton = document.querySelector("#sort-btn");
-    const sortNameButton = document.querySelector("#name-btn");
-    const sortRatingButton = document.querySelector("#rating-btn");
-    const sortCategoryButton = document.querySelector("#category-btn");
     sortButton.addEventListener('click', () => sortByPrice(pokemonData));
     sortNameButton.addEventListener('click', () => sortByName(pokemonData));
     sortRatingButton.addEventListener('click', () => sortByRating(pokemonData));
     sortCategoryButton.addEventListener('click', () => sortByCategory(pokemonData));
     clearArray.addEventListener('click', clearBasket);
+    BasketShow.addEventListener('click', showBasket)
     paymentMethod.addEventListener('change', showMoreFieldsPayment);
     displayPokemon(pokemonData);
 });

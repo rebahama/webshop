@@ -192,4 +192,9 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 15px;
+}
+
+/* Style the form*/
+.form-container-hide {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
