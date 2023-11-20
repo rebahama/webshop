@@ -1,5 +1,8 @@
 //Array to save the object and properties when user clicks add to basket.
 const Basketarray = [];
+const d = new Date();
+const day = d.toLocaleString('sv', { weekday: 'long' });
+const time = d.toLocaleTimeString();
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [{
     id: 1,
@@ -95,12 +98,15 @@ displayPokemon = () => {
     basketContainer.style.display = "none";
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
+
         const id = pokemonData[i].id;
         const name = pokemonData[i].name;
-        const price = pokemonData[i].price;
+        const basePrice = pokemonData[i].price;
         const rating = pokemonData[i].rating;
         const category = pokemonData[i].category;
         const image = pokemonData[i].image;
+       
+        const price = (day.toLowerCase() === 'måndag') ? basePrice * 0.15 + basePrice : basePrice;
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
@@ -172,8 +178,19 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         idCounts[id] = (idCounts[id] || 0) + 1;
         console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
-        priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
-        basketContainer.innerHTML = showBasketArea();
+
+        if (day.toLowerCase() === 'måndag') {
+            const priceFifteen = sumAll  * 0.15;
+            const newPriceFifteen = sumAll + priceFifteen
+            priceCounter.innerHTML = `Total Pre:$${newPriceFifteen >= 0 ? newPriceFifteen : "0"}`;;
+            basketContainer.innerHTML = showBasketArea();
+        }
+        else {
+            priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
+            basketContainer.innerHTML = showBasketArea();
+
+        }
+
 
     });
 };
@@ -261,14 +278,12 @@ const sumAllPriceBasket = (basket) => {
 
     return total;
 }
+
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const mondayOffer = document.querySelector(".monday-offer");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
-    const d = new Date();
-    const day = d.toLocaleString('sv', { weekday: 'long' });
-    const time = d.toLocaleTimeString();
     const dayAndTime = `Today is ${day} and the time is ${time}`;
     console.log("Clicked Pokemon:", pokemon);
     // Add the selected Pokemon to the array
@@ -287,17 +302,17 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         totalBillBasket.classList.add("total-bill-basket")
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
-        if (day.toLowerCase() === 'söndag') {
-            const discountPrice =totalPrice/10;
-            const newTotalPrice = totalPrice-discountPrice
-            mondayOffer.innerHTML = ` Today is monday and it¨s before 10o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
+        if (day.toLowerCase() === 'måndag') {
+            const discountPrice = totalPrice / 10;
+            const newTotalPrice = totalPrice - discountPrice
+            mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
         }
-    
+
     }
 
-   
 
-   
+
+
     console.log(Basketarray, Basketarray.length);
 };
 /**
