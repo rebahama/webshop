@@ -234,10 +234,10 @@ const showBasketArea = () => {
 const deleteBasket = (listItem, pokemon) => {
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".counter");
+    const mondayOffer = document.querySelector(".monday-offer");
     const showTotalPrice = document.querySelector("#total-varukorg");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
-
     deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
         const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
@@ -255,10 +255,20 @@ const deleteBasket = (listItem, pokemon) => {
                 totalBillBasket.classList.add("total-bill-basket")
                 totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
                 totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
-            } else {
-                // Optionally, you can handle the case where totalPrice is not above zero
-                totalBillBasket.innerHTML = `Total:0$`;
-                totalPcsBasket.innerHTML = `Items: 0`;
+                if (day.toLowerCase() === 'måndag' && time < 10) {
+                    const discountPrice = totalPrice / 10;
+                    const newTotalPrice = totalPrice - discountPrice
+                    mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
+                    if (Basketarray.length > 10) {
+                        mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
+                    }
+                    else if (Basketarray.length < 10) {
+                        let shipping = 2;
+                        let sumAllShipping = totalPrice + shipping
+                        mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
+                    }
+                }
+
             }
 
             console.log(Basketarray, Basketarray.length);
@@ -295,7 +305,6 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     });
     idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
     const totalPrice = sumAllPriceBasket(Basketarray);
-    const shippingPrice = 25
     console.log(totalPrice);
     if (totalPrice > 0) {
         // Update the HTML content only if totalPrice is above zero
@@ -310,16 +319,17 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
                 mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
             }
             else if (Basketarray.length < 10) {
-                mondayOffer.innerHTML = `Total: ${totalPrice + 2}$`;
+                let shipping = 2;
+                let sumAllShipping = totalPrice + shipping
+                mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
             }
         }
-
-
 
     }
 
     console.log(Basketarray, Basketarray.length);
 };
+
 /**
  * Finds the total id of how many pokemon is in the basket and multiplies with the price
  * and shows the total of how many ids is inside the array.
