@@ -315,21 +315,28 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     console.log(totalPrice);
     if (totalPrice > 0) {
         // Update the HTML content only if totalPrice is above zero
-        totalBillBasket.classList.add("total-bill-basket")
+        const discountPrice = totalPrice / 10;
+        const newTotalPrice = totalPrice - discountPrice;
+        let shipping = 2;
+        let sumAllShipping = totalPrice + shipping;
+        totalBillBasket.classList.add("total-bill-basket");
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
+
+
         if (day.toLowerCase() === 'måndag' && time < 10) {
-            const discountPrice = totalPrice / 10;
-            const newTotalPrice = totalPrice - discountPrice
+
             mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
             if (Basketarray.length > 10) {
                 mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
             }
-            else if (Basketarray.length < 10) {
-                let shipping = 2;
-                let sumAllShipping = totalPrice + shipping
-                mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
-            }
+        }
+        else if (Basketarray.length > 10) {
+            mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
+        }
+       
+        else {
+            mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
         }
 
     }
@@ -473,7 +480,7 @@ const showBasket = () => {
     basketContainerBtn.remove("btn-basket-container-hide");
     basketContainerBtn.remove("form-container-hide")
     basketContainer.style.display = "block";
-    formContainer.style.display="block";
+    formContainer.style.display = "block";
     pokemonContainer.style.display = "none";
 
 }
