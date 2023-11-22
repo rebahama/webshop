@@ -6,8 +6,8 @@ $background-color: #3b4444;
 $nav-hover: #8f00ff;
 $main-background-color: #d3d3d3;
 $nav-color: #00b8ff;
-$add-btn:#04AA6D;
-$add-btn-color:#fff;
+$add-btn: #04AA6D;
+$add-btn-color: #fff;
 
 /*Margin,padding,centering,height*/
 $center-text: center;
@@ -22,15 +22,16 @@ $payment-font-size: 15px;
 $image-height: 87px;
 $image-width: 82px;
 $image-border: 50px;
-$pokemon-avatar-margin:20px;
-$pokemon-avatar-height:111px;
-$pokemon-avatar-width:165px;
-$pokemon-avatar-radius:100px;
+$pokemon-avatar-margin: 20px;
+$pokemon-avatar-height: 111px;
+$pokemon-avatar-width: 165px;
+$pokemon-avatar-radius: 100px;
 
 /*pokemon array list style*/
 $pokemon-list: 80px;
-$pokemon-list-width:500px;
+$pokemon-list-width: 300px;
 $list-border: 1px solid #000;
-$list-padding:50px;
-$list-margin:50px;
-$list-border-radius:30px;
+$list-padding: 50px;
+$list-margin: 50px;
+$list-border-radius: 30px;
+$list-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

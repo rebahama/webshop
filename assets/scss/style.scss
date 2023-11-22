@@ -50,25 +50,42 @@ body {
 #pokemonList {
     list-style: none;
     margin-top: $pokemon-list;
-    width: $pokemon-list-width;
-    border: $list-border;
     padding: $list-padding;
     border-radius: $list-border-radius
 }
 
 .pokemon-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+      justify-content: center;
+      align-items: center;
+}
+.grid-container-pokemon{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
 }
 
-.property-style {
+hr {
+    width: 100%;
+    height: 1px;
+    background-color: $accent-color;
+  }
 
+.property-style {
+    border: $list-border;
     display: flex;
     flex-direction: column;
+    width: $pokemon-list-width;
+    box-shadow: $list-shadow;
     padding: 20px;
     margin: auto;
     align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
 }
 
 /* Style buttons inside the list*/

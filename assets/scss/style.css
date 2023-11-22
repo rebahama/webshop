@@ -52,24 +52,43 @@ body {
 #pokemonList {
   list-style: none;
   margin-top: 80px;
-  width: 500px;
-  border: 1px solid #000;
   padding: 50px;
   border-radius: 30px;
 }
 
 .pokemon-container {
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items: center;
+}
+
+.grid-container-pokemon {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  background-color: #ee6c4d;
 }
 
 .property-style {
+  border: 1px solid #000;
   display: flex;
   flex-direction: column;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: auto;
   align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
 }
 
 /* Style buttons inside the list*/

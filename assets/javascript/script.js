@@ -126,6 +126,7 @@ displayPokemon = () => {
         <button type="button" class="add-btn"> + </button>
         <p class="id-counter"></p>
         <button type="button" class="delete-btn"> - </button>
+        <hr>
         <p class="price-counter"> Totalt price: 0 </p>
         <p class="counter"> </p>
         <div>
@@ -224,7 +225,6 @@ const showBasketArea = () => {
     <td> ${pokemon.price}$ </td>
     <td> pcs/x ${Basketarray.filter(p => p.id === pokemon.id).length}</td>
     </tr>
-    <hr>
     </tbody>
     </table>
     </div>
@@ -334,7 +334,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         else if (Basketarray.length > 10) {
             mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
         }
-       
+
         else {
             mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
         }
