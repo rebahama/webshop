@@ -3,6 +3,7 @@
 /* image-style*/
 /*pokemon array list style*/
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
+
 * {
   /*remove browser defualt settings*/
   margin: 0;
@@ -93,6 +94,10 @@ body {
 
 .sort-links {
   text-align: center;
+}
+
+.sort-links-hide {
+  display: none;
 }
 
 .sort-links a {
@@ -245,7 +250,33 @@ body {
   font-size: 15px;
 }
 
+.container-basket-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 40px;
+  padding: 20px;
+  justify-items: center;
+}
+
+.pokemon-container-basket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.basket-card {
+  width: 400px;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Adding box shadow */
+}
+
 /* Style the form*/
 .form-container-hide {
   display: none;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

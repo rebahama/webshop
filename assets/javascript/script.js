@@ -207,28 +207,24 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
  * id is inside the array.
  */
 const showBasketArea = () => {
-    const basketContainer = document.querySelector(".basket-container")
+    const basketContainer = document.querySelector(".basket-container");
     const uniquePokemons = Array.from(new Set(Basketarray.map(pokemon => pokemon.id))).map(id => {
         return Basketarray.find(pokemon => pokemon.id === id);
     });
 
-    return basketContainer.innerHTML = uniquePokemons.map(pokemon =>
-        `
-    <div class="th-heading" id="pokemon-${pokemon.id}">
-    <table>
-    <tr>
-    </tr>
-    <tbody>
-    <tr>
-    <td> ${pokemon.name} </td>
-    <td><img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar"> </td>
-    <td> ${pokemon.price}$ </td>
-    <td> pcs/x ${Basketarray.filter(p => p.id === pokemon.id).length}</td>
-    </tr>
-    </tbody>
-    </table>
+    return basketContainer.innerHTML = uniquePokemons.map(pokemon => `
+    <div class="container-basket-grid" id="pokemon-${pokemon.id}">
+      <div class="basket-card">
+        ${pokemon.name} 
+        <img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar">
+        ${pokemon.price}$
+        ${Basketarray.filter(p => p.id === pokemon.id).length}
+      </div>
+      <div>
+        <hr class="hr-list">
+      </div>
     </div>
-    `);
+  `).join('');
 }
 
 
@@ -459,6 +455,8 @@ const showBasket = () => {
     const pokemonContainer = document.querySelector(".pokemon-container");
     const basketContainer = document.querySelector(".basket-container");
     const formContainer = document.querySelector(".form-container");
+    const sortLinksShow = document.querySelector(".sort-links");
+    sortLinksShow.classList.add("sort-links-hide")
     const basketContainerBtn = document.querySelector(".btn-basket-container").classList;
     basketContainerBtn.remove("btn-basket-container-hide");
     basketContainerBtn.remove("form-container-hide")
@@ -467,9 +465,6 @@ const showBasket = () => {
     pokemonContainer.style.display = "none";
 
 }
-
-
-
 
 
 // Main loading from here:
