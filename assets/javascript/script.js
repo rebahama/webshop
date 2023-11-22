@@ -126,7 +126,7 @@ displayPokemon = () => {
         <button type="button" class="add-btn"> + </button>
         <p class="id-counter"></p>
         <button type="button" class="delete-btn"> - </button>
-        <hr>
+        <hr class="hr-list">
         <p class="price-counter"> Totalt price: 0 </p>
         <p class="counter"> </p>
         <div>
@@ -393,12 +393,7 @@ const sortByPrice = (pokemonData, listItem) => {
         pokemonData.sort(compareByAge);
         console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
-        container.innerHTML = `
-    <a href="#" id="sort-btn">Sort By price</a>
-    <a href="#" id="name-btn">Sort by name</a>
-    <a href="#" id="rating-btn">Sort by rating</a>
-    <a href="#" id="category-btn">Sort by category</a>
-`;
+        container.innerHTML = "";
         displayPokemon(pokemonData);
 
     }
@@ -411,12 +406,7 @@ const sortByName = () => {
         pokemonData.sort(compareByName);
         console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
-        container.innerHTML = `
-        <a href="#" id="sort-btn">Sort By price</a>
-        <a href="#" id="name-btn">Sort by name</a>
-        <a href="#" id="rating-btn">Sort by rating</a>
-        <a href="#" id="category-btn">Sort by category</a>
-    `;
+        container.innerHTML = "";
         displayPokemon(pokemonData);
     }
 }
@@ -429,12 +419,7 @@ const sortByRating = () => {
         pokemonData.sort(compareByRating);
         console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
-        container.innerHTML = `
-        <a href="#" id="sort-btn">Sort By price</a>
-        <a href="#" id="name-btn">Sort by name</a>
-        <a href="#" id="rating-btn">Sort by rating</a>
-        <a href="#" id="category-btn">Sort by category</a>
-    `;
+        container.innerHTML = "";
         displayPokemon(pokemonData);
     }
 
@@ -448,9 +433,7 @@ const sortByCategory = () => {
         pokemonData.sort(compareByCategory);
         console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
-        container.innerHTML = `
-        <a href="#" id="home-btn">Back home </a>
-    `;
+        container.innerHTML = "";
         displayPokemon(pokemonData);
     }
 }

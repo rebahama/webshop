@@ -65,11 +65,11 @@ body {
 .grid-container-pokemon {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 40px;
   padding: 20px;
 }
 
-hr {
+.hr-list {
   width: 100%;
   height: 1px;
   background-color: #ee6c4d;
@@ -89,6 +89,28 @@ hr {
   padding: 20px;
   text-align: center;
   background-color: #f9f9f9;
+}
+
+.sort-links {
+  text-align: center;
+}
+
+.sort-links a {
+  background-color: #04AA6D;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 6px 23px;
+  text-align: center;
+  margin: 20px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.sort-links a:hover {
+  background-color: #027944;
 }
 
 /* Style buttons inside the list*/
