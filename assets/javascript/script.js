@@ -218,7 +218,7 @@ const showBasketArea = () => {
         ${pokemon.name} 
         <img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar">
         ${pokemon.price}$
-        ${Basketarray.filter(p => p.id === pokemon.id).length}
+        x ${Basketarray.filter(p => p.id === pokemon.id).length}
       </div>
       <div>
         <hr class="hr-list">
@@ -454,14 +454,13 @@ const showBasket = () => {
     // for testing to show and hide basket
     const pokemonContainer = document.querySelector(".pokemon-container");
     const basketContainer = document.querySelector(".basket-container");
-    const formContainer = document.querySelector(".form-container");
+    const formContainer = document.querySelector(".form-container-hide").classList;
     const sortLinksShow = document.querySelector(".sort-links");
     sortLinksShow.classList.add("sort-links-hide")
     const basketContainerBtn = document.querySelector(".btn-basket-container").classList;
     basketContainerBtn.remove("btn-basket-container-hide");
-    basketContainerBtn.remove("form-container-hide")
+   formContainer.remove("form-container-hide");
     basketContainer.style.display = "block";
-    formContainer.style.display = "block";
     pokemonContainer.style.display = "none";
 
 }

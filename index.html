@@ -33,7 +33,28 @@
       <p class="shipping-info"> </p>
     </div>
 
-    <form name="myForm" action="/action_page.php" method="post" class="form-container-hide form-container">
+    <div class="sort-links">
+      <a href="#" id="home-btn"> Home</a>
+      <a href="#" id="sort-btn">Sort by price</a>
+      <a href="#" id="name-btn">Sort by name</a>
+      <a href="#" id="rating-btn">Sort by rating</a>
+      <a href="#" id="category-btn">Sort by category</a>
+    </div>
+    <div class="pokemon-container">
+      
+      <ul id="pokemonList" class="grid-container-pokemon">
+     
+        <!-- Pokémon information will be displayed here -->
+      </ul>
+    </div>
+    <div class="basket-container">
+
+      
+
+    </div>
+    <div class="form-container-hide">
+<div class="form-container">
+    <form name="myForm" action="/action_page.php" method="post" class="form-container">
       <label for="fname">First Name:</label>
       <input type="text" id="fname" name="fname" required>
       
@@ -68,29 +89,16 @@
         <label for="expiryDate">Expiry Date (MM/YYYY):</label>
         <input type="text" id="expiryDate" name="expiryDate">
       </div>
-      </div>
-      <input type="checkbox" id="info" name="info">
+
+
       <label for="info"> Accept terms</label>
       <input type="checkbox" id="subscribe" name="subscribe" checked>
       <label for="subscribe">Subscribe to newsletter</label>
+      <input type="checkbox" id="info" name="info">
       <input type="submit" value="Submit">
     </form>
-    <div class="sort-links">
-      <a href="#" id="home-btn"> Home</a>
-      <a href="#" id="sort-btn">Sort by price</a>
-      <a href="#" id="name-btn">Sort by name</a>
-      <a href="#" id="rating-btn">Sort by rating</a>
-      <a href="#" id="category-btn">Sort by category</a>
-    </div>
-    <div class="pokemon-container">
-      
-      <ul id="pokemonList" class="grid-container-pokemon">
-     
-        <!-- Pokémon information will be displayed here -->
-      </ul>
-    </div>
-    <div class="basket-container">
-    </div>
+  </div>
+</div>
   </main>
 
   <footer></footer>
