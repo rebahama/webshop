@@ -106,10 +106,18 @@ body {
     font-size: 15px;
     transition: $hover-transition;
 }
-.sort-links a:hover{
-    background-color:$hover-color-add;
+
+.sort-links a:hover {
+    background-color: $hover-color-add;
 }
 
+.add-btn:hover {
+    background-color: $hover-color-add;
+}
+
+.delete-btn:hover {
+    background-color: $hover-color-delete;
+}
 
 /* Style buttons inside the list*/
 .add-btn {
@@ -124,6 +132,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: $add-size;
+    transition: $hover-transition;
 }
 
 .delete-btn {
@@ -138,6 +147,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: $add-size;
+    transition: $hover-transition;
 }
 
 /* Style the basket area*/

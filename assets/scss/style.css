@@ -113,6 +113,14 @@ body {
   background-color: #027944;
 }
 
+.add-btn:hover {
+  background-color: #027944;
+}
+
+.delete-btn:hover {
+  background-color: #cc583b;
+}
+
 /* Style buttons inside the list*/
 .add-btn {
   background-color: #04AA6D;
@@ -126,6 +134,7 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
+  transition: 0.3s ease;
 }
 
 .delete-btn {
@@ -140,6 +149,7 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
+  transition: 0.3s ease;
 }
 
 /* Style the basket area*/
