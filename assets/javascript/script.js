@@ -13,6 +13,9 @@ const homeButton = document.querySelector("#home-btn");
 const cardDetails = document.getElementById("card-detail");
 const basketContainer = document.querySelector(".basket-container");
 const pokemonContainer = document.querySelector(".pokemon-container");
+const sortLinksShow = document.querySelector(".sort-links");
+const btnBasketBtn = document.querySelector(".btn-basket-container");
+const formContainer = document.querySelector(".form-container");
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [{
     id: 1,
@@ -345,7 +348,7 @@ const addToBasketAndFindRightId = (id, listItem, pokemon) => {
     const idCounts = {};
     basketArray.forEach(pokemon => {
         const id = pokemon.id;
-        idCounts[id] = (idCounts[id] || 0) + 1; 
+        idCounts[id] = (idCounts[id] || 0) + 1;
     });
     for (const id in idCounts) {
         idCounter.innerHTML = `${idCounts[id]}`;
@@ -417,22 +420,22 @@ const sortByCategory = () => {
         displayPokemon(pokemonData);
     }
 }
-const homBtn = () => {
-    const formContainer = document.querySelector(".form-container")
-    const mainDisplay = document.querySelector(".main-display-container")
+const homeBtn = () => {
     for (let i = 0; i < pokemonData.length; i++) {
         // Append the list item to the list
         // Sort the cloned array based on the 'price' property
         const container = document.querySelector("#pokemonList");
-        pokemonData.sort(compareByCategory);
+
         // Clear the container before adding the sorted Pokémon
         container.innerHTML = "";
         displayPokemon(pokemonData);
+        btnBasketBtn.style.display = "none";
+        pokemonContainer.style.display = "block";
+        basketContainer.style.display = "none";
+        sortLinksShow.style.display = "block";
+        formContainer.style.display="none";
 
-        pokemonContainer.style.display = "block"
-        basketContainer.style.display="none"
 
-        
     }
 
 }
@@ -453,20 +456,16 @@ const showMoreFieldsPayment = () => {
 
 
 const showBasket = () => {
-    // for testing to show and hide basket
-    const sortLinksShow = document.querySelector(".sort-links");
-
- 
-
+    formContainer.style.display="block";
+    btnBasketBtn.style.display = "block";
     if (pokemonContainer.style.display === "none") {
-        basketContainer.style.display = "block"
-        pokemonContainer.style.display = "none"
+        basketContainer.style.display = "block";
+        pokemonContainer.style.display = "none";
     } else {
-        pokemonContainer.style.display = "none"
-        basketContainer.style.display = "block"
+        pokemonContainer.style.display = "none";
+        sortLinksShow.style.display = "none";
+        basketContainer.style.display = "block";
     }
-
-
 }
 
 
@@ -480,6 +479,6 @@ document.addEventListener('DOMContentLoaded', () => {
     clearArray.addEventListener('click', clearBasket);
     BasketShow.addEventListener('click', showBasket)
     paymentMethod.addEventListener('change', showMoreFieldsPayment);
-    homeButton.addEventListener('click', () => homBtn(pokemonData));
+    homeButton.addEventListener('click', () => homeBtn(pokemonData));
     displayPokemon(pokemonData);
 });

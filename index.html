@@ -25,18 +25,14 @@
     <div class="main-display-container">
       <div class="btn-container">
         <button id="basket-btn"> Basket</button>
+        <a href="#" id="home-btn"> Home</a>
         <p class="total-bill-basket"> Total: 0 </p>
         <p class="total-pcs-basket"> Items: 0</p>
       </div>
-      <div class="btn-basket-container">
-        <button id="clear-basket-btn"> Clear basket </button>
-        <button id="confirm-payment-btn"> Confirm payment </button>
-        <p class="monday-offer"> Special offer </p>
-        <p class="shipping-info"> </p>
-      </div>
+     
 
       <div class="sort-links">
-        <a href="#" id="home-btn"> Home</a>
+
         <a href="#" id="sort-btn">Sort by price</a>
         <a href="#" id="name-btn">Sort by name</a>
         <a href="#" id="rating-btn">Sort by rating</a>
@@ -51,14 +47,16 @@
       </div>
     </div>
     <div class="grid-basket-container">
-    <div class="basket-container">
+    <div class="basket-container hide-container">
 
       <!-- Basket information will be displayed here -->
+      
 
     </div>
-  </div>
+    
+  
       <div class="form-container">
-        <form name="myForm" action="/action_page.php" method="post" class="form-container">
+        <form name="myForm" action="/action_page.php" method="post" class="form-style">
           <label for="fname">First Name:</label>
           <input type="text" id="fname" name="fname" required>
 
@@ -102,7 +100,13 @@
           <input type="submit" value="Submit">
         </form>
       </div>
-    
+      <div class="btn-basket-container">
+        <button id="clear-basket-btn"> Clear basket </button>
+        <button id="confirm-payment-btn"> Confirm payment </button>
+        <p class="monday-offer"> Special offer </p>
+        <p class="shipping-info"> </p>
+      </div>
+    </div>
   </main>
 
   <footer></footer>

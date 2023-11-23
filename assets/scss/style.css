@@ -173,8 +173,12 @@ body {
   font-size: 15px;
 }
 
-.basket-container {
+.hide-container {
   display: none;
+}
+
+.visible {
+  display: block;
 }
 
 .container-basket-grid {
@@ -227,7 +231,11 @@ body {
   padding: 10px;
 }
 
-.btn-basket-container-hide {
+.btn-basket-container {
+  display: none;
+}
+
+.form-container {
   display: none;
 }
 
@@ -258,12 +266,20 @@ body {
 }
 
 /* Style the form*/
-.form-container-hide {
+.form-container {
   display: none;
+}
+
+.grid-basket-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 form {
   background-color: #fff;
+  width: 400px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
