@@ -171,6 +171,19 @@ body {
     font-size: $payment-font-size
 }
 
+.basket-container {
+    display: none;
+}
+
+.container-basket-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 40px;
+    padding: 20px;
+    justify-items: center;
+  }
+
+
 #confirm-payment-btn {
     background-color: $add-btn;
     border: none;
@@ -246,4 +259,36 @@ body {
 /* Style the form*/
 .form-container-hide {
     display: none;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
 }

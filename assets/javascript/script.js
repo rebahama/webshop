@@ -215,7 +215,7 @@ const showBasketArea = () => {
     });
 
     return basketContainer.innerHTML = uniquePokemons.map(pokemon => `
-    <div class="container-basket-grid" id="pokemon-${pokemon.id}">
+    <div class="container-basket-grid"  id="pokemon-${pokemon.id}">
       <div class="basket-card">
         ${pokemon.name} 
         <img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar">
