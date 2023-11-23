@@ -1,5 +1,5 @@
 //Array to save the object and properties when user clicks add to basket.
-const Basketarray = [];
+const basketArray = [];
 const d = new Date();
 const day = d.toLocaleString('sv', { weekday: 'long' });
 const time = d.getHours();
@@ -11,6 +11,8 @@ const sortRatingButton = document.querySelector("#rating-btn");
 const sortCategoryButton = document.querySelector("#category-btn");
 const homeButton = document.querySelector("#home-btn");
 const cardDetails = document.getElementById("card-detail");
+const basketContainer = document.querySelector(".basket-container");
+const pokemonContainer = document.querySelector(".pokemon-container");
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [{
     id: 1,
@@ -180,10 +182,9 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const basketContainer = document.querySelector(".basket-container")
     const priceValueText = priceCounter.textContent;
     const idCounts = {};
-    Basketarray.forEach(pokemon => {
+    basketArray.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
-        console.log(idCounts[id]);
         let sumAll = idCounts[id] * pokemon.price;
 
         if (day.toLowerCase() === 'fredag') {
@@ -209,8 +210,8 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
  */
 const showBasketArea = () => {
     const basketContainer = document.querySelector(".basket-container");
-    const uniquePokemons = Array.from(new Set(Basketarray.map(pokemon => pokemon.id))).map(id => {
-        return Basketarray.find(pokemon => pokemon.id === id);
+    const uniquePokemons = Array.from(new Set(basketArray.map(pokemon => pokemon.id))).map(id => {
+        return basketArray.find(pokemon => pokemon.id === id);
     });
 
     return basketContainer.innerHTML = uniquePokemons.map(pokemon => `
@@ -219,7 +220,7 @@ const showBasketArea = () => {
         ${pokemon.name} 
         <img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar">
         ${pokemon.price}$
-        x ${Basketarray.filter(p => p.id === pokemon.id).length}
+        x ${basketArray.filter(p => p.id === pokemon.id).length}
       </div>
       <div>
         <hr class="hr-list">
@@ -244,29 +245,26 @@ const deleteBasket = (listItem, pokemon) => {
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
     deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
-        const indexToRemove = Basketarray.findIndex(item => item.id === pokemon.id);
+        const indexToRemove = basketArray.findIndex(item => item.id === pokemon.id);
         if (indexToRemove !== -1) {
-            Basketarray.splice(indexToRemove, 1);
+            basketArray.splice(indexToRemove, 1);
             // Update the count 
-            const idCount = Basketarray.filter(item => item.id === pokemon.id).length;
+            const idCount = basketArray.filter(item => item.id === pokemon.id).length;
             idCounter.innerHTML = `Quantity: ${idCount}`;
-            console.log(Basketarray);
-            const totalPrice = sumAllPriceBasket(Basketarray);
-            console.log(totalPrice);
-            console.log(`Id av ${idCount}`);
+            const totalPrice = sumAllPriceBasket(basketArray);
             if (totalPrice > 0) {
                 // Update the HTML content only if totalPrice is above zero
                 totalBillBasket.classList.add("total-bill-basket")
                 totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
-                totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
+                totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
                 if (day.toLowerCase() === 'måndag' && time < 10) {
                     const discountPrice = totalPrice / 10;
                     const newTotalPrice = totalPrice - discountPrice
                     mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
-                    if (Basketarray.length > 10) {
+                    if (basketArray.length > 10) {
                         mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
                     }
-                    else if (Basketarray.length < 10) {
+                    else if (basketArray.length < 10) {
                         let shipping = 2;
                         let sumAllShipping = totalPrice + shipping
                         mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
@@ -274,8 +272,6 @@ const deleteBasket = (listItem, pokemon) => {
                 }
 
             }
-
-            console.log(Basketarray, Basketarray.length);
         }
 
     });
@@ -298,18 +294,15 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const shippingInfo = document.querySelector(".shipping-info");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
     const dayAndTime = `Today is ${day} and the time is ${time}`;
-    console.log("Clicked Pokemon:", pokemon);
     // Add the selected Pokemon to the array
-    Basketarray.push(pokemon);
+    basketArray.push(pokemon);
     const idCounts = {};
-    Basketarray.forEach(pokemon => {
+    basketArray.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
-        console.log(idCounts[id] * pokemon.price);
     });
     idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
-    const totalPrice = sumAllPriceBasket(Basketarray);
-    console.log(totalPrice);
+    const totalPrice = sumAllPriceBasket(basketArray);
     if (totalPrice > 0) {
         // Update the HTML content only if totalPrice is above zero
         const discountPrice = totalPrice / 10;
@@ -318,17 +311,17 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         let sumAllShipping = totalPrice + shipping;
         totalBillBasket.classList.add("total-bill-basket");
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
-        totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
+        totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
 
 
         if (day.toLowerCase() === 'måndag' && time < 10) {
 
             mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
-            if (Basketarray.length > 10) {
+            if (basketArray.length > 10) {
                 mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
             }
         }
-        else if (Basketarray.length > 10) {
+        else if (basketArray.length > 10) {
             mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
         }
 
@@ -338,7 +331,6 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
 
     }
 
-    console.log(Basketarray, Basketarray.length);
 };
 
 /**
@@ -348,21 +340,16 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
  */
 const addToBasketAndFindRightId = (id, listItem, pokemon) => {
     const idCounter = listItem.querySelector(".id-counter");
-    console.log("Clicked Pokemon:", pokemon);
     // Add the selected Pokemon to the array with the specified quantity of the id that is inside the array and multiply with price.
-    Basketarray.push(pokemon);
+    basketArraysketarray.push(pokemon);
     const idCounts = {};
-    Basketarray.forEach(pokemon => {
+    basketArray.forEach(pokemon => {
         const id = pokemon.id;
-        idCounts[id] = (idCounts[id] || 0) + 1;
-        console.log(idCounts[id] * pokemon.price);
+        idCounts[id] = (idCounts[id] || 0) + 1; 
     });
-
     for (const id in idCounts) {
         idCounter.innerHTML = `${idCounts[id]}`;
     }
-
-    console.log(Basketarray, Basketarray.length);
 };
 
 // Functions for sorting starts here
@@ -388,7 +375,6 @@ const sortByPrice = (pokemonData, listItem) => {
         // Sort the cloned array based on the 'price' property
         const container = document.querySelector("#pokemonList");
         pokemonData.sort(compareByAge);
-        console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
         container.innerHTML = "";
         displayPokemon(pokemonData);
@@ -401,7 +387,6 @@ const sortByName = () => {
         // Sort the cloned array based on the 'price' property
         const container = document.querySelector("#pokemonList");
         pokemonData.sort(compareByName);
-        console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
         container.innerHTML = "";
         displayPokemon(pokemonData);
@@ -414,7 +399,6 @@ const sortByRating = () => {
         // Sort the cloned array based on the 'price' property
         const container = document.querySelector("#pokemonList");
         pokemonData.sort(compareByRating);
-        console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
         container.innerHTML = "";
         displayPokemon(pokemonData);
@@ -428,7 +412,6 @@ const sortByCategory = () => {
         // Sort the cloned array based on the 'price' property
         const container = document.querySelector("#pokemonList");
         pokemonData.sort(compareByCategory);
-        console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
         container.innerHTML = "";
         displayPokemon(pokemonData);
@@ -436,19 +419,15 @@ const sortByCategory = () => {
 }
 const homBtn = () => {
     const formContainer = document.querySelector(".form-container")
-    const basketContainer = document.querySelector(".basket-container");
-    const pokemonContainer = document.querySelector(".pokemon-container");
     const mainDisplay = document.querySelector(".main-display-container")
     for (let i = 0; i < pokemonData.length; i++) {
         // Append the list item to the list
         // Sort the cloned array based on the 'price' property
         const container = document.querySelector("#pokemonList");
         pokemonData.sort(compareByCategory);
-        console.log(pokemonData);
         // Clear the container before adding the sorted Pokémon
         container.innerHTML = "";
         displayPokemon(pokemonData);
-        console.log("hello")
 
         pokemonContainer.style.display = "block"
         basketContainer.style.display="none"
@@ -459,9 +438,8 @@ const homBtn = () => {
 }
 
 const clearBasket = () => {
-    Basketarray.splice(0, Basketarray.length);
+    basketArray.splice(0, basketArray.length);
     showBasketArea();
-    console.log(Basketarray)
 }
 
 
@@ -476,8 +454,6 @@ const showMoreFieldsPayment = () => {
 
 const showBasket = () => {
     // for testing to show and hide basket
-    const pokemonContainer = document.querySelector(".pokemon-container");
-    const basketContainer = document.querySelector(".basket-container");
     const sortLinksShow = document.querySelector(".sort-links");
 
  
