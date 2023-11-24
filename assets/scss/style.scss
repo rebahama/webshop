@@ -1,5 +1,5 @@
 @import 'variables';
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
 
 * {
     /*remove browser defualt settings*/
@@ -20,6 +20,7 @@ body {
     text-align: $center-text;
     color: $font-alternative-color;
     height: $height-header;
+    
 }
 
 /*style img header*/
