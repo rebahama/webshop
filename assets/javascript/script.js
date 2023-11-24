@@ -138,8 +138,8 @@ displayPokemon = () => {
         <p class="id-counter"></p>
         <button type="button" class="delete-btn"> - </button>
         <hr class="hr-list">
-        <p class="price-counter"> Totalt price: 0 </p>
-        <p class="counter"> </p>
+        <p class="price-counter">  </p>
+        <p class="counter"> Quantity :0</p>
         <div>
       `;
         // Append the list item to the list
@@ -150,9 +150,12 @@ displayPokemon = () => {
         updatePriceCount(id, price, listItem);
         decreasePriceCount(id, price, listItem);
         sortByPrice(pokemonData[i], price, listItem);
+        handleDecrease(listItem, pokemonData[i], id);
 
     }
 };
+
+
 /**
    add the object property that is stored in an arrar with the push method and keep track of the id in the object property
    to display how many id is inside the basket.
@@ -181,22 +184,23 @@ const decreasePriceCount = (id, pokemon, listItem) => {
     deleteBtn.addEventListener('click', () => findRightIndexAndShowPriceDecrease(id, pokemon, listItem));
 };
 
+const handleDecrease = (listItem, pokemon, id) => {
+    const deleteBtn = listItem.querySelector(".delete-btn");
+    deleteBtn.addEventListener('click', () => deleteBasket(listItem, pokemon, id));
+};
+
 /** 
  *Function for displaying the total price of the choosen product, when the user increments the value
  *this function takes the id of the product and multiplies it with the pokemon id to display the total value price.
  */
 const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
-    const basketContainer = document.querySelector(".basket-container")
-    const priceValueText = priceCounter.textContent;
-
+    const basketContainer = document.querySelector(".basket-container");
     const idCounts = {};
     basketArray.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         let sumAll = idCounts[id] * pokemon.price;
-
-
         if ((dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
             console.log(idCounts[id])
             const priceFifteen = sumAll * 0.15;
@@ -206,7 +210,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         }
         else {
             console.log(idCounts[id])
-            priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
+            
             basketContainer.innerHTML = showBasketArea();
 
         }
@@ -217,12 +221,8 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 
 const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
-    const basketContainer = document.querySelector(".basket-container")
-    const priceValueText = priceCounter.textContent;
-
-
+    const basketContainer = document.querySelector(".basket-container");
     const idCounts = {};
-
     basketArray.forEach((pokemon, index, array) => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
@@ -236,17 +236,8 @@ const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
         } else {
             console.log(`Quantity for ID ${id}: ${idCounts[id]}`);
             console.log(`Price: ${pokemon.price}`);
-
             // Check if idCounts[id] is undefined or null
-            if (idCounts[id] == null) {
-                priceCounter.innerHTML = "0";
-            } else {
-                priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
                 basketContainer.innerHTML = showBasketArea();
-
-            }
-
-
         }
     });
 
@@ -281,7 +272,6 @@ const showBasketArea = () => {
   `).join('');
 }
 
-
 /**
   Delete the object property that is stored in an array, track the clicked object with the id parameter and
   use the splice method do display the new array. This part of this code was taken from Stakoverflow.
@@ -295,7 +285,7 @@ const deleteBasket = (listItem, pokemon) => {
     const showTotalPrice = document.querySelector("#total-varukorg");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
-    deleteBtn.addEventListener("click", function () {
+   
         // code from stakeoverflow
         const indexToRemove = basketArray.findIndex(item => item.id === pokemon.id);
         if (indexToRemove !== -1) {
@@ -326,7 +316,7 @@ const deleteBasket = (listItem, pokemon) => {
 
             }
             else {
-                priceCounter.innerHTML = `Total Price:0`;
+                
                 totalBillBasket.innerHTML = `Total:0$`;
                 totalPcsBasket.innerHTML = `Items: 0`;
             }
@@ -354,7 +344,7 @@ const deleteBasket = (listItem, pokemon) => {
 
         }
 
-    });
+    
 };
 
 const sumAllPriceBasket = (basket) => {
