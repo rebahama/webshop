@@ -1,7 +1,7 @@
 //Array to save the object and properties when user clicks add to basket.
 const basketArray = [];
 const d = new Date();
-const day = d.toLocaleString('sv', { weekday: 'long' });
+const dayNumber = d.getDay();
 const time = d.getHours();
 const BasketShow = document.getElementById("basket-btn");
 const clearArray = document.getElementById("clear-basket-btn");
@@ -18,86 +18,87 @@ const btnBasketBtn = document.querySelector(".btn-basket-container");
 const formContainer = document.querySelector(".form-container");
 const mondayOffer = document.querySelector(".monday-offer");
 // Create object with property of: name,price,rating. category and image.
-const pokemonData = [{
-    id: 1,
-    name: "Pikachu",
-    price: 30,
-    rating: 4.5,
-    category: "Electric",
-    image: "assets/img/pikachu.jpg",
-},
-{
-    id: 2,
-    name: "Charmander",
-    price: 50,
-    rating: 4.8,
-    category: "Fire/Flying",
-    image: "assets/img/charmander.jpg",
-},
-{
-    id: 3,
-    name: "Bulbasaur",
-    price: 20,
-    rating: 4.2,
-    category: "Grass/Poison",
-    image: "assets/img/bulbasaur.jpg",
-},
-{
-    id: 4,
-    name: "Squirtle",
-    price: 23,
-    rating: 4.3,
-    category: "Water",
-    image: "assets/img/squirtle.jpg",
-},
-{
-    id: 5,
-    name: "Graveler",
-    price: 20,
-    rating: 4.1,
-    category: "Rock",
-    image: "assets/img/graveler.jpg",
-},
-{
-    id: 6,
-    name: "Mewtwo",
-    price: 60,
-    rating: 4.9,
-    category: "Psychic",
-    image: "assets/img/mewtwo.jpg",
-},
-{
-    id: 7,
-    name: "Eevee",
-    price: 30,
-    rating: 4.6,
-    category: "Normal",
-    image: "assets/img/eevee.jpg",
-},
-{
-    id: 8,
-    name: "Jolteon",
-    price: 40,
-    rating: 4.7,
-    category: "Electric",
-    image: "assets/img/jolteon.jpg",
-},
-{
-    id: 9,
-    name: "Mew",
-    price: 70,
-    rating: 5.0,
-    category: "Psychic",
-    image: "assets/img/mew.jpg",
-},
-{
-    id: 10,
-    name: "Lugia",
-    price: 100,
-    rating: 4.4,
-    category: "Legendary",
-    image: "assets/img/lugia.jpg",
-},
+const pokemonData = [
+    {
+        id: 1,
+        name: "Pikachu",
+        price: 30,
+        rating: 4.5,
+        category: "Electric",
+        image: "assets/img/pikachu.jpg",
+    },
+    {
+        id: 2,
+        name: "Charmander",
+        price: 50,
+        rating: 4.8,
+        category: "Fire/Flying",
+        image: "assets/img/charmander.jpg",
+    },
+    {
+        id: 3,
+        name: "Bulbasaur",
+        price: 20,
+        rating: 4.2,
+        category: "Grass/Poison",
+        image: "assets/img/bulbasaur.jpg",
+    },
+    {
+        id: 4,
+        name: "Squirtle",
+        price: 23,
+        rating: 4.3,
+        category: "Water",
+        image: "assets/img/squirtle.jpg",
+    },
+    {
+        id: 5,
+        name: "Graveler",
+        price: 20,
+        rating: 4.1,
+        category: "Rock",
+        image: "assets/img/graveler.jpg",
+    },
+    {
+        id: 6,
+        name: "Mewtwo",
+        price: 60,
+        rating: 4.9,
+        category: "Psychic",
+        image: "assets/img/mewtwo.jpg",
+    },
+    {
+        id: 7,
+        name: "Eevee",
+        price: 30,
+        rating: 4.6,
+        category: "Normal",
+        image: "assets/img/eevee.jpg",
+    },
+    {
+        id: 8,
+        name: "Jolteon",
+        price: 40,
+        rating: 4.7,
+        category: "Electric",
+        image: "assets/img/jolteon.jpg",
+    },
+    {
+        id: 9,
+        name: "Mew",
+        price: 70,
+        rating: 5.0,
+        category: "Psychic",
+        image: "assets/img/mew.jpg",
+    },
+    {
+        id: 10,
+        name: "Lugia",
+        price: 100,
+        rating: 4.4,
+        category: "Legendary",
+        image: "assets/img/lugia.jpg",
+    },
 ];
 
 /**
@@ -118,7 +119,10 @@ displayPokemon = () => {
         const rating = pokemonData[i].rating;
         const category = pokemonData[i].category;
         const image = pokemonData[i].image;
-        const price = ((day.toLowerCase() === 'fredag' && time >= 15) || (day.toLowerCase() === 'lördag' || day.toLowerCase() === 'söndag' && time < 3)) ? basePrice * 0.15 + basePrice : basePrice;
+        const price = (
+            (dayNumber === 5 && time >= 15) ||
+            (dayNumber === 6 || (dayNumber === 0 && time < 3))
+        ) ? basePrice * 0.15 + basePrice : basePrice;
         // Create a list item
         const listItem = document.createElement("li");
         listItem.classList.add("pokemon-item");
@@ -192,7 +196,8 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         idCounts[id] = (idCounts[id] || 0) + 1;
         let sumAll = idCounts[id] * pokemon.price;
 
-        if ((day.toLowerCase() === 'fredag' && time >= 15) || (day.toLowerCase() === 'lördag' || day.toLowerCase() === 'söndag' && time < 3)) {
+
+        if ((dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
             console.log(idCounts[id])
             const priceFifteen = sumAll * 0.15;
             const newPriceFifteen = sumAll + priceFifteen
@@ -214,16 +219,16 @@ const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container")
     const priceValueText = priceCounter.textContent;
-    
-    
+
+
     const idCounts = {};
 
     basketArray.forEach((pokemon, index, array) => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         let sumAll = idCounts[id] * pokemon.price;
-    
-        if ((day.toLowerCase() === 'fredag' && time >= 15) || (day.toLowerCase() === 'lördag' || day.toLowerCase() === 'söndag' && time < 3)) {
+
+        if ((dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
             const priceFifteen = sumAll * 0.15;
             const newPriceFifteen = sumAll + priceFifteen;
             priceCounter.innerHTML = `Total Pre:$${newPriceFifteen >= 0 ? newPriceFifteen : "0"}`;
@@ -231,22 +236,22 @@ const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
         } else {
             console.log(`Quantity for ID ${id}: ${idCounts[id]}`);
             console.log(`Price: ${pokemon.price}`);
-            
+
             // Check if idCounts[id] is undefined or null
             if (idCounts[id] == null) {
                 priceCounter.innerHTML = "0";
             } else {
                 priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
                 basketContainer.innerHTML = showBasketArea();
-              
+
             }
-    
-          
+
+
         }
     });
 
-  
-    
+
+
 
 };
 /**
@@ -304,7 +309,8 @@ const deleteBasket = (listItem, pokemon) => {
                 totalBillBasket.classList.add("total-bill-basket")
                 totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
                 totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
-                if (day.toLowerCase() === 'måndag' && time < 10) {
+
+                if (dayNumber === 1 && time < 10) {
                     const discountPrice = totalPrice / 10;
                     const newTotalPrice = totalPrice - discountPrice
                     mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
@@ -319,31 +325,33 @@ const deleteBasket = (listItem, pokemon) => {
                 }
 
             }
-            else{
+            else {
                 priceCounter.innerHTML = `Total Price:0`;
-            }
-/*
-            if (totalPrice > 0) {
-                change basket price
-                // Update the HTML content only if totalPrice is above zero
-                totalBillBasket.classList.add("total-bill-basket")
-                totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
-                totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
-            } else {
-                // Optionally, you can handle the case where totalPrice is not above zero
                 totalBillBasket.innerHTML = `Total:0$`;
                 totalPcsBasket.innerHTML = `Items: 0`;
             }
-
-
-        }
-
-    });
-    */
-
-
-
+            /*
+                        if (totalPrice > 0) {
+                            change basket price
+                            // Update the HTML content only if totalPrice is above zero
+                            totalBillBasket.classList.add("total-bill-basket")
+                            totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
+                            totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
+                        } else {
+                            // Optionally, you can handle the case where totalPrice is not above zero
+                            totalBillBasket.innerHTML = `Total:0$`;
+                            totalPcsBasket.innerHTML = `Items: 0`;
+                        }
             
+            
+                    }
+            
+                });
+                */
+
+
+
+
         }
 
     });
@@ -365,7 +373,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const mondayOffer = document.querySelector(".monday-offer");
     const shippingInfo = document.querySelector(".shipping-info");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
-    const dayAndTime = `Today is ${day} and the time is ${time}`;
+    const dayAndTime = `Today is ${dayNumber} and the time is ${time}`;
     // Add the selected Pokemon to the array
     basketArray.push(pokemon);
     const idCounts = {};
@@ -386,7 +394,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
 
 
-        if (day.toLowerCase() === 'måndag' && time < 10) {
+        if (dayNumber === 1 && time < 10) {
 
             mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
             if (basketArray.length > 10) {
