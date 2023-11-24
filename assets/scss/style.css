@@ -64,9 +64,8 @@ body {
 
 .grid-container-pokemon {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: auto auto auto;
   gap: 40px;
-  padding: 20px;
 }
 
 .hr-list {
@@ -204,6 +203,20 @@ body {
 }
 
 #clear-basket-btn {
+  background-color: #04AA6D;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  color: #fff;
+  padding: 6px 23px;
+  text-align: center;
+  margin: 20px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+}
+
+#home-btn {
   background-color: #04AA6D;
   border: none;
   cursor: pointer;

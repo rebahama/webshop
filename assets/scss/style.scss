@@ -62,9 +62,9 @@ body {
 
 .grid-container-pokemon {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: auto auto auto;
     gap: 40px;
-    padding: 20px;
+    
 }
 
 .hr-list {
@@ -213,6 +213,20 @@ body {
     margin: $add-radius;
     text-decoration: none;
     display: inline-block;
+    font-size: $payment-font-size;
+}
+
+#home-btn {
+    background-color: $add-btn;
+    border: none;
+    cursor: pointer;
+    border-radius: $add-radius;
+    color: $add-btn-color;
+    padding: 6px 23px;
+    text-align: center;
+    margin: $add-radius;
+    text-decoration: none;
+    display: inline-block;
     font-size: $payment-font-size
 }
 
@@ -268,7 +282,8 @@ body {
 .form-container {
     display: none;
 }
-.grid-basket-container{
+
+.grid-basket-container {
     display: flex;
     flex-direction: column;
     align-items: center;

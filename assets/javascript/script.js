@@ -16,6 +16,7 @@ const pokemonContainer = document.querySelector(".pokemon-container");
 const sortLinksShow = document.querySelector(".sort-links");
 const btnBasketBtn = document.querySelector(".btn-basket-container");
 const formContainer = document.querySelector(".form-container");
+const mondayOffer = document.querySelector(".monday-offer");
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [{
     id: 1,
@@ -171,9 +172,9 @@ const updatePriceCount = (id, pokemon, listItem) => {
  * how many objects is inside the array and then multiply it with the price to get the right value.
  */
 const decreasePriceCount = (id, pokemon, listItem) => {
-    const addBtn = listItem.querySelector(".delete-btn");
+    const deleteBtn = listItem.querySelector(".delete-btn");
     // You can update your Basketarray or perform other actions based on the new price
-    addBtn.addEventListener('click', () => findRightIndexAndShowPrice(id, pokemon, listItem));
+    deleteBtn.addEventListener('click', () => findRightIndexAndShowPriceDecrease(id, pokemon, listItem));
 };
 
 /** 
@@ -184,19 +185,22 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container")
     const priceValueText = priceCounter.textContent;
+
     const idCounts = {};
     basketArray.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         let sumAll = idCounts[id] * pokemon.price;
 
-        if (day.toLowerCase() === 'fredag') {
+        if ((day.toLowerCase() === 'fredag' && time >= 15) || (day.toLowerCase() === 'lördag' || day.toLowerCase() === 'söndag' && time < 3)) {
+            console.log(idCounts[id])
             const priceFifteen = sumAll * 0.15;
             const newPriceFifteen = sumAll + priceFifteen
             priceCounter.innerHTML = `Total Pre:$${newPriceFifteen >= 0 ? newPriceFifteen : "0"}`;;
             basketContainer.innerHTML = showBasketArea();
         }
         else {
+            console.log(idCounts[id])
             priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
             basketContainer.innerHTML = showBasketArea();
 
@@ -204,6 +208,46 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 
 
     });
+};
+
+const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
+    const priceCounter = listItem.querySelector(".price-counter");
+    const basketContainer = document.querySelector(".basket-container")
+    const priceValueText = priceCounter.textContent;
+    
+    
+    const idCounts = {};
+
+    basketArray.forEach((pokemon, index, array) => {
+        const id = pokemon.id;
+        idCounts[id] = (idCounts[id] || 0) + 1;
+        let sumAll = idCounts[id] * pokemon.price;
+    
+        if ((day.toLowerCase() === 'fredag' && time >= 15) || (day.toLowerCase() === 'lördag' || day.toLowerCase() === 'söndag' && time < 3)) {
+            const priceFifteen = sumAll * 0.15;
+            const newPriceFifteen = sumAll + priceFifteen;
+            priceCounter.innerHTML = `Total Pre:$${newPriceFifteen >= 0 ? newPriceFifteen : "0"}`;
+            basketContainer.innerHTML = showBasketArea();
+        } else {
+            console.log(`Quantity for ID ${id}: ${idCounts[id]}`);
+            console.log(`Price: ${pokemon.price}`);
+            
+            // Check if idCounts[id] is undefined or null
+            if (idCounts[id] == null) {
+                priceCounter.innerHTML = "0";
+            } else {
+                priceCounter.innerHTML = `Total Price:$${sumAll >= 0 ? sumAll : "0"}`;
+                basketContainer.innerHTML = showBasketArea();
+              
+            }
+    
+          
+        }
+    });
+
+  
+    
+
 };
 /**
  * This function returns the html for the basket area when the user clicks on basket, using
@@ -240,9 +284,9 @@ const showBasketArea = () => {
 /*
  */
 const deleteBasket = (listItem, pokemon) => {
+    const priceCounter = listItem.querySelector(".price-counter");
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".counter");
-    const mondayOffer = document.querySelector(".monday-offer");
     const showTotalPrice = document.querySelector("#total-varukorg");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
@@ -275,6 +319,31 @@ const deleteBasket = (listItem, pokemon) => {
                 }
 
             }
+            else{
+                priceCounter.innerHTML = `Total Price:0`;
+            }
+/*
+            if (totalPrice > 0) {
+                change basket price
+                // Update the HTML content only if totalPrice is above zero
+                totalBillBasket.classList.add("total-bill-basket")
+                totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
+                totalPcsBasket.innerHTML = `Items: ${Basketarray.length}`;
+            } else {
+                // Optionally, you can handle the case where totalPrice is not above zero
+                totalBillBasket.innerHTML = `Total:0$`;
+                totalPcsBasket.innerHTML = `Items: 0`;
+            }
+
+
+        }
+
+    });
+    */
+
+
+
+            
         }
 
     });
@@ -344,7 +413,7 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
 const addToBasketAndFindRightId = (id, listItem, pokemon) => {
     const idCounter = listItem.querySelector(".id-counter");
     // Add the selected Pokemon to the array with the specified quantity of the id that is inside the array and multiply with price.
-    basketArraysketarray.push(pokemon);
+    basketArray.push(pokemon);
     const idCounts = {};
     basketArray.forEach(pokemon => {
         const id = pokemon.id;
@@ -433,8 +502,7 @@ const homeBtn = () => {
         pokemonContainer.style.display = "block";
         basketContainer.style.display = "none";
         sortLinksShow.style.display = "block";
-        formContainer.style.display="none";
-
+        formContainer.style.display = "none";
 
     }
 
@@ -456,7 +524,8 @@ const showMoreFieldsPayment = () => {
 
 
 const showBasket = () => {
-    formContainer.style.display="block";
+    //Will change to class method later
+    formContainer.style.display = "block";
     btnBasketBtn.style.display = "block";
     if (pokemonContainer.style.display === "none") {
         basketContainer.style.display = "block";
