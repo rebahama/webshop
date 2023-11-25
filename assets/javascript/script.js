@@ -206,7 +206,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         }
         else {
             console.log(idCounts[id])
-            
+
             basketContainer.innerHTML = showBasketArea();
 
         }
@@ -241,7 +241,7 @@ const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
             if (idCounts[id] == null) {
                 priceCounter.innerHTML = "0";
             } else {
-             
+
                 basketContainer.innerHTML = showBasketArea();
 
             }
@@ -288,6 +288,7 @@ const showBasketArea = () => {
   */
 /*
  */
+
 const deleteBasket = (listItem, pokemon) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const deleteBtn = listItem.querySelector(".delete-btn");
@@ -319,13 +320,22 @@ const deleteBasket = (listItem, pokemon) => {
                     else if (basketArray.length < 10) {
                         let shipping = 2;
                         let sumAllShipping = totalPrice + shipping
-                        mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
+                        if ((dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
+                            let newSum = sumAllShipping * 0.15;
+                            let newSumFifteen = sumAllShipping + newSum
+                            mondayOffer.innerHTML = `Total: $${newSumFifteen} plus Shipping`;
+                        }
+                        else {
+                            mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
+                        }
+
+
                     }
                 }
 
             }
             else {
-                
+
                 totalBillBasket.innerHTML = `Total:0$`;
                 totalPcsBasket.innerHTML = `Items: 0`;
             }
@@ -405,13 +415,25 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
         }
 
         else {
-            mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
+            let newSumFifteen = fifteenPercatnage(totalPrice)
+
+            mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
+
+
         }
 
     }
 
 };
+/**
+ * Function for taking a variable and outputing fiffteen percatange of that variable
+ */
+const fifteenPercatnage = (newSumPrice) => {
+    let newSum = newSumPrice * 0.15;
+    let newSumFifteen = newSumPrice + newSum;
 
+    return newSumFifteen
+}
 /**
  * Finds the total id of how many pokemon is in the basket and multiplies with the price
  * and shows the total of how many ids is inside the array.
