@@ -195,22 +195,16 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         let sumAll = idCounts[id] * pokemon.price;
-
-
         if ((dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
             console.log(idCounts[id])
             const priceFifteen = sumAll * 0.15;
             const newPriceFifteen = sumAll + priceFifteen
-
             basketContainer.innerHTML = showBasketArea();
         }
         else {
             console.log(idCounts[id])
-
             basketContainer.innerHTML = showBasketArea();
-
         }
-
 
     });
 };
@@ -218,16 +212,11 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container")
-
-
-
     const idCounts = {};
-
     basketArray.forEach((pokemon, index, array) => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         let sumAll = idCounts[id] * pokemon.price;
-
         if ((dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
             const priceFifteen = sumAll * 0.15;
             const newPriceFifteen = sumAll + priceFifteen;
@@ -280,6 +269,17 @@ const showBasketArea = () => {
   `).join('');
 }
 
+const mondaySpecialPriceBeforeTen = () => {
+    const totalPrice = sumAllPriceBasket(basketArray);
+    const discountPrice = totalPrice / 10;
+    const newTotalPrice = totalPrice - discountPrice;
+    const mondayOffer = document.querySelector(".monday-offer");
+    if (dayNumber === 1 && time < 10) {
+        mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
+    }
+    
+}
+
 
 /**
   Delete the object property that is stored in an array, track the clicked object with the id parameter and
@@ -287,12 +287,9 @@ const showBasketArea = () => {
   */
 /*
  */
-
 const deleteBasket = (listItem, pokemon) => {
-    const priceCounter = listItem.querySelector(".price-counter");
     const deleteBtn = listItem.querySelector(".delete-btn");
     const idCounter = listItem.querySelector(".counter");
-    const showTotalPrice = document.querySelector("#total-varukorg");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
     deleteBtn.addEventListener("click", function () {
@@ -307,36 +304,10 @@ const deleteBasket = (listItem, pokemon) => {
             if (totalPrice > 0) {
                 // Update the HTML content only if totalPrice is above zero
                 fifteenPercantageOutput();
-                
-                if (dayNumber === 1 && time < 10) {
-                    const discountPrice = totalPrice / 10;
-                    const newTotalPrice = totalPrice - discountPrice
-                    mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
-                    if (basketArray.length > 10) {
-                        mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
-                    }
-                    else if (basketArray.length < 10) {
-                        let shipping = 2;
-                        let sumAllShipping = totalPrice + shipping
-                        if ((dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
-                            let newSum = fifteenPercatnage(totalPrice)
-                            let newSumFifteen = sumAllShipping + newSum
-
-                            mondayOffer.innerHTML = `Total: $${totalPrice} plus Shipping`;
-                        }
-                        else {
-                            mondayOffer.innerHTML = `Total: $${sumAllShipping} plus Shipping`;
-                        }
-
-                    }
-                }
+                mondaySpecialPriceBeforeTen();
 
             }
-            else {
 
-                totalBillBasket.innerHTML = `Total:0$`;
-                totalPcsBasket.innerHTML = `Items: 0`;
-            }
             /*
                         if (totalPrice > 0) {
                             change basket price
@@ -377,18 +348,31 @@ const sumAllPriceBasket = (basket) => {
 const fifteenPercantageOutput = () => {
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
     const totalBillBasket = document.querySelector(".total-bill-basket");
+    const mondayOffer = document.querySelector(".monday-offer");
     const totalPrice = sumAllPriceBasket(basketArray);
     if ((totalPrice > 0 && dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
-        let newSumFifteen = fifteenPercatnage(totalPrice)
+        let newSumFifteen = fifteenPercantage(totalPrice)
         totalBillBasket.classList.add("total-bill-basket");
         totalBillBasket.innerHTML = `Total: ${newSumFifteen}$`;
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
+        mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
+        if (basketArray.length > 10) {
+            mondayOffer.innerHTML = `No shipping charged! Total: ${newSumFifteen}$`;
+        }
+        else {
+            let newSumFifteen = fifteenPercantage(totalPrice)
+            mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
+        }
     }
+
     else {
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
+        mondayOffer.innerHTML = `Total: $${totalPrice} + $2 dollar Shipping`;
     }
+
 }
+
 
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const idCounter = listItem.querySelector(".counter");
@@ -406,40 +390,17 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const totalPrice = sumAllPriceBasket(basketArray);
     if (totalPrice > 0) {
         // Update the HTML content only if totalPrice is above zero
-        const discountPrice = totalPrice / 10;
-        const newTotalPrice = totalPrice - discountPrice;
-        let shipping = 2;
-        let sumAllShipping = totalPrice + shipping;
         fifteenPercantageOutput();
-
-        if (dayNumber === 1 && time < 10) {
-
-            mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
-            if (basketArray.length > 10) {
-                mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
-            }
-        }
-        else if (basketArray.length > 10) {
-            mondayOffer.innerHTML = `No shipping charged! Total: ${totalPrice}$`;
-        }
-
-        else {
-            let newSumFifteen = fifteenPercatnage(totalPrice)
-            mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
-
-
-        }
-
+        mondaySpecialPriceBeforeTen();
     }
 
 };
 /**
  * Function for taking a variable and outputing fiffteen percatange of that variable
  */
-const fifteenPercatnage = (newSumPrice) => {
+const fifteenPercantage = (newSumPrice) => {
     let newSum = newSumPrice * 0.15;
     let newSumFifteen = newSumPrice + newSum;
-
     return newSumFifteen
 }
 /**
