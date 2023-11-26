@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" />
 
 
   <link rel="stylesheet" href="assets/scss/style.css" />
@@ -82,7 +82,12 @@
             <option value="card">Card</option>
           </select>
 
-          <div id="card-detail" style="display: none;">
+          <div class="securitynumber">
+          <label for="securitynumber"> Swedish social security number</label>
+          <input type="number" id="securitynumber" name="securitynumber" required>
+        </div>
+
+          <div id="card-detail">
             <label for="cardNumber">Card Number:</label>
             <input type="text" id="cardNumber" name="cardNumber">
 
@@ -104,7 +109,7 @@
       <div class="btn-basket-container">
         <button id="clear-basket-btn"> Clear basket </button>
         <button id="confirm-payment-btn"> Confirm payment </button>
-        <p class="monday-offer">  </p>
+        <p class="monday-offer"> </p>
         <p class="shipping-info"> </p>
       </div>
     </div>

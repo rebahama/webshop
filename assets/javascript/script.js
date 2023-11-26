@@ -11,6 +11,7 @@ const sortRatingButton = document.querySelector("#rating-btn");
 const sortCategoryButton = document.querySelector("#category-btn");
 const homeButton = document.querySelector("#home-btn");
 const cardDetails = document.getElementById("card-detail");
+const securityNumber = document.querySelector(".securitynumber");
 const basketContainer = document.querySelector(".basket-container");
 const pokemonContainer = document.querySelector(".pokemon-container");
 const sortLinksShow = document.querySelector(".sort-links");
@@ -277,7 +278,7 @@ const mondaySpecialPriceBeforeTen = () => {
     if (dayNumber === 1 && time < 10) {
         mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
     }
-    
+
 }
 
 
@@ -518,8 +519,19 @@ const showMoreFieldsPayment = () => {
     } else {
         cardDetails.style.display = "none";
     }
+    
 };
 
+
+const showsocialSecurityField = () => {
+    if (paymentMethod.value === "invoice") {
+        securityNumber.style.display = "block";
+    } else {
+        securityNumber.style.display = "none";
+        
+    }
+    console.log(paymentMethod.value)
+}
 
 const showBasket = () => {
     //Will change to class method later
@@ -546,6 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearArray.addEventListener('click', clearBasket);
     BasketShow.addEventListener('click', showBasket)
     paymentMethod.addEventListener('change', showMoreFieldsPayment);
+    paymentMethod.addEventListener('change', showsocialSecurityField);
     homeButton.addEventListener('click', () => homeBtn(pokemonData));
     displayPokemon(pokemonData);
 });

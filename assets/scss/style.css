@@ -282,6 +282,14 @@ body {
   display: none;
 }
 
+#card-detail {
+  display: none;
+}
+
+.securitynumber {
+  display: none;
+}
+
 .grid-basket-container {
   display: flex;
   flex-direction: column;

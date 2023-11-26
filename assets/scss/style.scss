@@ -20,7 +20,7 @@ body {
     text-align: $center-text;
     color: $font-alternative-color;
     height: $height-header;
-    
+
 }
 
 /*style img header*/
@@ -65,7 +65,7 @@ body {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 40px;
-    
+
 }
 
 .hr-list {
@@ -281,6 +281,14 @@ body {
 
 /* Style the form*/
 .form-container {
+    display: none;
+}
+
+#card-detail {
+    display: none;
+}
+
+.securitynumber {
     display: none;
 }
 
