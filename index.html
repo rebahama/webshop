@@ -58,6 +58,8 @@
 
       <div class="form-container">
         <form name="myForm" action="/action_page.php" method="post" class="form-style">
+          <fieldset>
+            <legend>Contact Information</legend>
           <label for="fname">First Name:</label>
           <input type="text" id="fname" name="fname" required>
 
@@ -75,6 +77,11 @@
 
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" required>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Payment Information</legend>
 
           <label for="paymentMethod">Payment Method:</label>
           <select name="paymentMethod" id="paymentMethod">
@@ -98,12 +105,13 @@
             <input type="text" id="expiryDate" name="expiryDate">
           </div>
 
-
+        </fieldset>
           <label for="info"> Accept terms</label>
           <input type="checkbox" id="subscribe" name="subscribe" checked>
           <label for="subscribe">Subscribe to newsletter</label>
           <input type="checkbox" id="info" name="info">
           <input type="submit" value="Submit">
+          <input type="reset" value="Clear All Fields">
         </form>
       </div>
       <div class="btn-basket-container">
