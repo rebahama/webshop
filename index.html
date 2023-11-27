@@ -57,7 +57,7 @@
       </div>
 
       <div class="form-container">
-        <form name="myForm" id="myForm" action="/action_page.php" method="post" class="form-style">
+        <form name="myForm" id="myForm"  method="post" class="form-style">
           <fieldset>
             <legend>Contact Information</legend>
             <label for="fname">First Name:</label>
@@ -107,17 +107,17 @@
 
           </fieldset>
 
-
-
           <label for="subscribe">Subscribe to newsletter</label>
           <input type="checkbox" id="subscribe" name="subscribe" checked>
 
           <label for="info">Accept terms</label>
-          <input type="checkbox" id="info" name="info">
+          <input type="checkbox" id="info" name="info" class="acceptTerm">
 
           <input type="reset" value="Clear All Fields">
 
           <input type="submit" value="Confirm Payment" disabled id="submitBtn">
+
+          <p class="messageField"> Message input</p>
 
         </form>
       </div>

@@ -19,6 +19,7 @@ const btnBasketBtn = document.querySelector(".btn-basket-container");
 const formContainer = document.querySelector(".form-container");
 const mondayOffer = document.querySelector(".monday-offer");
 const inputValue = document.querySelectorAll(".checkValue");
+const submitButton = document.getElementById("submitBtn");
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [
     {
@@ -530,33 +531,48 @@ const showMoreFieldsPayment = () => {
 
 
 const checkInputFieldsAllFilled = () => {
-    const submitButton = document.getElementById("submitBtn");
+    const acceptTerm = document.querySelector(".acceptTerm");
     const inputValues = document.getElementsByClassName("checkValue");
     const formValid = document.getElementById("myForm");
     const thirdCheckValueInput = inputValues[6];
+
+
+    console.log(acceptTerm.value)
+
+
+
     for (const input of inputValues) {
         let inputValue = input.value;
-
-
         if (inputValue === "") {
             console.log("Number three node is :" + thirdCheckValueInput.value);
 
-            if(thirdCheckValueInput.value===""){
+            if (thirdCheckValueInput.value === "") {
                 submitButton.disabled = true;
 
             }
-            else{
+            else {
                 submitButton.disabled = false;
 
             }
-
         }
-       
         else {
-           
+
             submitButton.disabled = false;
         }
 
+    }
+
+
+}
+
+const displayMessageConfirm = () => {
+    const checkBox = document.getElementById("info");
+    const messageField = document.querySelector(".messageField");
+
+    if (!checkBox.checked) {
+        messageField.innerHTML = "Please accept our terms"
+    } else if (checkBox.checked) {
+        messageField.innerHTML = ""
     }
 }
 
@@ -601,7 +617,6 @@ document.addEventListener('DOMContentLoaded', () => {
     inputValue.forEach(input => {
         input.addEventListener('change', checkInputFieldsAllFilled);
     });
-
-
+    submitButton.addEventListener('click', displayMessageConfirm);
     displayPokemon(pokemonData);
 });
