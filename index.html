@@ -57,66 +57,73 @@
       </div>
 
       <div class="form-container">
-        <form name="myForm" action="/action_page.php" method="post" class="form-style">
+        <form name="myForm" id="myForm" action="/action_page.php" method="post" class="form-style">
           <fieldset>
             <legend>Contact Information</legend>
-          <label for="fname">First Name:</label>
-          <input type="text" id="fname" name="fname" required>
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" required class="checkValue">
 
-          <label for="lastname">Last Name:</label>
-          <input type="text" id="lastname" name="lastname" required>
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required class="checkValue">
 
-          <label for="adress">Address:</label>
-          <input type="text" id="adress" name="adress" required>
+            <label for="adress">Address:</label>
+            <input type="text" id="adress" name="adress" required class="checkValue">
 
-          <label for="zipcode">Zip Code:</label>
-          <input type="number" id="zipcode" name="zipcode" required>
+            <label for="zipcode">Zip Code:</label>
+            <input type="number" id="zipcode" name="zipcode" required class="checkValue">
 
-          <label for="phone">Phone Number:</label>
-          <input type="number" id="phone" name="phone" required>
+            <label for="phone">Phone Number:</label>
+            <input type="number" id="phone" name="phone" required class="checkValue">
 
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required class="checkValue">
 
-        </fieldset>
+          </fieldset>
 
-        <fieldset>
-          <legend>Payment Information</legend>
+          <fieldset>
+            <legend>Payment Information</legend>
 
-          <label for="paymentMethod">Payment Method:</label>
-          <select name="paymentMethod" id="paymentMethod">
-            <option value="invoice">Invoice</option>
-            <option value="card">Card</option>
-          </select>
+            <label for="paymentMethod">Payment Method:</label>
+            <select name="paymentMethod" id="paymentMethod">
+              <option value="invoice">Invoice</option>
+              <option value="card">Card</option>
+            </select>
 
-          <div class="securitynumber">
-          <label for="securitynumber"> Swedish social security number</label>
-          <input type="number" id="securitynumber" name="securitynumber" required>
-        </div>
+            <div class="securitynumber">
+              <label for="securitynumber"> Swedish social security number</label>
+              <input type="number" id="securitynumber" name="securitynumber" required class="checkValue">
+            </div>
 
-          <div id="card-detail">
-            <label for="cardNumber">Card Number:</label>
-            <input type="text" id="cardNumber" name="cardNumber">
+            <div id="card-detail">
+              <label for="cardNumber">Card Number:</label>
+              <input type="number" id="cardNumber" name="cardNumber" class="checkValue">
 
-            <label for="cvc">CVC:</label>
-            <input type="text" id="cvc" name="cvc">
+              <label for="cvc">CVC:</label>
+              <input type="number" id="cvc" name="cvc" class="checkValue">
 
-            <label for="expiryDate">Expiry Date (MM/YYYY):</label>
-            <input type="text" id="expiryDate" name="expiryDate">
-          </div>
+              <label for="expiryDate">Expiry Date (MM/YYYY):</label>
+              <input type="number" id="expiryDate" name="expiryDate" class="checkValue">
+            </div>
 
-        </fieldset>
-          <label for="info"> Accept terms</label>
-          <input type="checkbox" id="subscribe" name="subscribe" checked>
+          </fieldset>
+
+
+
           <label for="subscribe">Subscribe to newsletter</label>
+          <input type="checkbox" id="subscribe" name="subscribe" checked>
+
+          <label for="info">Accept terms</label>
           <input type="checkbox" id="info" name="info">
-          <input type="submit" value="Submit">
+
           <input type="reset" value="Clear All Fields">
+
+          <input type="submit" value="Confirm Payment" disabled id="submitBtn">
+
         </form>
       </div>
       <div class="btn-basket-container">
         <button id="clear-basket-btn"> Clear basket </button>
-        <button id="confirm-payment-btn"> Confirm payment </button>
+
         <p class="monday-offer"> </p>
         <p class="shipping-info"> </p>
       </div>

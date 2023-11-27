@@ -18,6 +18,7 @@ const sortLinksShow = document.querySelector(".sort-links");
 const btnBasketBtn = document.querySelector(".btn-basket-container");
 const formContainer = document.querySelector(".form-container");
 const mondayOffer = document.querySelector(".monday-offer");
+const inputValue = document.querySelectorAll(".checkValue");
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [
     {
@@ -516,19 +517,47 @@ const clearBasket = () => {
 const showMoreFieldsPayment = () => {
     if (paymentMethod.value === "card") {
         cardDetails.style.display = "block";
+        securityNumber.style.display = "none";
+
     } else {
         cardDetails.style.display = "none";
+        securityNumber.style.display = "block";
     }
-    
+
 };
+
+
+
+
+const checkInputFieldsAllFilled = () => {
+    const submitButton = document.getElementById("submitBtn");
+    const inputValues = document.getElementsByClassName("checkValue")
+    const formValid = document.getElementById("myForm");
+    const inputName = document.getElementById("fname").value;
+    console.log(inputName)
+    console.log(inputValues)
+    for (const input of inputValues) {
+        var inputValue = input.value;
+    
+        if (inputValue === "") {
+            console.log("Input with class 'yourClassName' is empty.");
+            submitButton.disabled = true;
+            
+        } else {
+            console.log("Input with class 'yourClassName' has a value: " + inputValue);
+            submitButton.disabled = false;
+        }
+    }
+}
 
 
 const showsocialSecurityField = () => {
     if (paymentMethod.value === "invoice") {
         securityNumber.style.display = "block";
+        securityNumber.style.display = "block";
     } else {
         securityNumber.style.display = "none";
-        
+
     }
     console.log(paymentMethod.value)
 }
@@ -558,7 +587,11 @@ document.addEventListener('DOMContentLoaded', () => {
     clearArray.addEventListener('click', clearBasket);
     BasketShow.addEventListener('click', showBasket)
     paymentMethod.addEventListener('change', showMoreFieldsPayment);
-    paymentMethod.addEventListener('change', showsocialSecurityField);
     homeButton.addEventListener('click', () => homeBtn(pokemonData));
+    inputValue.forEach(input => {
+        input.addEventListener('change', checkInputFieldsAllFilled);
+    });
+
+
     displayPokemon(pokemonData);
 });
