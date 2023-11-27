@@ -57,7 +57,7 @@
       </div>
 
       <div class="form-container">
-        <form name="myForm" id="myForm"  method="post" class="form-style">
+        <form name="myForm" id="myForm"  method="post" action="" class="form-style">
           <fieldset>
             <legend>Contact Information</legend>
             <label for="fname">First Name:</label>
@@ -73,7 +73,7 @@
             <input type="number" id="zipcode" name="zipcode" required class="checkValue">
 
             <label for="phone">Phone Number:</label>
-            <input type="number" id="phone" name="phone" required class="checkValue">
+            <input type="tel" id="phone" name="phone" required class="checkValue" placeholder="Format:0046-xxxxxxxxx"  pattern="[0-9]{4}-[0-9]{9}">
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required class="checkValue">
@@ -91,7 +91,7 @@
 
             <div class="securitynumber">
               <label for="securitynumber"> Swedish social security number</label>
-              <input type="number" id="securitynumber" name="securitynumber" required class="checkValue">
+              <input type="text" id="securitynumber" name="securitynumber" class="checkValue" pattern="\d{6}-\d{4}" placeholder="Enter a valid Swedish personal identity number (YYMMDD-XXXX)">
             </div>
 
             <div id="card-detail">
