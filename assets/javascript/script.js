@@ -531,22 +531,32 @@ const showMoreFieldsPayment = () => {
 
 const checkInputFieldsAllFilled = () => {
     const submitButton = document.getElementById("submitBtn");
-    const inputValues = document.getElementsByClassName("checkValue")
+    const inputValues = document.getElementsByClassName("checkValue");
     const formValid = document.getElementById("myForm");
-    const inputName = document.getElementById("fname").value;
-    console.log(inputName)
-    console.log(inputValues)
+    const thirdCheckValueInput = inputValues[6];
     for (const input of inputValues) {
-        var inputValue = input.value;
-    
+        let inputValue = input.value;
+
+
         if (inputValue === "") {
-            console.log("Input with class 'yourClassName' is empty.");
-            submitButton.disabled = true;
-            
-        } else {
-            console.log("Input with class 'yourClassName' has a value: " + inputValue);
+            console.log("Number three node is :" + thirdCheckValueInput.value);
+
+            if(thirdCheckValueInput.value===""){
+                submitButton.disabled = true;
+
+            }
+            else{
+                submitButton.disabled = false;
+
+            }
+
+        }
+       
+        else {
+           
             submitButton.disabled = false;
         }
+
     }
 }
 
