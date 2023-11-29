@@ -262,7 +262,9 @@ const showBasketArea = () => {
       <div class="basket-card">
         ${pokemon.name} 
         <img src="${pokemon.image}" alt="${pokemon.name}" width="100" class="pokemon-avatar">
-        ${pokemon.price}$
+        
+        ${dayNumber === 5 && time >= 15 || dayNumber === 6 || dayNumber === 0 && time < 3
+            ? fifteenPercantage(pokemon.price) : pokemon.price}$
         x ${basketArray.filter(p => p.id === pokemon.id).length}
       </div>
       <div>
@@ -536,11 +538,7 @@ const checkInputFieldsAllFilled = () => {
     const formValid = document.getElementById("myForm");
     const thirdCheckValueInput = inputValues[6];
 
-
     console.log(acceptTerm.value)
-
-
-
     for (const input of inputValues) {
         let inputValue = input.value;
         if (inputValue === "") {
@@ -568,8 +566,6 @@ const checkInputFieldsAllFilled = () => {
 const displayMessageConfirm = () => {
     const checkBox = document.getElementById("info");
     const messageField = document.querySelector(".messageField");
-
-
 
     if (!checkBox.checked) {
         messageField.innerHTML = "Please accept our terms"
