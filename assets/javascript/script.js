@@ -601,6 +601,7 @@ const displayPaymentConfirmMessage = () => {
         clearArray.style.display = "none";
         submitButton.style.display = "none";
         paymentContainer.innerHTML = "Payment confirmed thank you you will be redirected to the main page in 10 seconds!";
+
         setTimeout(() => {
             location.reload();
         }, 10000);
@@ -638,8 +639,12 @@ const showBasket = () => {
     }
 };
 const clearBasketAfterTime = () => {
-    location.reload();
-    alert("Your basket will be deleted, more than 15 minutes have been passed");
+
+    if (basketArray.length > 0) {
+        location.reload();
+        alert("Your basket will be deleted, more than 15 minutes have been passed");
+    }
+
 };
 
 const testBtn = document.getElementById('testBtn');
@@ -673,6 +678,9 @@ document.addEventListener('DOMContentLoaded', () => {
     displayPokemon(pokemonData);
     setTimeout(() => {
         clearBasketAfterTime();
+        setInterval(() => {
+            clearBasketAfterTime();
+        }, 100000); // Run the function every 1 and half minut.
     }, 900000); //Restart and clear basket in 15 minutes in milliseconds
 
 });
