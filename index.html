@@ -57,7 +57,7 @@
       </div>
 
       <div class="form-container">
-        <form name="myForm" id="myForm" method="post" action="" class="form-style">
+        <form name="myForm" id="myForm" method="post" class="form-style">
           <fieldset>
             <legend>Contact Information</legend>
             <label for="fname">First Name:</label>
@@ -70,7 +70,7 @@
             <input type="text" id="adress" name="adress" required class="checkValue">
 
             <label for="zipcode">Zip Code:</label>
-            <input type="number" id="zipcode" name="zipcode" required class="checkValue">
+            <input type="text" id="zipcode" name="zipcode" required class="checkValue">
 
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" required class="checkValue" placeholder="Format:0046-xxxxxxxxx"
@@ -119,10 +119,11 @@
 
           <input type="reset" value="Clear All Fields">
 
-          <input type="submit" value="Confirm Payment" disabled id="submitBtn">
-          <p class="messageField"> Message input</p>
 
+          <p class="messageField"> Message input</p>
+         
         </form>
+        <input type="submit" value="Confirm Payment" disabled id="submitBtn">
 
       </div>
       <div class="btn-basket-container">
@@ -132,8 +133,6 @@
         <p class="shipping-info"> </p>
         <div class="payment-confirm-container">
           <p class="payment-confirm-message"> </p>
-
-
         </div>
       </div>
     </div>

@@ -590,13 +590,30 @@ const displayMessageConfirm = () => {
 
 const displayPaymentConfirmMessage = () => {
     const formValid = document.getElementById("myForm");
-    const paymentContainer = document.querySelector(".payment-confirm-message")
+    const basketBtnContainer = document.querySelector(".btn-container");
+    const basketContainer = document.querySelector(".container-basket-grid");
+    const paymentContainer = document.querySelector(".payment-confirm-message");
 
     if (formValid.checkValidity()) {
-        paymentContainer.innerHTML = "Payment confirmed thank you!"
+        formValid.style.display="none";
+        basketContainer.style.display="none";
+        basketBtnContainer.style.display="none";
+        clearArray.style.display="none";
+        submitButton.style.display="none";
+
+
+        paymentContainer.innerHTML = "Payment confirmed thank you you will be redirected to the main page in 10 seconds!"
+
+        setTimeout(() => {
+            location.reload();
+        }, 10000);
+        
+        
         // Here you might proceed with form submission or other actions
+        return true; // Allow form submission
     } else {
         paymentContainer.innerHTML = "Something went wrong please check you details again"
+        return false; // Prevent form submission
     }
 }
 
@@ -627,7 +644,7 @@ const showBasket = () => {
 }
 const clearBasketAfterTime = () => {
     location.reload();
-    alert("Basket deleted")
+    alert("Your basket will be deleted, more than 15 minutes have been passed")
 }
 
 const testBtn = document.getElementById('testBtn')
@@ -635,7 +652,7 @@ const testBtn = document.getElementById('testBtn')
 const removeSocialSecurity = () => {
     const getInvoiceOption = document.querySelector(".invoiceOption")
     const totalPrice = sumAllPriceBasket(basketArray);
-    if (totalPrice > 80) {
+    if (totalPrice > 800) {
         getInvoiceOption.style.display = "none";
         cardDetails.style.display = "block";
         securityNumber.style.display = "none";
@@ -662,6 +679,6 @@ document.addEventListener('DOMContentLoaded', () => {
     displayPokemon(pokemonData);
     setTimeout(() => {
         clearBasketAfterTime();
-    }, 900000); // 15 minutes in milliseconds
+    }, 900000); //Restart and clear basket in 15 minutes in milliseconds
 
 });
