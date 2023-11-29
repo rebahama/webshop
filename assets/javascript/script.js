@@ -569,10 +569,24 @@ const displayMessageConfirm = () => {
     const checkBox = document.getElementById("info");
     const messageField = document.querySelector(".messageField");
 
+
+
     if (!checkBox.checked) {
         messageField.innerHTML = "Please accept our terms"
     } else if (checkBox.checked) {
         messageField.innerHTML = ""
+    }
+}
+
+const displayPaymentConfirmMessage = () => {
+    const formValid = document.getElementById("myForm");
+    const paymentContainer = document.querySelector(".payment-confirm-message")
+
+    if (formValid.checkValidity()) {
+        paymentContainer.innerHTML = "Payment confirmed thank you!"
+        // Here you might proceed with form submission or other actions
+    } else {
+        paymentContainer.innerHTML = "Something went wrong please check you details again"
     }
 }
 
@@ -602,7 +616,7 @@ const showBasket = () => {
     }
 }
 
-
+const testBtn= document.getElementById('testBtn')
 
 // Main loading from here:
 document.addEventListener('DOMContentLoaded', () => {
@@ -618,5 +632,6 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('change', checkInputFieldsAllFilled);
     });
     submitButton.addEventListener('click', displayMessageConfirm);
+    submitButton.addEventListener('click', displayPaymentConfirmMessage);
     displayPokemon(pokemonData);
 });
