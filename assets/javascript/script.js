@@ -364,6 +364,7 @@ const fifteenPercantageOutput = () => {
         if (basketArray.length > 10) {
             mondayOffer.innerHTML = `No shipping charged! Total: ${newSumFifteen}$`;
         }
+
         else {
             let newSumFifteen = fifteenPercantage(totalPrice)
             mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
@@ -373,7 +374,14 @@ const fifteenPercantageOutput = () => {
     else {
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
-        mondayOffer.innerHTML = `Total: $${totalPrice} + $2 dollar Shipping`;
+        if(basketArray.length>10){
+            mondayOffer.innerHTML = `Total: $${totalPrice} No shipping charged!`;
+
+        }
+        else{
+            mondayOffer.innerHTML = `Total: $${totalPrice} + $2 dollar Shipping`;
+        }
+       
     }
 
 }
