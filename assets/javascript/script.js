@@ -114,7 +114,7 @@ in the html file
 
 displayPokemon = () => {
     // Loop over each Pokémon in the array using a regular for loop
-    const basketContainer = document.querySelector(".basket-container")
+    const basketContainer = document.querySelector(".basket-container");
 
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
@@ -203,11 +203,11 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         if ((dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
             console.log(idCounts[id])
             const priceFifteen = sumAll * 0.15;
-            const newPriceFifteen = sumAll + priceFifteen
+            const newPriceFifteen = sumAll + priceFifteen;
             basketContainer.innerHTML = showBasketArea();
         }
         else {
-            console.log(idCounts[id])
+            console.log(idCounts[id]);
             basketContainer.innerHTML = showBasketArea();
         }
 
@@ -216,7 +216,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 
 const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
-    const basketContainer = document.querySelector(".basket-container")
+    const basketContainer = document.querySelector(".basket-container");
     const idCounts = {};
     basketArray.forEach((pokemon, index, array) => {
         const id = pokemon.id;
@@ -274,7 +274,7 @@ const showBasketArea = () => {
       </div>
     </div>
   `).join('');
-}
+};
 
 const mondaySpecialPriceBeforeTen = () => {
     const totalPrice = sumAllPriceBasket(basketArray);
@@ -285,7 +285,7 @@ const mondaySpecialPriceBeforeTen = () => {
         mondayOffer.innerHTML = ` Today is monday and it¨s before 10 o clock. you get an special offer 10% discount !! Your new Total: ${newTotalPrice}$`;
     }
 
-}
+};
 
 
 /**
@@ -360,7 +360,7 @@ const fifteenPercantageOutput = () => {
     const mondayOffer = document.querySelector(".monday-offer");
     const totalPrice = sumAllPriceBasket(basketArray);
     if ((totalPrice > 0 && dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
-        let newSumFifteen = fifteenPercantage(totalPrice)
+        let newSumFifteen = fifteenPercantage(totalPrice);
         totalBillBasket.classList.add("total-bill-basket");
         totalBillBasket.innerHTML = `Total: ${newSumFifteen}$`;
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
@@ -369,7 +369,7 @@ const fifteenPercantageOutput = () => {
             mondayOffer.innerHTML = `No shipping charged! Total: ${newSumFifteen}$`;
         }
         else {
-            let newSumFifteen = fifteenPercantage(totalPrice)
+            let newSumFifteen = fifteenPercantage(totalPrice);
             mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
         }
     }
@@ -386,7 +386,7 @@ const fifteenPercantageOutput = () => {
 
     }
 
-}
+};
 
 
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
@@ -416,8 +416,8 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
 const fifteenPercantage = (newSumPrice) => {
     let newSum = newSumPrice * 0.15;
     let newSumFifteen = newSumPrice + newSum;
-    return newSumFifteen
-}
+    return newSumFifteen;
+};
 /**
  * Finds the total id of how many pokemon is in the basket and multiplies with the price
  * and shows the total of how many ids is inside the array.
@@ -440,19 +440,19 @@ const addToBasketAndFindRightId = (id, listItem, pokemon) => {
 // Functions for sorting starts here
 const compareByAge = (a, b) => {
     return a.price - b.price;
-}
+};
 
 const compareByRating = (a, b) => {
     return a.rating - b.rating;
-}
+};
 
 const compareByName = (a, b) => {
     return a.name.localeCompare(b.name);
-}
+};
 
 const compareByCategory = (a, b) => {
     return a.category.localeCompare(b.category);
-}
+};
 const sortByPrice = (pokemonData, listItem) => {
     for (let i = 0; i < pokemonData.length; i++) {
         // Append the list item to the list
@@ -476,7 +476,7 @@ const sortByName = () => {
         container.innerHTML = "";
         displayPokemon(pokemonData);
     }
-}
+};
 
 const sortByRating = () => {
     // displayPokemon();
@@ -489,7 +489,7 @@ const sortByRating = () => {
         displayPokemon(pokemonData);
     }
 
-}
+};
 
 const sortByCategory = () => {
     for (let i = 0; i < pokemonData.length; i++) {
@@ -501,7 +501,7 @@ const sortByCategory = () => {
         container.innerHTML = "";
         displayPokemon(pokemonData);
     }
-}
+};
 const homeBtn = () => {
     for (let i = 0; i < pokemonData.length; i++) {
         // Append the list item to the list
@@ -519,16 +519,16 @@ const homeBtn = () => {
 
     }
 
-}
+};
 
 const clearBasket = () => {
     const mondayOffer = document.querySelector(".monday-offer");
     basketArray.splice(0, basketArray.length);
-    mondayOffer.innerHTML = "Basket have been cleared!"
+    mondayOffer.innerHTML = "Basket have been cleared!";
     totalBillBasket.innerHTML = "Total: 0$";
     totalPcsBasket.innerHTML = "Items: 0";
     showBasketArea();
-}
+};
 
 
 const showMoreFieldsPayment = () => {
@@ -552,7 +552,7 @@ const checkInputFieldsAllFilled = () => {
     const formValid = document.getElementById("myForm");
     const thirdCheckValueInput = inputValues[6];
 
-    console.log(acceptTerm.value)
+    console.log(acceptTerm.value);
     for (const input of inputValues) {
         let inputValue = input.value;
         if (inputValue === "") {
@@ -575,18 +575,18 @@ const checkInputFieldsAllFilled = () => {
     }
 
 
-}
+};
 
 const displayMessageConfirm = () => {
     const checkBox = document.getElementById("info");
     const messageField = document.querySelector(".messageField");
 
     if (!checkBox.checked) {
-        messageField.innerHTML = "Please accept our terms"
+        messageField.innerHTML = "Please accept our terms";
     } else if (checkBox.checked) {
-        messageField.innerHTML = ""
+        messageField.innerHTML = "";
     }
-}
+};
 
 const displayPaymentConfirmMessage = () => {
     const formValid = document.getElementById("myForm");
@@ -600,14 +600,14 @@ const displayPaymentConfirmMessage = () => {
         basketBtnContainer.style.display = "none";
         clearArray.style.display = "none";
         submitButton.style.display = "none";
-        paymentContainer.innerHTML = "Payment confirmed thank you you will be redirected to the main page in 10 seconds!"
+        paymentContainer.innerHTML = "Payment confirmed thank you you will be redirected to the main page in 10 seconds!";
         setTimeout(() => {
             location.reload();
         }, 10000);
         // Here you might proceed with form submission or other actions
         return true; // Allow form submission
     } else {
-        paymentContainer.innerHTML = "Something went wrong please check you details again"
+        paymentContainer.innerHTML = "Something went wrong please check you details again";
         return false; // Prevent form submission
     }
 }
@@ -621,8 +621,8 @@ const showsocialSecurityField = () => {
         securityNumber.style.display = "none";
 
     }
-    console.log(paymentMethod.value)
-}
+    console.log(paymentMethod.value);
+};
 
 const showBasket = () => {
     //Will change to class method later
@@ -636,13 +636,13 @@ const showBasket = () => {
         sortLinksShow.style.display = "none";
         basketContainer.style.display = "block";
     }
-}
+};
 const clearBasketAfterTime = () => {
     location.reload();
-    alert("Your basket will be deleted, more than 15 minutes have been passed")
-}
+    alert("Your basket will be deleted, more than 15 minutes have been passed");
+};
 
-const testBtn = document.getElementById('testBtn')
+const testBtn = document.getElementById('testBtn');
 
 const removeSocialSecurity = () => {
     const getInvoiceOption = document.querySelector(".invoiceOption")
@@ -652,7 +652,7 @@ const removeSocialSecurity = () => {
         cardDetails.style.display = "block";
         securityNumber.style.display = "none";
     }
-}
+};
 
 // Main loading from here:
 document.addEventListener('DOMContentLoaded', () => {
