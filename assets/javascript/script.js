@@ -595,20 +595,15 @@ const displayPaymentConfirmMessage = () => {
     const paymentContainer = document.querySelector(".payment-confirm-message");
 
     if (formValid.checkValidity()) {
-        formValid.style.display="none";
-        basketContainer.style.display="none";
-        basketBtnContainer.style.display="none";
-        clearArray.style.display="none";
-        submitButton.style.display="none";
-
-
+        formValid.style.display = "none";
+        basketContainer.style.display = "none";
+        basketBtnContainer.style.display = "none";
+        clearArray.style.display = "none";
+        submitButton.style.display = "none";
         paymentContainer.innerHTML = "Payment confirmed thank you you will be redirected to the main page in 10 seconds!"
-
         setTimeout(() => {
             location.reload();
         }, 10000);
-        
-        
         // Here you might proceed with form submission or other actions
         return true; // Allow form submission
     } else {
@@ -656,7 +651,6 @@ const removeSocialSecurity = () => {
         getInvoiceOption.style.display = "none";
         cardDetails.style.display = "block";
         securityNumber.style.display = "none";
-        console.log("gekki")
     }
 }
 
