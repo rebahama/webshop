@@ -20,6 +20,8 @@ const formContainer = document.querySelector(".form-container");
 const mondayOffer = document.querySelector(".monday-offer");
 const inputValue = document.querySelectorAll(".checkValue");
 const submitButton = document.getElementById("submitBtn");
+const totalBillBasket = document.querySelector(".total-bill-basket");
+const totalPcsBasket = document.querySelector(".total-pcs-basket");
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [
     {
@@ -312,6 +314,10 @@ const deleteBasket = (listItem, pokemon) => {
                 mondaySpecialPriceBeforeTen();
 
             }
+            else {
+                totalBillBasket.innerHTML = `Total:0$`;
+                totalPcsBasket.innerHTML = `Items: 0`;
+            }
 
             /*
                         if (totalPrice > 0) {
@@ -351,8 +357,6 @@ const sumAllPriceBasket = (basket) => {
 }
 
 const fifteenPercantageOutput = () => {
-    const totalPcsBasket = document.querySelector(".total-pcs-basket");
-    const totalBillBasket = document.querySelector(".total-bill-basket");
     const mondayOffer = document.querySelector(".monday-offer");
     const totalPrice = sumAllPriceBasket(basketArray);
     if ((totalPrice > 0 && dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
@@ -520,7 +524,11 @@ const homeBtn = () => {
 }
 
 const clearBasket = () => {
+    const mondayOffer = document.querySelector(".monday-offer");
     basketArray.splice(0, basketArray.length);
+mondayOffer.innerHTML="Basket have been cleared!"
+    totalBillBasket.innerHTML = "Total: 0$";
+    totalPcsBasket.innerHTML = "Items: 0";
     showBasketArea();
 }
 
@@ -644,6 +652,6 @@ document.addEventListener('DOMContentLoaded', () => {
     displayPokemon(pokemonData);
     setTimeout(() => {
         clearBasketAfterTime();
-    },  900000); // 15 minutes in milliseconds
+    }, 900000); // 15 minutes in milliseconds
 
 });
