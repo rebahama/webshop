@@ -374,14 +374,14 @@ const fifteenPercantageOutput = () => {
     else {
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
-        if(basketArray.length>10){
+        if (basketArray.length > 10) {
             mondayOffer.innerHTML = `Total: $${totalPrice} No shipping charged!`;
 
         }
-        else{
+        else {
             mondayOffer.innerHTML = `Total: $${totalPrice} + $2 dollar Shipping`;
         }
-       
+
     }
 
 }
@@ -619,8 +619,12 @@ const showBasket = () => {
         basketContainer.style.display = "block";
     }
 }
+const clearBasketAfterTime = () => {
+    location.reload();
+    alert("Basket deleted")
+}
 
-const testBtn= document.getElementById('testBtn')
+const testBtn = document.getElementById('testBtn')
 
 // Main loading from here:
 document.addEventListener('DOMContentLoaded', () => {
@@ -638,4 +642,8 @@ document.addEventListener('DOMContentLoaded', () => {
     submitButton.addEventListener('click', displayMessageConfirm);
     submitButton.addEventListener('click', displayPaymentConfirmMessage);
     displayPokemon(pokemonData);
+    setTimeout(() => {
+        clearBasketAfterTime();
+    },  900000); // 15 minutes in milliseconds
+
 });
