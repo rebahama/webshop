@@ -368,13 +368,11 @@ const fifteenPercantageOutput = () => {
         if (basketArray.length > 10) {
             mondayOffer.innerHTML = `No shipping charged! Total: ${newSumFifteen}$`;
         }
-
         else {
             let newSumFifteen = fifteenPercantage(totalPrice)
             mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
         }
     }
-
     else {
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
@@ -526,7 +524,7 @@ const homeBtn = () => {
 const clearBasket = () => {
     const mondayOffer = document.querySelector(".monday-offer");
     basketArray.splice(0, basketArray.length);
-mondayOffer.innerHTML="Basket have been cleared!"
+    mondayOffer.innerHTML = "Basket have been cleared!"
     totalBillBasket.innerHTML = "Total: 0$";
     totalPcsBasket.innerHTML = "Items: 0";
     showBasketArea();
@@ -634,6 +632,17 @@ const clearBasketAfterTime = () => {
 
 const testBtn = document.getElementById('testBtn')
 
+const removeSocialSecurity = () => {
+    const getInvoiceOption = document.querySelector(".invoiceOption")
+    const totalPrice = sumAllPriceBasket(basketArray);
+    if (totalPrice > 80) {
+        getInvoiceOption.style.display = "none";
+        cardDetails.style.display = "block";
+        securityNumber.style.display = "none";
+        console.log("gekki")
+    }
+}
+
 // Main loading from here:
 document.addEventListener('DOMContentLoaded', () => {
     sortButton.addEventListener('click', () => sortByPrice(pokemonData));
@@ -642,6 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sortCategoryButton.addEventListener('click', () => sortByCategory(pokemonData));
     clearArray.addEventListener('click', clearBasket);
     BasketShow.addEventListener('click', showBasket)
+    BasketShow.addEventListener('click', removeSocialSecurity)
     paymentMethod.addEventListener('change', showMoreFieldsPayment);
     homeButton.addEventListener('click', () => homeBtn(pokemonData));
     inputValue.forEach(input => {
