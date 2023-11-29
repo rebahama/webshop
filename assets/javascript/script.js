@@ -591,7 +591,7 @@ const displayMessageConfirm = () => {
 const displayPaymentConfirmMessage = () => {
     const formValid = document.getElementById("myForm");
     const basketBtnContainer = document.querySelector(".btn-container");
-    const basketContainer = document.querySelector(".container-basket-grid");
+    const basketContainer = document.querySelector(".basket-container");
     const paymentContainer = document.querySelector(".payment-confirm-message");
 
     if (formValid.checkValidity()) {
