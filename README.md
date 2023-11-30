@@ -87,6 +87,26 @@ Invoice not shown:
 
 * If the customer orders a total of more than 15 donuts, the shipping is free. Otherwise, the shipping cost is 25 SEK plus 10% of the total amount in the shopping cart.
 
+We can see here that when the total is above 15 then there is no shipping charged. Instead of 25 sek I choose 2 dollars.
+
+![Shipping](docs/shipping-1.png)
+
+No shipping charged!:
+
+![Shipping](docs/shipping-2.png)
+And when its below 15 items a 10 percantage VAT is charged and also a 2 dollar shipping is charged.
+![Shipping](docs/VAT.png)
+
+* 
+If the customer hasn't placed the order within 15 minutes, the order form will be cleared, and the customer will be notified that they took too long.
+
+The basket will empty it self and a message will be displayed for the user, in the future I will implement a message inside the website where the user will be informed why the basket was emptied.
+
+![Empty](docs/basket-delete.png)
+
+Total is then shown as 0:
+
+![Empty](docs/basket-delete-2.png)
 
 
 
