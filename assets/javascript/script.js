@@ -213,7 +213,11 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
 
     });
 };
-
+/** 
+ * This function will search for the right id and the it will decrease the price
+ * based on the id that is inside tha array. After displaying the right price it will
+ * take the index number and * with the quantity to display the right price.
+*/
 const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container");
@@ -276,6 +280,10 @@ const showBasketArea = () => {
   `).join('');
 };
 
+/**
+ * This function will caluclate the total price that is inside the arraybasket
+ * And then it will take 10% off and display a message only when its monday and the time is before 10oclock.
+ */
 const mondaySpecialPriceBeforeTen = () => {
     const totalPrice = sumAllPriceBasket(basketArray);
     const discountPrice = totalPrice / 10;
@@ -345,7 +353,9 @@ const deleteBasket = (listItem, pokemon) => {
 
     });
 };
-
+/** 
+ * Function to sum all the numbers that are inside the basket array.
+*/
 const sumAllPriceBasket = (basket) => {
     let total = 0;
 
@@ -355,7 +365,9 @@ const sumAllPriceBasket = (basket) => {
 
     return total;
 };
-
+/** 
+ * Function to take ten percatnage of the total price and add it to the total price
+*/
 const tenPercantageOfAll = (newSumPriceTwo) => {
 
     let newSum = newSumPriceTwo * 0.10;
@@ -364,9 +376,9 @@ const tenPercantageOfAll = (newSumPriceTwo) => {
 
 
 }
-
-
-
+/**  Function to Take 15 percantage of the total sum in the basket
+ * and display it only on fridays to sunday before 3 am.
+*/
 const fifteenPercantageOutput = () => {
     const mondayOffer = document.querySelector(".monday-offer");
     const totalPrice = sumAllPriceBasket(basketArray);
@@ -514,6 +526,10 @@ const sortByCategory = () => {
         displayPokemon(pokemonData);
     }
 };
+/**
+ * Function for only showing the pokemon list when clicking the home btn
+ * And hideing the rest of the page.
+ */
 const homeBtn = () => {
     for (let i = 0; i < pokemonData.length; i++) {
         // Append the list item to the list
@@ -532,7 +548,7 @@ const homeBtn = () => {
     }
 
 };
-
+/**  Clear the basket when clickng the clear button*/
 const clearBasket = () => {
     const mondayOffer = document.querySelector(".monday-offer");
     basketArray.splice(0, basketArray.length);
@@ -542,7 +558,9 @@ const clearBasket = () => {
     showBasketArea();
 };
 
-
+/**  Function for displaying card details and invoice details based on what
+ * The user clicks on in the option window.
+*/
 const showMoreFieldsPayment = () => {
     if (paymentMethod.value === "card") {
         cardDetails.style.display = "block";
@@ -557,7 +575,9 @@ const showMoreFieldsPayment = () => {
 
 
 
-
+/**  Function for making the confirm payment button greyd out if not all the fields are filled in.
+ * If all the field are filled in the button will not be greyed out.
+*/
 const checkInputFieldsAllFilled = () => {
     const acceptTerm = document.querySelector(".acceptTerm");
     const inputValues = document.getElementsByClassName("checkValue");
@@ -589,6 +609,9 @@ const checkInputFieldsAllFilled = () => {
 
 };
 
+/** Function for displaying that payment have been completed and confirmed when user clicks the 
+ * Confirm button on the basket area.
+ */
 const displayMessageConfirm = () => {
     const checkBox = document.getElementById("info");
     const messageField = document.querySelector(".messageField");
@@ -600,6 +623,9 @@ const displayMessageConfirm = () => {
     }
 };
 
+/** Function for displaying that payment have been completed and confirmed when user clicks the 
+ * Confirm button on the basket area. Also the user will be redirected when payment have been completed.
+ */
 const displayPaymentConfirmMessage = () => {
     const formValid = document.getElementById("myForm");
     const basketBtnContainer = document.querySelector(".btn-container");
@@ -625,7 +651,7 @@ const displayPaymentConfirmMessage = () => {
     }
 };
 
-
+/** Function for displaying and hideing the incovice and card details.*/
 const showsocialSecurityField = () => {
     if (paymentMethod.value === "invoice") {
         securityNumber.style.display = "block";
@@ -650,6 +676,7 @@ const showBasket = () => {
         basketContainer.style.display = "block";
     }
 };
+/** Function for clearing basket when the user have been inactive for more than 15 minutes, the set intervall is used in the DOM loading event listner */
 const clearBasketAfterTime = () => {
 
     if (basketArray.length > 0) {
@@ -659,7 +686,6 @@ const clearBasketAfterTime = () => {
 
 };
 
-const testBtn = document.getElementById('testBtn');
 
 const removeSocialSecurity = () => {
     const getInvoiceOption = document.querySelector(".invoiceOption");
