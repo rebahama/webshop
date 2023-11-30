@@ -23,8 +23,7 @@ const submitButton = document.getElementById("submitBtn");
 const totalBillBasket = document.querySelector(".total-bill-basket");
 const totalPcsBasket = document.querySelector(".total-pcs-basket");
 // Create object with property of: name,price,rating. category and image.
-const pokemonData = [
-    {
+const pokemonData = [{
         id: 1,
         name: "Pikachu",
         price: 30,
@@ -111,11 +110,9 @@ Loop over the object and properties with a for loop and then
 create a class to put the data inside the class and output the data
 in the html file
 */
-
 displayPokemon = () => {
     // Loop over each Pokémon in the array using a regular for loop
     const basketContainer = document.querySelector(".basket-container");
-
     for (let i = 0; i < pokemonData.length; i++) {
         // Access each property of the current Pokémon
         const id = pokemonData[i].id;
@@ -155,7 +152,6 @@ displayPokemon = () => {
         updatePriceCount(id, price, listItem);
         decreasePriceCount(id, price, listItem);
         sortByPrice(pokemonData[i], price, listItem);
-
     }
 };
 /**
@@ -186,7 +182,6 @@ const decreasePriceCount = (id, pokemon, listItem) => {
     deleteBtn.addEventListener('click', () => findRightIndexAndShowPriceDecrease(id, pokemon, listItem));
 };
 
-
 /** 
  *Function for displaying the total price of the choosen product, when the user increments the value
  *this function takes the id of the product and multiplies it with the pokemon id to display the total value price.
@@ -194,7 +189,6 @@ const decreasePriceCount = (id, pokemon, listItem) => {
 const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container");
-
     const idCounts = {};
     basketArray.forEach(pokemon => {
         const id = pokemon.id;
@@ -205,8 +199,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
             const priceFifteen = sumAll * 0.15;
             const newPriceFifteen = sumAll + priceFifteen;
             basketContainer.innerHTML = showBasketArea();
-        }
-        else {
+        } else {
             console.log(idCounts[id]);
             basketContainer.innerHTML = showBasketArea();
         }
@@ -217,7 +210,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
  * This function will search for the right id and the it will decrease the price
  * based on the id that is inside tha array. After displaying the right price it will
  * take the index number and * with the quantity to display the right price.
-*/
+ */
 const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container");
@@ -246,9 +239,6 @@ const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
 
         }
     });
-
-
-
 
 };
 /**
@@ -295,7 +285,6 @@ const mondaySpecialPriceBeforeTen = () => {
 
 };
 
-
 /**
   Delete the object property that is stored in an array, track the clicked object with the id parameter and
   use the splice method do display the new array. This part of this code was taken from Stakoverflow.
@@ -307,7 +296,7 @@ const deleteBasket = (listItem, pokemon) => {
     const idCounter = listItem.querySelector(".counter");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
-    deleteBtn.addEventListener("click", function () {
+    deleteBtn.addEventListener("click", function() {
         // code from stakeoverflow
         const indexToRemove = basketArray.findIndex(item => item.id === pokemon.id);
         if (indexToRemove !== -1) {
@@ -321,8 +310,7 @@ const deleteBasket = (listItem, pokemon) => {
                 fifteenPercantageOutput();
                 mondaySpecialPriceBeforeTen();
 
-            }
-            else {
+            } else {
                 totalBillBasket.innerHTML = `Total:0$`;
                 totalPcsBasket.innerHTML = `Items: 0`;
             }
@@ -355,7 +343,7 @@ const deleteBasket = (listItem, pokemon) => {
 };
 /** 
  * Function to sum all the numbers that are inside the basket array.
-*/
+ */
 const sumAllPriceBasket = (basket) => {
     let total = 0;
 
@@ -367,7 +355,7 @@ const sumAllPriceBasket = (basket) => {
 };
 /** 
  * Function to take ten percatnage of the total price and add it to the total price
-*/
+ */
 const tenPercantageOfAll = (newSumPriceTwo) => {
 
     let newSum = newSumPriceTwo * 0.10;
@@ -378,7 +366,7 @@ const tenPercantageOfAll = (newSumPriceTwo) => {
 }
 /**  Function to Take 15 percantage of the total sum in the basket
  * and display it only on fridays to sunday before 3 am.
-*/
+ */
 const fifteenPercantageOutput = () => {
     const mondayOffer = document.querySelector(".monday-offer");
     const totalPrice = sumAllPriceBasket(basketArray);
@@ -390,20 +378,17 @@ const fifteenPercantageOutput = () => {
         mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
         if (basketArray.length > 15) {
             mondayOffer.innerHTML = `No shipping charged! Total: ${newSumFifteen}$`;
-        }
-        else {
+        } else {
             let newSumFifteen = fifteenPercantage(totalPrice);
             mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
         }
-    }
-    else {
+    } else {
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
         if (basketArray.length > 15) {
             mondayOffer.innerHTML = `Total: $${totalPrice} No shipping charged!`;
 
-        }
-        else {
+        } else {
             let newSumVat = tenPercantageOfAll(totalPrice);
             mondayOffer.innerHTML = `Total: $${newSumVat} + $2 dollar Shipping and 10% VAT`;
         }
@@ -560,7 +545,7 @@ const clearBasket = () => {
 
 /**  Function for displaying card details and invoice details based on what
  * The user clicks on in the option window.
-*/
+ */
 const showMoreFieldsPayment = () => {
     if (paymentMethod.value === "card") {
         cardDetails.style.display = "block";
@@ -577,7 +562,7 @@ const showMoreFieldsPayment = () => {
 
 /**  Function for making the confirm payment button greyd out if not all the fields are filled in.
  * If all the field are filled in the button will not be greyed out.
-*/
+ */
 const checkInputFieldsAllFilled = () => {
     const acceptTerm = document.querySelector(".acceptTerm");
     const inputValues = document.getElementsByClassName("checkValue");
@@ -593,13 +578,11 @@ const checkInputFieldsAllFilled = () => {
             if (thirdCheckValueInput.value === "") {
                 submitButton.disabled = true;
 
-            }
-            else {
+            } else {
                 submitButton.disabled = false;
 
             }
-        }
-        else {
+        } else {
 
             submitButton.disabled = false;
         }
@@ -658,7 +641,6 @@ const showsocialSecurityField = () => {
         securityNumber.style.display = "block";
     } else {
         securityNumber.style.display = "none";
-
     }
     console.log(paymentMethod.value);
 };
@@ -678,14 +660,11 @@ const showBasket = () => {
 };
 /** Function for clearing basket when the user have been inactive for more than 15 minutes, the set intervall is used in the DOM loading event listner */
 const clearBasketAfterTime = () => {
-
     if (basketArray.length > 0) {
         location.reload();
         alert("Your basket will be deleted, more than 15 minutes have been passed");
     }
-
 };
-
 
 const removeSocialSecurity = () => {
     const getInvoiceOption = document.querySelector(".invoiceOption");
@@ -720,5 +699,4 @@ document.addEventListener('DOMContentLoaded', () => {
             clearBasketAfterTime();
         }, 100000); // Run the function every 1 and half minut.
     }, 900000); //Restart and clear basket in 15 minutes in milliseconds
-
 });
