@@ -1,8 +1,12 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/lVSydX1g)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12892829&assignment_repo_type=AssignmentRepo)
 
+
+
 # Poké Avatar shop
 This site was created for all the Pokémon fans that want to have their favorite avatar displayed in their room or maybe in their car or maybe just in the office. This site makes it possible for anyone to order a Pokémon avatar, the user can choose freely how any avatars they want and the order it.
+
+* Link to live website: [Live website](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-rebahama/)
 
 # Features and functionality
 ## Front page
@@ -45,6 +49,47 @@ This site was created for all the Pokémon fans that want to have their favorite
 
 ![Order confimred](docs/avatar-home-8.png)
 
+
+# Completed user stories
+
+* On Mondays before 10 AM, a 10% discount is applied to the entire order amount. This is displayed in the shopping cart summary as a line with the text "Monday Discount: 10% on the entire order."
+
+When it´s monday and before 10oclock you can se that the total bill is updated and a message is displayed.
+
+![Monday price](docs/monday-1.png)
+
+Updated price:
+![Monday price update](docs/monday-2.png)
+
+
+
+* On Fridays after 3 PM until the night between Sunday and Monday at 3:00 AM, there is a weekend surcharge of 15% on all donuts. This should not be apparent to the customer that the donuts are more expensive; rather, the price should only be higher in the "receipt" of the donuts.
+
+When it´s friday after 3 and before monday 3 am, all the price will be updated to put on 15 percantage on the original price. You can se below that the price on the avatars have been updated and also on the summary in the basket charging price. This example below where a avatar is 30 dollar standard price and a 15 percantage increase will result in 34.5 dollars.
+
+![Weekend price](docs/fifteenpercatnage-1.png)
+
+Summary basket: 
+
+![Weekend price basket](docs/fifteenpercatnage-2.png)
+
+
+* If the customer has ordered a total of more than 800, it should not be possible to choose an invoice as the payment method.
+
+Invoice is not shown when the order is above 800, the only option that will be displayed is the card option.
+
+When total is above 800:
+![Total above 800](docs/invoice-1.png)
+
+Invoice not shown:
+
+![Invoice hide ](docs/invoice-2.png)
+
+* If the customer orders a total of more than 15 donuts, the shipping is free. Otherwise, the shipping cost is 25 SEK plus 10% of the total amount in the shopping cart.
+
+
+
+
 # Technology
 
 The technology to create the structure of the page was created with:
@@ -83,4 +128,4 @@ Styling the page was created with
 # Credits
 * Fonts are from Google fonts.
 
-* Pictures was taken from [Pictures](https://www.pexels.com/sv-se/ )
+* Pictures was taken from [Pictures](https://www.pexels.com/sv-se/)
