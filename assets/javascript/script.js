@@ -356,6 +356,17 @@ const sumAllPriceBasket = (basket) => {
     return total;
 };
 
+const tenPercantageOfAll = (newSumPriceTwo) => {
+
+    let newSum = newSumPriceTwo * 0.10;
+    let newSumTen = newSumPriceTwo + newSum;
+    return newSumTen;
+
+
+}
+
+
+
 const fifteenPercantageOutput = () => {
     const mondayOffer = document.querySelector(".monday-offer");
     const totalPrice = sumAllPriceBasket(basketArray);
@@ -365,7 +376,7 @@ const fifteenPercantageOutput = () => {
         totalBillBasket.innerHTML = `Total: ${newSumFifteen}$`;
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
         mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
-        if (basketArray.length > 10) {
+        if (basketArray.length > 15) {
             mondayOffer.innerHTML = `No shipping charged! Total: ${newSumFifteen}$`;
         }
         else {
@@ -376,12 +387,13 @@ const fifteenPercantageOutput = () => {
     else {
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
         totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
-        if (basketArray.length > 10) {
+        if (basketArray.length > 15) {
             mondayOffer.innerHTML = `Total: $${totalPrice} No shipping charged!`;
 
         }
         else {
-            mondayOffer.innerHTML = `Total: $${totalPrice} + $2 dollar Shipping`;
+            let newSumVat = tenPercantageOfAll(totalPrice);
+            mondayOffer.innerHTML = `Total: $${newSumVat} + $2 dollar Shipping and 10% VAT`;
         }
 
     }
