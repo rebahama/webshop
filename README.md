@@ -33,6 +33,45 @@ This site was created for all the Pokémon fans that want to have their favorite
 
 * The user can also clear the basket, and the total bill with shipping will be displayed right here.
 
-![Order list](docs/avatar-home-6.png)
+![Clear basket](docs/avatar-home-6.png)
 
 ## Basket form
+* User will be required to fill in information, all the information will be validated in this form. And after the user have filled in all the information the user will be redirected to another page where a confirmed payment message will be displayed.
+
+
+![Order form](docs/avatar-home-7.png)
+
+* When the payment have been confirmed a message will be displayed like this and then the user will be redirected to the homepage again.
+
+![Order confimred](docs/avatar-home-8.png)
+
+# Technology
+
+The technology to create the structure of the page was created with:
+
+
+* HTML
+
+Styling the page was created with
+
+* CSS
+
+* Scss was also used (syntactically awesome sheets) for styling the page and creating styling variables.
+
+ Dynamic content and logic on the page was created with:
+
+ * Javascript
+
+ Deployment of website was made with:
+
+ * Github pages.
+
+
+# Validation of files
+* The CSS was validated in Jigsaw and showed no errors. [Validate CSS](https://jigsaw.w3.org/css-validator/#validate_by_input)
+
+* HTML was validated with [HTML validate](https://validator.w3.org/#validate_by_input)
+
+* Javascript was validated with the help of [Javascript validator](https://jshint.com/)
+
+# Lighthouse score
