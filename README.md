@@ -109,6 +109,15 @@ Total is then shown as 0:
 ![Empty](docs/basket-delete-2.png)
 
 
+# Supported screens
+The first breakpoint of the page is starting from 860px.
+As you can see from the pictures below the cards starts to form a column instead and the buttons are smaller when going below 860px screen size.
+
+![Responsiv-1](docs/responsiv-1.png)
+
+![Empty](docs/responsiv-2.png)
+
+
 
 # Technology
 
