@@ -97,8 +97,7 @@ No shipping charged!:
 And when its below 15 items a 10 percantage VAT is charged and also a 2 dollar shipping is charged.
 ![Shipping](docs/VAT.png)
 
-* 
-If the customer hasn't placed the order within 15 minutes, the order form will be cleared, and the customer will be notified that they took too long.
+* If the customer hasn't placed the order within 15 minutes, the order form will be cleared, and the customer will be notified that they took too long.
 
 The basket will empty it self and a message will be displayed for the user, in the future I will implement a message inside the website where the user will be informed why the basket was emptied.
 
@@ -107,6 +106,26 @@ The basket will empty it self and a message will be displayed for the user, in t
 Total is then shown as 0:
 
 ![Empty](docs/basket-delete-2.png)
+
+* When the form is correctly filled out, the "Send/Order" button should be activated, otherwise, it should be grayed out.
+
+Before the form have been filled in the confirm button will look like this:
+![Confirm button](docs/grey-btn.png).
+
+After the form have been filled in the confirm button will look like this and it will be activated.
+
+![Confirm button](docs/grey-btn-2.png).
+
+
+* There should be a "Clear Order" button that resets all form fields and any ordered donuts/products (i.e., the quantity is reset to 0).
+
+This button below clear all fields will remove all the inputed filed and clear it.
+
+![Confirm button](docs/clear.png).
+
+And this button below will clear the basket.
+
+![Clear-basket](docs/avatar-home-6.png).
 
 
 # Supported screens
