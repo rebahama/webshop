@@ -201,7 +201,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
         idCounts[id] = (idCounts[id] || 0) + 1;
         let sumAll = idCounts[id] * pokemon.price;
         if ((dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
-            console.log(idCounts[id])
+            console.log(idCounts[id]);
             const priceFifteen = sumAll * 0.15;
             const newPriceFifteen = sumAll + priceFifteen;
             basketContainer.innerHTML = showBasketArea();
@@ -354,7 +354,7 @@ const sumAllPriceBasket = (basket) => {
     }
 
     return total;
-}
+};
 
 const fifteenPercantageOutput = () => {
     const mondayOffer = document.querySelector(".monday-offer");
@@ -611,7 +611,7 @@ const displayPaymentConfirmMessage = () => {
         paymentContainer.innerHTML = "Something went wrong please check you details again";
         return false; // Prevent form submission
     }
-}
+};
 
 
 const showsocialSecurityField = () => {
@@ -650,7 +650,7 @@ const clearBasketAfterTime = () => {
 const testBtn = document.getElementById('testBtn');
 
 const removeSocialSecurity = () => {
-    const getInvoiceOption = document.querySelector(".invoiceOption")
+    const getInvoiceOption = document.querySelector(".invoiceOption");
     const totalPrice = sumAllPriceBasket(basketArray);
     if (totalPrice > 800) {
         getInvoiceOption.style.display = "none";
@@ -666,8 +666,8 @@ document.addEventListener('DOMContentLoaded', () => {
     sortRatingButton.addEventListener('click', () => sortByRating(pokemonData));
     sortCategoryButton.addEventListener('click', () => sortByCategory(pokemonData));
     clearArray.addEventListener('click', clearBasket);
-    BasketShow.addEventListener('click', showBasket)
-    BasketShow.addEventListener('click', removeSocialSecurity)
+    BasketShow.addEventListener('click', showBasket);
+    BasketShow.addEventListener('click', removeSocialSecurity);
     paymentMethod.addEventListener('change', showMoreFieldsPayment);
     homeButton.addEventListener('click', () => homeBtn(pokemonData));
     inputValue.forEach(input => {
