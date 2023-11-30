@@ -330,6 +330,16 @@ button {
     font-size: 16px;
 }
 
+.footer {
+    background-color: $accent-color;
+    color: $font-alternative-color;
+    text-align: center;
+    height: 4.5rem;
+    padding: 10px;
+    position: sticky;
+    bottom: 0;
+}
+
 @media screen and (max-width: 860px) {
     .grid-container-pokemon {
         grid-template-columns: none;
