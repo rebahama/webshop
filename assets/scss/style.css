@@ -25,8 +25,8 @@ body {
 
 /*style img header*/
 .img-style {
-  height: 87px;
-  width: 87px;
+  height: 60px;
+  width: 40px;
   border-radius: 50px;
 }
 
@@ -42,8 +42,8 @@ body {
 
 .pokemon-avatar {
   margin: 20px;
-  height: 111px;
-  width: 165px;
+  height: 80px;
+  width: 130px;
   border-radius: 100px;
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 .sort-links a {
-  background-color: #04AA6D;
+  background-color: #000;
   border: none;
   cursor: pointer;
   color: #fff;
@@ -121,7 +121,7 @@ body {
 
 /* Style buttons inside the list*/
 .add-btn {
-  background-color: #04AA6D;
+  background-color: #000;
   border: none;
   cursor: pointer;
   border-radius: 20px;
@@ -158,7 +158,7 @@ body {
 }
 
 #basket-btn {
-  background-color: #04AA6D;
+  background-color: #000;
   border: none;
   cursor: pointer;
   border-radius: 20px;
@@ -188,7 +188,7 @@ body {
 }
 
 #confirm-payment-btn {
-  background-color: #04AA6D;
+  background-color: #000;
   border: none;
   cursor: pointer;
   border-radius: 20px;
@@ -202,7 +202,7 @@ body {
 }
 
 #clear-basket-btn {
-  background-color: #04AA6D;
+  background-color: #000;
   border: none;
   cursor: pointer;
   border-radius: 20px;
@@ -216,7 +216,7 @@ body {
 }
 
 #home-btn {
-  background-color: #04AA6D;
+  background-color: #000;
   border: none;
   cursor: pointer;
   border-radius: 20px;
