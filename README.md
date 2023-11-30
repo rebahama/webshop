@@ -75,3 +75,12 @@ Styling the page was created with
 * Javascript was validated with the help of [Javascript validator](https://jshint.com/)
 
 # Lighthouse score
+* The best practice score is related to the pictures on the website and it can be improved, but i choose to fix that score later as the pictures to find for my goal is hard to find because of copywritten law. I have a limited selection of pictures to choose from.
+
+![Order confimred](docs/lighthouse.png)
+
+
+# Credits
+* Fonts are from Google fonts.
+
+* Pictures was taken from [Pictures](https://www.pexels.com/sv-se/ )
