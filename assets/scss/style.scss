@@ -329,3 +329,26 @@ button {
     cursor: pointer;
     font-size: 16px;
 }
+
+@media screen and (max-width: 860px) {
+    .grid-container-pokemon {
+        grid-template-columns: none;
+    }
+
+    .sort-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sort-links a {
+        width: 50%;
+    }
+    .btn-container {
+        margin-top: 20%;
+        flex-direction: column;
+    }
+    form{
+        width: 270px;
+    }
+}
