@@ -304,6 +304,7 @@ const mondaySpecialPriceBeforeTen = () => {
   */
 /*
  */
+
 const deleteBasket = (listItem, pokemon) => {
     const deleteBtn = listItem.querySelector(".delete-btn");
     const priceCounter = listItem.querySelector(".price-counter");
@@ -355,6 +356,7 @@ const deleteBasket = (listItem, pokemon) => {
 
     });
 };
+
 /** 
  * Function to sum all the numbers that are inside the basket array.
  */
@@ -538,10 +540,11 @@ const homeBtn = () => {
         // Append the list item to the list
         // Sort the cloned array based on the 'price' property
         const container = document.querySelector("#pokemonList");
-
+        const displayStyle = document.querySelector(".")
+      
         // Clear the container before adding the sorted Pokémon
         container.innerHTML = "";
-        displayPokemon(pokemonData);
+        displayPokemon();
         btnBasketBtn.style.display = "none";
         pokemonContainer.style.display = "block";
         basketContainer.style.display = "none";
