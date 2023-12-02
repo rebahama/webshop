@@ -1,6 +1,5 @@
 //Array to save the object and properties when user clicks add to basket.
-const basketArray = [];
-
+const basketCart = [];
 const BasketShow = document.getElementById("basket-btn");
 const clearArray = document.getElementById("clear-basket-btn");
 const sortButton = document.querySelector("#sort-btn");
@@ -195,7 +194,7 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container");
     const idCounts = {};
-    basketArray.forEach(pokemon => {
+    basketCart.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         let sumAll = idCounts[id] * pokemon.price;
@@ -223,7 +222,7 @@ const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container");
     const idCounts = {};
-    basketArray.forEach((pokemon, index, array) => {
+    basketCart.forEach((pokemon, index, array) => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
         let sumAll = idCounts[id] * pokemon.price;
@@ -260,8 +259,8 @@ const showBasketArea = () => {
     const dayNumber = d.getDay();
     const time = d.getHours();
     const basketContainer = document.querySelector(".basket-container");
-    const uniquePokemons = Array.from(new Set(basketArray.map(pokemon => pokemon.id))).map(id => {
-        return basketArray.find(pokemon => pokemon.id === id);
+    const uniquePokemons = Array.from(new Set(basketCart.map(pokemon => pokemon.id))).map(id => {
+        return basketCart.find(pokemon => pokemon.id === id);
     });
 
     return basketContainer.innerHTML = uniquePokemons.map(pokemon => `
@@ -272,7 +271,7 @@ const showBasketArea = () => {
         
         ${dayNumber === 5 && time >= 15 || dayNumber === 6 || dayNumber === 0 && time < 3
             ? fifteenPercantage(pokemon.price) : pokemon.price}$
-        x ${basketArray.filter(p => p.id === pokemon.id).length}
+        x ${basketCart.filter(p => p.id === pokemon.id).length}
       </div>
       <div>
         <hr class="hr-list">
@@ -289,7 +288,7 @@ const mondaySpecialPriceBeforeTen = () => {
     const d = new Date();
     const dayNumber = d.getDay();
     const time = d.getHours();
-    const totalPrice = sumAllPriceBasket(basketArray);
+    const totalPrice = sumAllPriceBasket(basketCart);
     const discountPrice = totalPrice / 10;
     const newTotalPrice = totalPrice - discountPrice;
     const mondayOffer = document.querySelector(".monday-offer");
@@ -313,13 +312,13 @@ const deleteBasket = (listItem, pokemon) => {
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
     deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
-        const indexToRemove = basketArray.findIndex(item => item.id === pokemon.id);
+        const indexToRemove = basketCart.findIndex(item => item.id === pokemon.id);
         if (indexToRemove !== -1) {
-            basketArray.splice(indexToRemove, 1);
+            basketCart.splice(indexToRemove, 1);
             // Update the count 
-            const idCount = basketArray.filter(item => item.id === pokemon.id).length;
+            const idCount = basketCart.filter(item => item.id === pokemon.id).length;
             idCounter.innerHTML = `Quantity: ${idCount}`;
-            const totalPrice = sumAllPriceBasket(basketArray);
+            const totalPrice = sumAllPriceBasket(basketCart);
             if (totalPrice > 0) {
                 // Update the HTML content only if totalPrice is above zero
                 fifteenPercantageOutput();
@@ -385,14 +384,14 @@ const fifteenPercantageOutput = () => {
     const dayNumber = d.getDay();
     const time = d.getHours();
     const mondayOffer = document.querySelector(".monday-offer");
-    const totalPrice = sumAllPriceBasket(basketArray);
+    const totalPrice = sumAllPriceBasket(basketCart);
     if ((totalPrice > 0 && dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
         let newSumFifteen = fifteenPercantage(totalPrice);
         totalBillBasket.classList.add("total-bill-basket");
         totalBillBasket.innerHTML = `Total: ${newSumFifteen}$`;
-        totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
+        totalPcsBasket.innerHTML = `Items: ${basketCart.length}`;
         mondayOffer.innerHTML = `Total: $${newSumFifteen} + $2 dollar Shipping`;
-        if (basketArray.length > 15) {
+        if (basketCart.length > 15) {
             mondayOffer.innerHTML = `No shipping charged! Total: ${newSumFifteen}$`;
         } else {
             let newSumFifteen = fifteenPercantage(totalPrice);
@@ -400,8 +399,8 @@ const fifteenPercantageOutput = () => {
         }
     } else {
         totalBillBasket.innerHTML = `Total: ${totalPrice}$`;
-        totalPcsBasket.innerHTML = `Items: ${basketArray.length}`;
-        if (basketArray.length > 15) {
+        totalPcsBasket.innerHTML = `Items: ${basketCart.length}`;
+        if (basketCart.length > 15) {
             mondayOffer.innerHTML = `Total: $${totalPrice} No shipping charged!`;
 
         } else {
@@ -423,14 +422,14 @@ const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
     const shippingInfo = document.querySelector(".shipping-info");
     const dayAndTime = `Today is ${dayNumber} and the time is ${time}`;
     // Add the selected Pokemon to the array
-    basketArray.push(pokemon);
+    basketCart.push(pokemon);
     const idCounts = {};
-    basketArray.forEach(pokemon => {
+    basketCart.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
     });
     idCounter.innerHTML = `Quantity: ${idCounts[id]}`;
-    const totalPrice = sumAllPriceBasket(basketArray);
+    const totalPrice = sumAllPriceBasket(basketCart);
     if (totalPrice > 0) {
         // Update the HTML content only if totalPrice is above zero
         fifteenPercantageOutput();
@@ -454,9 +453,9 @@ const fifteenPercantage = (newSumPrice) => {
 const addToBasketAndFindRightId = (id, listItem, pokemon) => {
     const idCounter = listItem.querySelector(".id-counter");
     // Add the selected Pokemon to the array with the specified quantity of the id that is inside the array and multiply with price.
-    basketArray.push(pokemon);
+    basketCart.push(pokemon);
     const idCounts = {};
-    basketArray.forEach(pokemon => {
+    basketCart.forEach(pokemon => {
         const id = pokemon.id;
         idCounts[id] = (idCounts[id] || 0) + 1;
     });
@@ -555,7 +554,7 @@ const homeBtn = () => {
 /**  Clear the basket when clickng the clear button*/
 const clearBasket = () => {
     const mondayOffer = document.querySelector(".monday-offer");
-    basketArray.splice(0, basketArray.length);
+    basketCart.splice(0, basketCart.length);
     mondayOffer.innerHTML = "Basket have been cleared!";
     totalBillBasket.innerHTML = "Total: 0$";
     totalPcsBasket.innerHTML = "Items: 0";
@@ -681,7 +680,7 @@ const showBasket = () => {
 };
 /** Function for clearing basket when the user have been inactive for more than 15 minutes, the set intervall is used in the DOM loading event listner */
 const clearBasketAfterTime = () => {
-    if (basketArray.length > 0) {
+    if (basketCart.length > 0) {
         location.reload();
         alert("Your basket will be deleted, more than 15 minutes have been passed");
     }
@@ -689,7 +688,7 @@ const clearBasketAfterTime = () => {
 
 const removeSocialSecurity = () => {
     const getInvoiceOption = document.querySelector(".invoiceOption");
-    const totalPrice = sumAllPriceBasket(basketArray);
+    const totalPrice = sumAllPriceBasket(basketCart);
     if (totalPrice > 800) {
         getInvoiceOption.style.display = "none";
         cardDetails.style.display = "block";
