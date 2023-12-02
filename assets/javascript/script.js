@@ -1,8 +1,6 @@
 //Array to save the object and properties when user clicks add to basket.
 const basketArray = [];
-const d = new Date();
-const dayNumber = d.getDay();
-const time = d.getHours();
+
 const BasketShow = document.getElementById("basket-btn");
 const clearArray = document.getElementById("clear-basket-btn");
 const sortButton = document.querySelector("#sort-btn");
@@ -21,88 +19,89 @@ const mondayOffer = document.querySelector(".monday-offer");
 const inputValue = document.querySelectorAll(".checkValue");
 const submitButton = document.getElementById("submitBtn");
 const totalBillBasket = document.querySelector(".total-bill-basket");
+
 const totalPcsBasket = document.querySelector(".total-pcs-basket");
 // Create object with property of: name,price,rating. category and image.
 const pokemonData = [{
-        id: 1,
-        name: "Pikachu",
-        price: 30,
-        rating: 4.5,
-        category: "Electric",
-        image: "assets/img/pikachu.jpg",
-    },
-    {
-        id: 2,
-        name: "Charmander",
-        price: 50,
-        rating: 4.8,
-        category: "Fire/Flying",
-        image: "assets/img/charmander.jpg",
-    },
-    {
-        id: 3,
-        name: "Bulbasaur",
-        price: 20,
-        rating: 4.2,
-        category: "Grass/Poison",
-        image: "assets/img/bulbasaur.jpg",
-    },
-    {
-        id: 4,
-        name: "Squirtle",
-        price: 23,
-        rating: 4.3,
-        category: "Water",
-        image: "assets/img/squirtle.jpg",
-    },
-    {
-        id: 5,
-        name: "Graveler",
-        price: 20,
-        rating: 4.1,
-        category: "Rock",
-        image: "assets/img/graveler.jpg",
-    },
-    {
-        id: 6,
-        name: "Mewtwo",
-        price: 60,
-        rating: 4.9,
-        category: "Psychic",
-        image: "assets/img/mewtwo.jpg",
-    },
-    {
-        id: 7,
-        name: "Eevee",
-        price: 30,
-        rating: 4.6,
-        category: "Normal",
-        image: "assets/img/eevee.jpg",
-    },
-    {
-        id: 8,
-        name: "Jolteon",
-        price: 40,
-        rating: 4.7,
-        category: "Electric",
-        image: "assets/img/jolteon.jpg",
-    },
-    {
-        id: 9,
-        name: "Mew",
-        price: 70,
-        rating: 5.0,
-        category: "Psychic",
-        image: "assets/img/mew.jpg",
-    },
-    {
-        id: 10,
-        name: "Lugia",
-        price: 100,
-        rating: 4.4,
-        category: "Legendary",
-        image: "assets/img/lugia.jpg",
-    },
+    id: 1,
+    name: "Pikachu",
+    price: 30,
+    rating: 4.5,
+    category: "Electric",
+    image: "assets/img/pikachu.jpg",
+},
+{
+    id: 2,
+    name: "Charmander",
+    price: 50,
+    rating: 4.8,
+    category: "Fire/Flying",
+    image: "assets/img/charmander.jpg",
+},
+{
+    id: 3,
+    name: "Bulbasaur",
+    price: 20,
+    rating: 4.2,
+    category: "Grass/Poison",
+    image: "assets/img/bulbasaur.jpg",
+},
+{
+    id: 4,
+    name: "Squirtle",
+    price: 23,
+    rating: 4.3,
+    category: "Water",
+    image: "assets/img/squirtle.jpg",
+},
+{
+    id: 5,
+    name: "Graveler",
+    price: 20,
+    rating: 4.1,
+    category: "Rock",
+    image: "assets/img/graveler.jpg",
+},
+{
+    id: 6,
+    name: "Mewtwo",
+    price: 60,
+    rating: 4.9,
+    category: "Psychic",
+    image: "assets/img/mewtwo.jpg",
+},
+{
+    id: 7,
+    name: "Eevee",
+    price: 30,
+    rating: 4.6,
+    category: "Normal",
+    image: "assets/img/eevee.jpg",
+},
+{
+    id: 8,
+    name: "Jolteon",
+    price: 40,
+    rating: 4.7,
+    category: "Electric",
+    image: "assets/img/jolteon.jpg",
+},
+{
+    id: 9,
+    name: "Mew",
+    price: 70,
+    rating: 5.0,
+    category: "Psychic",
+    image: "assets/img/mew.jpg",
+},
+{
+    id: 10,
+    name: "Lugia",
+    price: 100,
+    rating: 4.4,
+    category: "Legendary",
+    image: "assets/img/lugia.jpg",
+},
 ];
 
 /**
@@ -111,6 +110,9 @@ create a class to put the data inside the class and output the data
 in the html file
 */
 displayPokemon = () => {
+    const d = new Date();
+    const dayNumber = d.getDay();
+    const time = d.getHours();
     // Loop over each Pokémon in the array using a regular for loop
     const basketContainer = document.querySelector(".basket-container");
     for (let i = 0; i < pokemonData.length; i++) {
@@ -187,6 +189,9 @@ const decreasePriceCount = (id, pokemon, listItem) => {
  *this function takes the id of the product and multiplies it with the pokemon id to display the total value price.
  */
 const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
+    const d = new Date();
+    const dayNumber = d.getDay();
+    const time = d.getHours();
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container");
     const idCounts = {};
@@ -212,6 +217,9 @@ const findRightIndexAndShowPrice = (id, pokemon, listItem) => {
  * take the index number and * with the quantity to display the right price.
  */
 const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
+    const d = new Date();
+    const dayNumber = d.getDay();
+    const time = d.getHours();
     const priceCounter = listItem.querySelector(".price-counter");
     const basketContainer = document.querySelector(".basket-container");
     const idCounts = {};
@@ -248,6 +256,9 @@ const findRightIndexAndShowPriceDecrease = (id, pokemon, listItem) => {
  * id is inside the array.
  */
 const showBasketArea = () => {
+    const d = new Date();
+    const dayNumber = d.getDay();
+    const time = d.getHours();
     const basketContainer = document.querySelector(".basket-container");
     const uniquePokemons = Array.from(new Set(basketArray.map(pokemon => pokemon.id))).map(id => {
         return basketArray.find(pokemon => pokemon.id === id);
@@ -275,6 +286,9 @@ const showBasketArea = () => {
  * And then it will take 10% off and display a message only when its monday and the time is before 10oclock.
  */
 const mondaySpecialPriceBeforeTen = () => {
+    const d = new Date();
+    const dayNumber = d.getDay();
+    const time = d.getHours();
     const totalPrice = sumAllPriceBasket(basketArray);
     const discountPrice = totalPrice / 10;
     const newTotalPrice = totalPrice - discountPrice;
@@ -293,10 +307,11 @@ const mondaySpecialPriceBeforeTen = () => {
  */
 const deleteBasket = (listItem, pokemon) => {
     const deleteBtn = listItem.querySelector(".delete-btn");
+    const priceCounter = listItem.querySelector(".price-counter");
     const idCounter = listItem.querySelector(".counter");
     const totalBillBasket = document.querySelector(".total-bill-basket");
     const totalPcsBasket = document.querySelector(".total-pcs-basket");
-    deleteBtn.addEventListener("click", function() {
+    deleteBtn.addEventListener("click", function () {
         // code from stakeoverflow
         const indexToRemove = basketArray.findIndex(item => item.id === pokemon.id);
         if (indexToRemove !== -1) {
@@ -357,17 +372,18 @@ const sumAllPriceBasket = (basket) => {
  * Function to take ten percatnage of the total price and add it to the total price
  */
 const tenPercantageOfAll = (newSumPriceTwo) => {
-
     let newSum = newSumPriceTwo * 0.10;
     let newSumTen = newSumPriceTwo + newSum;
     return newSumTen;
-
 
 }
 /**  Function to Take 15 percantage of the total sum in the basket
  * and display it only on fridays to sunday before 3 am.
  */
 const fifteenPercantageOutput = () => {
+    const d = new Date();
+    const dayNumber = d.getDay();
+    const time = d.getHours();
     const mondayOffer = document.querySelector(".monday-offer");
     const totalPrice = sumAllPriceBasket(basketArray);
     if ((totalPrice > 0 && dayNumber === 5 && time >= 15) || (dayNumber === 6 || dayNumber === 0 && time < 3)) {
@@ -399,6 +415,9 @@ const fifteenPercantageOutput = () => {
 
 
 const addToBasketAndCalculatePrice = (listItem, pokemon, id) => {
+    const d = new Date();
+    const dayNumber = d.getDay();
+    const time = d.getHours();
     const idCounter = listItem.querySelector(".counter");
     const mondayOffer = document.querySelector(".monday-offer");
     const shippingInfo = document.querySelector(".shipping-info");
@@ -565,15 +584,17 @@ const showMoreFieldsPayment = () => {
  */
 const checkInputFieldsAllFilled = () => {
     const acceptTerm = document.querySelector(".acceptTerm");
+    const checkBox = document.getElementById("info");
     const inputValues = document.getElementsByClassName("checkValue");
     const formValid = document.getElementById("myForm");
     const thirdCheckValueInput = inputValues[6];
 
-    console.log(acceptTerm.value);
+
     for (const input of inputValues) {
         let inputValue = input.value;
         if (inputValue === "") {
             console.log("Number three node is :" + thirdCheckValueInput.value);
+
 
             if (thirdCheckValueInput.value === "") {
                 submitButton.disabled = true;
