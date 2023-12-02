@@ -6,6 +6,8 @@
 # Poké Avatar shop
 This site was created for all the Pokémon fans that want to have their favorite avatar displayed in their room or maybe in their car or maybe just in the office. This site makes it possible for anyone to order a Pokémon avatar, the user can choose freely how any avatars they want and the order it.
 
+![Home page](docs/home.png)
+
 * Link to live website: [Live website](https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-rebahama/)
 
 # Features and functionality
