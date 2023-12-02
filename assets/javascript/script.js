@@ -540,11 +540,11 @@ const homeBtn = () => {
         // Append the list item to the list
         // Sort the cloned array based on the 'price' property
         const container = document.querySelector("#pokemonList");
-        const displayStyle = document.querySelector(".")
+       
       
         // Clear the container before adding the sorted Pokémon
         container.innerHTML = "";
-        displayPokemon();
+        displayPokemon(pokemonData);
         btnBasketBtn.style.display = "none";
         pokemonContainer.style.display = "block";
         basketContainer.style.display = "none";
