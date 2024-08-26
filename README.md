@@ -139,7 +139,6 @@ As you can see from the pictures below the cards starts to form a column instead
 ![Empty](docs/responsiv-2.png)
 
 
-
 # Technology
 
 The technology to create the structure of the page was created with:
@@ -174,6 +173,12 @@ Styling the page was created with
 
 ![Order confimred](docs/lighthouse.png)
 
+# Reflections 
+* I am quite satisfied with my work. I managed to complete the majority of the user stories and also solved some hard parts that I encountered. I am pleased that my code is structured and has functions for each functionality that was created from the user stories. The code is commented and documented for easier understanding and management.
+
+One thing that could have been better is if I had used functions inside other functions. For example, I noticed on line 222 in the script.js file, the function named findRightIndexAndShowPriceDecrease. It would be better if, in the future, I could refactor the code from lines 223 to 230 into a separate function. I think the codebase would be much easier to maintain if I also had small functions inside other functions. One good way to make that a habit is to think that if I am using the same type of conditional checking repeatedly throughout the codebase, it’s better to create a function that can be reused each time.
+
+I also noticed that I am repeating myself in some areas. For example, in lines 287 and 288 in the function mondaySpecialPriceBeforeTen and in lines 361 to 363 in the function fifteenPercentageOutput, I am using the date and hour. Here, I could create a function to make the code more readable and provide a nicer structure.
 
 # Credits
 * Fonts are from Google fonts.
